@@ -1,0 +1,45 @@
+import styled from 'styled-components';
+
+import { Theme } from '@/core';
+import { sxConfig } from '@/core/styled';
+
+import { createPXTypographyCssVariant, TYPOGRAPHY_DEFAULT_PROPS } from './constants';
+import { TypographyStyleRoot } from './typography.type';
+
+export const TypographyStyled = styled(({ as: Component, ...rest }) => <Component {...rest} />).withConfig({
+   shouldForwardProp: (prop) => !['underline', 'delete', 'italic', 'strong', 'disabled', 'color'].includes(prop),
+})<{
+   theme: Theme;
+   $styleProps: TypographyStyleRoot;
+}>((props) => {
+   const { theme, $styleProps } = props;
+
+   const defaultProps = theme.components?.PXTypography?.defaultProps ?? TYPOGRAPHY_DEFAULT_PROPS;
+
+   const styleOverrides =
+      theme.components?.PXTypography?.styleOverrides ?? createPXTypographyCssVariant(theme.palette).styleOverrides;
+
+   const {
+      sx,
+      variant = defaultProps.variant,
+      underline = defaultProps.underline,
+      delete: isDelete = defaultProps.delete,
+      italic = defaultProps.italic,
+      disabled = defaultProps.disabled,
+      color = defaultProps.color,
+      strong,
+      ...resProps
+   } = $styleProps;
+
+   return {
+      ...styleOverrides.variants[variant as keyof typeof styleOverrides.variants],
+      ...styleOverrides.color[color as keyof typeof styleOverrides.color],
+      ...(strong ? styleOverrides.strong : {}),
+      ...(underline ? styleOverrides.underline : {}),
+      ...(isDelete ? styleOverrides.delete : {}),
+      ...(italic ? styleOverrides.italic : {}),
+      ...(disabled ? styleOverrides.disabled : {}),
+
+      ...sxConfig({ ...styleOverrides.root, sx, ...resProps }),
+   };
+});
