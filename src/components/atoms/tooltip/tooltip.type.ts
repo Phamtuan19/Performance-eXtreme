@@ -1,4 +1,5 @@
 import { Placement } from '@floating-ui/dom';
+import { CSSObject } from 'styled-components';
 
 import { SxConfigProps, ThemeColorDefault } from '@/core';
 import { UnstableSxConfigProps } from '@/core/styled';
@@ -29,6 +30,20 @@ export type PXComponentTooltip = {
        * Màu sắc của tooltip, kiểu màu theo theme định nghĩa
        */
       color: ThemeColorDefault | 'default';
+   };
+
+   styleOverrides: {
+      /**
+       * Style cho phần root bọc ngoài của radio.
+       * Áp dụng cho thẻ <label> chứa toàn bộ radio và label.
+       */
+      root: CSSObject;
+
+      /**
+       * Style theo từng màu sắc: primary, secondary, v.v.
+       * Gồm borderColor và backgroundColor (khi checked).
+       */
+      color: Record<ThemeColorDefault | 'default', CSSObject>;
    };
 };
 
