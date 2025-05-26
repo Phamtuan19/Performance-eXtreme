@@ -1,3 +1,4 @@
+import React from 'react';
 import styled from 'styled-components';
 
 import { Theme } from '@/core';
@@ -6,7 +7,13 @@ import { sxConfig } from '@/core/styled';
 import { createPXTypographyCssVariant, TYPOGRAPHY_DEFAULT_PROPS } from './constants';
 import { TypographyStyleRoot } from './typography.type';
 
-export const TypographyStyled = styled(({ as: Component, ...rest }) => <Component {...rest} />).withConfig({
+const TypographyForwardRef = React.forwardRef<
+   HTMLElement,
+   { as?: React.ElementType } & React.ComponentPropsWithoutRef<'span'>
+>(({ as: Component = 'span', ...rest }, ref) => <Component ref={ref} {...rest} />);
+TypographyForwardRef.displayName = 'TypographyForwardRef';
+
+export const TypographyStyled = styled(TypographyForwardRef).withConfig({
    shouldForwardProp: (prop) => !['underline', 'delete', 'italic', 'strong', 'disabled', 'color'].includes(prop),
 })<{
    theme: Theme;

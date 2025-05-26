@@ -1,9 +1,20 @@
-import { Avatar, AvatarGroup, Badge, Box, Button, Radio, Switch } from '@/components/atoms';
+import { Avatar, AvatarGroup, Badge, Box, Button, Radio, Switch, Tooltip, Typography } from '@/components/atoms';
 import { Divider } from '@/components/atoms/divider';
 
 export default function App() {
    return (
       <div style={{ padding: '2rem' }}>
+         <Box my={3} className="">
+            <Tooltip title="Tooltip của tôi" open placement="top-end">
+               <Button>Hover me</Button>
+            </Tooltip>
+         </Box>
+         <Box my={3} className="">
+            <Tooltip title="Tooltip của tôi" placement="top-end">
+               <Typography component={'span'}> Hover me</Typography>
+            </Tooltip>
+         </Box>
+
          <Box position="relative" mb={2} display="flex" gap={3}>
             <Badge content={1000} maxContent={99} color="error">
                <Button>Button</Button>

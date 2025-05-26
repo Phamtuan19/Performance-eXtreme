@@ -1,3 +1,4 @@
+import React from 'react';
 import styled, { CSSObject } from 'styled-components';
 
 import { Theme } from '@/core';
@@ -60,7 +61,13 @@ const renderButtonStyle = ({
    };
 };
 
-export const ButtonRoot = styled(({ as: Component = ButtonBase, ...rest }) => <Component {...rest} />)<{
+const ForwardedButton = React.forwardRef<
+   HTMLButtonElement,
+   { as?: React.ElementType } & React.ComponentPropsWithoutRef<'button'>
+>(({ as: Component = ButtonBase, ...rest }, ref) => <Component ref={ref} {...rest} />);
+ForwardedButton.displayName = 'ButtonRoot';
+
+export const ButtonRoot = styled(ForwardedButton)<{
    theme: Theme;
    $styleProps: ButtonStyleRoot;
 }>((props) => {

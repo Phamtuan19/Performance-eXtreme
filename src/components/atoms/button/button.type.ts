@@ -47,7 +47,10 @@ export interface ButtonStyleRoot extends UnstableSxConfigProps {
    size?: (typeof VARIANTS_BUTTON.SIZE)[number];
 }
 
-export interface ButtonProps extends ButtonBaseProps, UnstableSxConfigProps {
+export interface ButtonProps
+   extends Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, 'color'>,
+      ButtonBaseProps,
+      UnstableSxConfigProps {
    /**
     * Icon hiển thị ở đầu nội dung nút
     */

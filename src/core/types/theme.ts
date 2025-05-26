@@ -9,6 +9,7 @@ import {
    PXComponentAvatar,
    PXComponentBadge,
    PXComponentDivider,
+   PXComponentTooltip,
 } from '@/components/atoms';
 
 import { UnstableSxConfigProps } from '../styled';
@@ -112,6 +113,7 @@ export type Components = {
    PXAvatar?: Partial<PXComponentAvatar>;
    PXBadge?: Partial<PXComponentBadge>;
    PXDivider?: Partial<PXComponentDivider>;
+   PXTooltip?: Partial<PXComponentTooltip>;
 };
 
 /** Theme chuẩn dùng trong hệ thống */
