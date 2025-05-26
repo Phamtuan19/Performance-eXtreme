@@ -1,4 +1,5 @@
 import { Avatar, AvatarGroup, Badge, Box, Button, Radio, Switch } from '@/components/atoms';
+import { Divider } from '@/components/atoms/divider';
 
 export default function App() {
    return (
@@ -7,17 +8,35 @@ export default function App() {
             <Badge content={1000} maxContent={99} color="error">
                <Button>Button</Button>
             </Badge>
+            <Divider variant="vertical" orientation="right"></Divider>
             <Badge content={99} color="success">
                <Button>Button</Button>
             </Badge>
+            <Divider variant="vertical" orientation="right"></Divider>
             <Badge content={99} dot color="warning">
                <Button>Button</Button>
             </Badge>
          </Box>
 
          <Box>
-            <Switch loading size="large" color="primary" disabled />
-            <Switch loading ml={2} size="medium" />
+            <Divider variant="horizontal" orientation="right">
+               horizontal right
+            </Divider>
+         </Box>
+
+         <Box my={3}>
+            <Divider variant="horizontal" orientation="center">
+               horizontal center
+            </Divider>
+         </Box>
+         <Box my={3}>
+            <Divider variant="horizontal" orientation="left">
+               horizontal left
+            </Divider>
+         </Box>
+         <Box>
+            <Switch loading size="large" color="primary" />
+            <Switch loading ml={2} size="medium" color="error" />
             <Switch ml={2} size="small" color="warning" />
 
             <Radio autoFocus />

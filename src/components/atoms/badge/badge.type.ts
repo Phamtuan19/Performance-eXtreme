@@ -37,13 +37,14 @@ export interface PXComponentBadge {
 
 export type BadgeStyledProps = PXComponentBadge['defaultProps'] & UnstableSxConfigProps & SxConfigProps;
 
-export type BadgeProps = Partial<BadgeStyledProps> & {
-   content?: string | number;
+export type BadgeProps = Omit<React.HTMLAttributes<HTMLSpanElement>, 'color' | 'content'> &
+   Partial<BadgeStyledProps> & {
+      content?: string | number;
 
-   maxContent?: number;
+      maxContent?: number;
 
-   /**
-    * Nội dung con hiển thị trong nút
-    */
-   children?: React.ReactNode;
-};
+      /**
+       * Nội dung con hiển thị trong nút
+       */
+      children?: React.ReactNode;
+   };

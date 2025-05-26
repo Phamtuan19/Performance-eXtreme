@@ -78,7 +78,7 @@ export const RadioInner = styled.span<{
    const PXRadio = theme.components?.PXInput;
 
    const cssSize =
-      PXRadio?.styleOverrides.size?.[size as TypeInputSize] ?? RADIO_CSS_VARIANT.size[size as TypeInputSize];
+      PXRadio?.styleOverrides?.size?.[size as TypeInputSize] ?? RADIO_CSS_VARIANT.size[size as TypeInputSize];
 
    const borderColor = theme.palette.disabled.borderColor;
 

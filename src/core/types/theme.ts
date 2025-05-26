@@ -2,16 +2,24 @@
 import * as CSS from 'csstype';
 import { CSSObject } from 'styled-components';
 
-import { PXComponentBadge, PXComponentCheckbox } from '@/components/atoms';
-import { PXComponentAvatar } from '@/components/atoms/avatar/avatar.type';
-import { PXComponentRadio } from '@/components/atoms/radio/radio.type';
-import { PXComponentSwitch } from '@/components/atoms/switch/switch.type';
+import {
+   PXComponentCheckbox,
+   PXComponentRadio,
+   PXComponentSwitch,
+   PXComponentAvatar,
+   PXComponentBadge,
+   PXComponentDivider,
+} from '@/components/atoms';
 
 import { UnstableSxConfigProps } from '../styled';
 import { BreakpointKey } from '../styled/breakpoint';
-import { PxComponentButton, PxComponentTypography, VARIANTS_TYPOGRAPHY } from '../theme';
-import { PxComponentBox } from '../theme/components/box/box.type';
-import { PxComponentInput } from '../theme/components/input';
+import {
+   VARIANTS_TYPOGRAPHY,
+   PxComponentButton,
+   PxComponentBox,
+   PxComponentTypography,
+   PxComponentInput,
+} from '../theme';
 
 /** Hàm kiểu function nhận props và trả về bất kỳ kiểu style nào */
 export type StyleFunction<Props> = (props: Props) => any;
@@ -103,6 +111,7 @@ export type Components = {
    PXSwitch?: Partial<PXComponentSwitch>;
    PXAvatar?: Partial<PXComponentAvatar>;
    PXBadge?: Partial<PXComponentBadge>;
+   PXDivider?: Partial<PXComponentDivider>;
 };
 
 /** Theme chuẩn dùng trong hệ thống */
