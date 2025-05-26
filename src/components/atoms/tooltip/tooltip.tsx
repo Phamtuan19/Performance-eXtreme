@@ -137,18 +137,7 @@ const Tooltip = React.forwardRef<HTMLDivElement, TooltipProps>((props, forwarded
                   $styleProps={{ sx, color, ...styleProps }}
                >
                   {title}
-                  {arrow && (
-                     <Arrow
-                        ref={arrowRef}
-                        $styleProps={{
-                           placement: placementState,
-                           offset: offsetValue,
-                           delay,
-                           arrow,
-                           color,
-                        }}
-                     />
-                  )}
+                  {arrow && <Arrow ref={arrowRef} />}
                </TooltipWrapper>,
                document.body,
             )}

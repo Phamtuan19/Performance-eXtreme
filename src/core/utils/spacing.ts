@@ -1,3 +1,5 @@
+/* eslint-disable no-console */
+/* eslint-disable @typescript-eslint/no-explicit-any */
 const checkValidUnit = (argsInput: string): string => {
    // Kiểm tra nếu chuỗi không chứa bất kỳ đơn vị đo lường nào
    if (!/[\d\s](px|em|rem|%|vh|vw|auto)$/.test(argsInput)) {

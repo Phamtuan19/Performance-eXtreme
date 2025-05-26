@@ -1,6 +1,6 @@
 import { CSSObject } from 'styled-components';
 
-import { SxConfigProps, ThemeColorDefault } from '@/core';
+import { SxConfigProps, ThemeColor } from '@/core';
 import { UnstableSxConfigProps } from '@/core/styled';
 
 export interface PXComponentBadge {
@@ -8,7 +8,7 @@ export interface PXComponentBadge {
       /**
        * Màu của badge nếu có, ví dụ: 'primary', 'success', 'error',...
        */
-      color: ThemeColorDefault;
+      color: ThemeColor;
 
       /**
        * Vị trí hiển thị badge: 'top-left', 'top-right', 'bottom-left', 'bottom-right'
@@ -31,7 +31,7 @@ export interface PXComponentBadge {
        * Style theo từng màu sắc: primary, secondary, v.v.
        * Gồm borderColor và backgroundColor (khi checked).
        */
-      color: Record<ThemeColorDefault, CSSObject>;
+      color: Record<ThemeColor, CSSObject>;
    };
 }
 

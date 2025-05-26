@@ -17,14 +17,16 @@ const getTextColor = (theme: Theme, color: string | undefined) => {
 };
 
 export const TooltipWrapper = styled.div<{
-   theme: Theme;
    $styleProps: Omit<TooltipStyleProps, 'delay' | 'arrow' | 'offset' | 'placement'>;
 }>(({ theme, $styleProps }) => {
    const { color = 'default', ...resStyleProps } = $styleProps;
 
    const bgColor = getBackgroundColor(theme, color);
+
    const textColor = getTextColor(theme, color);
+
    const styleOverrides = theme.components?.PXTooltip?.styleOverrides;
+
    const colorOverrides = styleOverrides?.color?.[color as keyof typeof styleOverrides.color];
 
    return {
@@ -43,18 +45,10 @@ export const TooltipWrapper = styled.div<{
    };
 });
 
-export const Arrow = styled.div<{
-   theme: Theme;
-   $styleProps: TooltipStyleProps;
-}>(({ theme, $styleProps }) => {
-   const { color = 'default' } = $styleProps;
-   const bgColor = getBackgroundColor(theme, color);
-
-   return {
-      position: 'absolute',
-      width: 8,
-      height: 8,
-      background: bgColor,
-      transform: 'rotate(45deg)',
-   };
+export const Arrow = styled.div({
+   position: 'absolute',
+   width: 8,
+   height: 8,
+   background: 'inherit',
+   transform: 'rotate(45deg)',
 });

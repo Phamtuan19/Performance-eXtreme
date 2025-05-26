@@ -3,7 +3,7 @@ import React from 'react';
 import { getTheme } from '@/core';
 import { separateProps } from '@/core/styled';
 
-import { SWITCH_CSS_VARIANT, SWITCH_DEFAULT_PROPS } from './constants';
+import { SWITCH_DEFAULT_PROPS } from './constants';
 import {
    SwitchLabel,
    SwitchInput,

@@ -1,7 +1,7 @@
 import { Placement } from '@floating-ui/dom';
 import { CSSObject } from 'styled-components';
 
-import { SxConfigProps, ThemeColorDefault } from '@/core';
+import { SxConfigProps, ThemeColor } from '@/core';
 import { UnstableSxConfigProps } from '@/core/styled';
 
 export type PXComponentTooltip = {
@@ -29,7 +29,7 @@ export type PXComponentTooltip = {
       /**
        * Màu sắc của tooltip, kiểu màu theo theme định nghĩa
        */
-      color: ThemeColorDefault | 'default';
+      color: ThemeColor | 'default';
    };
 
    styleOverrides: {
@@ -43,7 +43,7 @@ export type PXComponentTooltip = {
        * Style theo từng màu sắc: primary, secondary, v.v.
        * Gồm borderColor và backgroundColor (khi checked).
        */
-      color: Record<ThemeColorDefault | 'default', CSSObject>;
+      color: Record<ThemeColor | 'default', CSSObject>;
    };
 };
 

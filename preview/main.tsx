@@ -1,6 +1,8 @@
 import ReactDOM from 'react-dom/client';
-import App from './app';
+
 import { ThemeProvider } from '@/core/theme';
+
+import App from './app';
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
    <ThemeProvider theme={{}}>

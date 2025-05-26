@@ -1,6 +1,6 @@
 import { CSSObject } from 'styled-components';
 
-import { SxConfigProps, ThemeColorDefault } from '@/core';
+import { SxConfigProps, ThemeColor } from '@/core';
 import { UnstableSxConfigProps } from '@/core/styled';
 
 /**
@@ -22,7 +22,7 @@ export type PXComponentDivider = {
        *  Màu sắc của Divider, nếu không truyền sẽ dùng màu mặc định
        *
        */
-      color: ThemeColorDefault | 'default';
+      color: ThemeColor | 'default';
 
       /**
        * Độ dày của đường kẻ (px), mặc định là 1
@@ -48,7 +48,7 @@ export type PXComponentDivider = {
        * Style theo từng màu sắc: primary, secondary, v.v.
        * Gồm borderColor và backgroundColor (khi checked).
        */
-      color: Record<ThemeColorDefault, CSSObject>;
+      color: Record<ThemeColor, CSSObject>;
    };
 };
 

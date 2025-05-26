@@ -1,4 +1,4 @@
-import styled, { css, keyframes } from 'styled-components';
+import styled, { css, CSSObject, keyframes } from 'styled-components';
 
 import { Theme, TypeInputColor, TypeInputSize } from '@/core';
 import { sxConfig } from '@/core/styled';
@@ -108,9 +108,9 @@ export const CheckBoxInner = styled('span')<{
    const PXCheckBox = theme.components?.PXCheckBox;
    const cssVariant = createCheckboxCssVariant(theme.palette);
 
-   const cssSize = PXCheckBox?.styleOverrides.size?.[size as TypeInputSize] ?? cssVariant.size[size as TypeInputSize];
+   const cssSize = PXCheckBox?.styleOverrides?.size?.[size as TypeInputSize] ?? cssVariant.size[size as TypeInputSize];
    const cssColor =
-      PXCheckBox?.styleOverrides.color?.[color as TypeInputColor] ?? cssVariant.color[color as TypeInputColor];
+      PXCheckBox?.styleOverrides?.color?.[color as TypeInputColor] ?? cssVariant.color[color as TypeInputColor];
 
    const borderColor = theme.palette.disabled.borderColor;
 
@@ -174,8 +174,8 @@ export const CheckBoxInner = styled('span')<{
          ${afterStyle}
       }
 
-      ${css(cssSize)}
-      ${css(cssColor)}
+      ${css(cssSize as CSSObject)}
+      ${css(cssColor as CSSObject)}
 
       ${disabled &&
       css`

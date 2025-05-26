@@ -14,6 +14,8 @@ export * from './input';
 
 export * from './radio';
 
+export * from './spinner';
+
 export * from './switch';
 
 export * from './textarea';

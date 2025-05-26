@@ -1,12 +1,9 @@
-import { CSSObject } from 'styled-components';
-
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { getTheme } from '@/core/theme';
 import { NestedCSSObject, SxConfigProps, Theme } from '@/core/types';
 
-import { isEmptyObject, isObject } from '../../utils';
+import { isObject } from '../../utils';
 import { unstable_sxConfig } from '../unstable_sxConfig';
-
-import { REMOVE_KEYS } from './constants';
 
 type ResponsiveStylesParams = {
    styleKey: string | string[];
@@ -133,6 +130,7 @@ const resolveSxNestedObject = (obj: any, theme: Theme): any => {
 const sxConfig = (options: SxConfigProps = {}): any => {
    const theme = getTheme();
    const sxRaw = options.sx;
+   // eslint-disable-next-line @typescript-eslint/no-unused-vars
    const { sx = {}, ...resOption } = options;
 
    let resolvedSx: NestedCSSObject = {};

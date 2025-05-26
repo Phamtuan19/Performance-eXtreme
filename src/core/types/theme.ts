@@ -10,6 +10,7 @@ import {
    PXComponentBadge,
    PXComponentDivider,
    PXComponentTooltip,
+   PXComponentSpinner,
 } from '@/components/atoms';
 
 import { UnstableSxConfigProps } from '../styled';
@@ -21,6 +22,7 @@ import {
    PxComponentTypography,
    PxComponentInput,
 } from '../theme';
+import { DeepOptional } from '../utils';
 
 /** Hàm kiểu function nhận props và trả về bất kỳ kiểu style nào */
 export type StyleFunction<Props> = (props: Props) => any;
@@ -66,10 +68,11 @@ export type Palette = {
    [key: string]: any;
 };
 
-export type ThemeColorDefault = keyof Pick<
-   Palette,
-   'primary' | 'secondary' | 'error' | 'warning' | 'success' | 'info' | 'text'
->;
+export type ThemeColor = keyof Pick<Palette, 'primary' | 'secondary' | 'error' | 'warning' | 'success' | 'info'>;
+
+export type ThemeSize = 'small' | 'medium' | 'large';
+
+export type ThemeVariant = 'outline' | 'filled' | 'standard';
 
 /** Định nghĩa breakpoint dùng trong responsive */
 export type Breakpoints = {
@@ -114,6 +117,7 @@ export type Components = {
    PXBadge?: Partial<PXComponentBadge>;
    PXDivider?: Partial<PXComponentDivider>;
    PXTooltip?: Partial<PXComponentTooltip>;
+   PXSpinner?: Partial<PXComponentSpinner>;
 };
 
 /** Theme chuẩn dùng trong hệ thống */
@@ -128,7 +132,7 @@ export interface Theme {
 }
 
 /** Tuỳ chọn khi khởi tạo theme */
-export type ThemeOptions = Partial<Theme>;
+export type ThemeOptions = DeepOptional<Theme>;
 
 /** Kiểu CSS hỗ trợ fallback và number | string */
 export type StandardCSSProperties = CSS.PropertiesFallback<number | string>;

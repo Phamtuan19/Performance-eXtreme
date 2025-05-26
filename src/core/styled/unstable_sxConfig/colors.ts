@@ -10,7 +10,6 @@ export const transformColorFn = (value: unknown) => {
    }
 
    if (typeof value !== 'string') {
-      console.warn('transformColorFn expects string value, got:', value);
       return String(value);
    }
 
@@ -19,7 +18,6 @@ export const transformColorFn = (value: unknown) => {
    }
 
    if (!theme || !theme.palette) {
-      console.warn('Theme hoặc theme.palette không được định nghĩa.');
       return value;
    }
 
@@ -30,6 +28,7 @@ export const transformColorFn = (value: unknown) => {
       if (color[key] !== undefined) {
          color = color[key];
       } else {
+         // eslint-disable-next-line no-console
          console.error(
             `⚠️ Color not found: '${value}' does not exist in theme.palette.\n` +
                `   → Using default color instead.\n` +

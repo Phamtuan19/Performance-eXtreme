@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { isCSSKey } from '../utils';
 
 import { unstable_sxConfig } from './unstable_sxConfig';

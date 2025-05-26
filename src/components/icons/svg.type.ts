@@ -6,6 +6,7 @@ export type SvgCommonProps = {
    theme?: {
       fill?: string;
       stroke?: string;
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       [key: string]: any;
    };
 } & React.SVGProps<SVGSVGElement>;
