@@ -2,13 +2,13 @@ import { merge } from 'lodash';
 import React from 'react';
 import { ThemeProvider as StyledThemeProvider } from 'styled-components';
 
-import { Theme } from '@/core/types';
+import { ThemeOptions } from '@/core/types';
 
 import { DEFAULT_THEME } from '../theme';
 
 interface PXThemeProviderProps {
    children: React.ReactNode;
-   theme: Theme;
+   theme: ThemeOptions;
 }
 
 const ThemeProvider = (props: PXThemeProviderProps) => {
