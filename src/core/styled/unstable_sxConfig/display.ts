@@ -1,4 +1,4 @@
-import { StandardCSSProperties } from '@/core/types';
+import { StandardCSSProperties } from '@/types';
 
 export type FlexCssItem = {
    key: string;

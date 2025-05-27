@@ -1,6 +1,6 @@
 import { getTheme } from '@/core/theme';
-import { StandardCSSProperties } from '@/core/types';
 import { isColorCode, isValidCssColor } from '@/core/utils';
+import { StandardCSSProperties } from '@/types';
 
 export const transformColorFn = (value: unknown) => {
    const theme = getTheme();

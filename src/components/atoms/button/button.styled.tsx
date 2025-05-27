@@ -6,7 +6,7 @@ import { sxConfig } from '@/core/styled';
 import { hexToRgba } from '@/core/utils';
 
 import { ButtonBase } from './button-base';
-import { ButtonStyleRoot } from './button.type';
+import { ButtonStyleProps } from './button.type';
 import { createButtonDefaultCssVariant, BUTTON_DEFAULT_CSS, CLASS_NAME_RIPPLE } from './constants';
 
 const renderButtonStyle = ({
@@ -16,9 +16,9 @@ const renderButtonStyle = ({
    size = 'medium',
 }: {
    theme: Theme;
-   variant: ButtonStyleRoot['variant'];
-   color: ButtonStyleRoot['color'];
-   size: ButtonStyleRoot['size'];
+   variant: ButtonStyleProps['variant'];
+   color: ButtonStyleProps['color'];
+   size: ButtonStyleProps['size'];
 }) => {
    const overrides = theme.components?.PXButton ?? createButtonDefaultCssVariant(theme.palette);
 
@@ -69,7 +69,7 @@ ForwardedButton.displayName = 'ButtonRoot';
 
 export const ButtonRoot = styled(ForwardedButton)<{
    theme: Theme;
-   $styleProps: ButtonStyleRoot;
+   $styleProps: ButtonStyleProps;
 }>((props) => {
    const { theme, $styleProps } = props;
    const buttonDefaultProps = theme.components?.PXButton?.defaultProps ?? BUTTON_DEFAULT_CSS;
@@ -83,7 +83,7 @@ export const ButtonRoot = styled(ForwardedButton)<{
       ...resProps
    } = $styleProps;
 
-   const resultSxConfig = sxConfig({ ...(theme.components?.PXButton?.styleOverrides?.root ?? {}), ...resProps, sx });
+   const resultSxConfig = sxConfig({ ...resProps, sx });
 
    return {
       position: 'relative',
@@ -105,7 +105,6 @@ export const ButtonRoot = styled(ForwardedButton)<{
       textDecoration: 'none',
       width: fullWidth ? '100%' : 'auto',
 
-      // apply style from renderButtonStyle
       ...renderButtonStyle({ theme, color, size, variant }),
 
       [`& .${CLASS_NAME_RIPPLE}`]: {
@@ -132,6 +131,8 @@ export const ButtonRoot = styled(ForwardedButton)<{
             opacity: 0,
          },
       },
+
+      ...(theme.components?.PXButton?.styleOverrides?.root ?? {}),
 
       ...resultSxConfig,
    };

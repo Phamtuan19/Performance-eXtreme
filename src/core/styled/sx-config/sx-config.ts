@@ -1,8 +1,11 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { getTheme } from '@/core/theme';
-import { NestedCSSObject, SxConfigProps, Theme } from '@/core/types';
+import { isArray, isFunction, merge } from 'lodash';
+import { CSSObject } from 'styled-components';
 
-import { isObject } from '../../utils';
+import { getTheme } from '@/core/theme';
+import { SxConfigProps, SxProps as NestedCSSObject, Theme } from '@/core/types';
+import { isObject } from '@/core/utils';
+
 import { unstable_sxConfig } from '../unstable_sxConfig';
 
 type ResponsiveStylesParams = {
@@ -47,7 +50,7 @@ export const responsiveStyles = ({ styleKey, cssValue, theme }: ResponsiveStyles
    return output;
 };
 
-const resolveSxNestedObject = (obj: any, theme: Theme): any => {
+const resolveSxNestedObject = (obj: any, theme: Theme): CSSObject => {
    if (typeof obj === 'function') {
       return resolveSxNestedObject(obj(theme), theme);
    }
@@ -71,7 +74,7 @@ const resolveSxNestedObject = (obj: any, theme: Theme): any => {
          Object.entries(responsive).forEach(([resKey, resValue]) => {
             result[resKey] = {
                ...(result[resKey] || {}),
-               [key]: resValue,
+               ...resValue,
             };
          });
          continue;
@@ -127,23 +130,34 @@ const resolveSxNestedObject = (obj: any, theme: Theme): any => {
  *     display: 'flex',
  *   });
  */
-const sxConfig = (options: SxConfigProps = {}): any => {
+
+// Thêm đối số thứ 2: base (giá trị mặc định ví dụ như theme.components?.xxx)
+const sxConfig = (options: SxConfigProps = {}, base: Record<string, any> = {}): any => {
    const theme = getTheme();
    const sxRaw = options.sx;
+
    // eslint-disable-next-line @typescript-eslint/no-unused-vars
    const { sx = {}, ...resOption } = options;
 
-   let resolvedSx: NestedCSSObject = {};
+   // 1. Resolve sx nếu là function hoặc array
+   let resolvedSx: NestedCSSObject<Theme> = {};
 
-   if (typeof sxRaw === 'function') {
+   if (isFunction(sxRaw)) {
       resolvedSx = sxRaw(theme);
-   } else if (Array.isArray(sxRaw)) {
-      resolvedSx = sxRaw.reduce((acc, styleObj) => ({ ...acc, ...styleObj }), {});
+   } else if (isArray(sxRaw)) {
+      resolvedSx = sxRaw.reduce((acc, styleObj) => {
+         const resolved = isFunction(styleObj) ? styleObj(theme) : styleObj;
+         return merge(acc, resolved);
+      }, {});
    } else if (typeof sxRaw === 'object' && sxRaw !== null) {
       resolvedSx = sxRaw;
    }
 
-   const combinedStyles = { ...resolvedSx, ...resOption };
+   // 2. Merge theo đúng thứ tự ưu tiên:
+   // base (thấp) < resOption < sx (cao)
+   const combinedStyles = merge({}, base, resOption, resolvedSx);
+
+   // 3. Biến đổi style theo config
    const processedStyles = resolveSxNestedObject(combinedStyles, theme);
 
    return processedStyles;

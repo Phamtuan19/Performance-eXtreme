@@ -1,20 +1,21 @@
-import { Badge, Box, Button, Spinner, Tooltip, Typography } from '@/components/atoms';
-import { Divider } from '@/components/atoms/divider';
+import { Button } from '@/components/atoms';
 
 export default function App() {
    return (
       <div style={{ padding: '2rem' }}>
-         <Box>
+         {/* <Box>
             <Spinner color="error" size="small" />
             <Spinner color="error" size="medium" />
             <Spinner color="error" size="large" />
-         </Box>
-         <Box my={3} className="">
-            <Tooltip title="Tooltip của tôi" placement="top-end">
-               <Button>Hover me</Button>
-            </Tooltip>
-         </Box>
-         <Box my={3} className="">
+         </Box> */}
+         {/* <Box my={3} className=""> */}
+         {/* <Tooltip title="Tooltip của tôi" placement="top-end"> */}
+         <Button sx={{ backgroundColor: 'red' }}>Hover me</Button>
+
+         {/* <ButtonBase padding={12}>Button Base</ButtonBase> */}
+         {/* </Tooltip> */}
+         {/* </Box> */}
+         {/* <Box my={3} className="">
             <Tooltip title="Tooltip của tôi" placement="top-end">
                <Typography component={'span'}> Hover me</Typography>
             </Tooltip>
@@ -32,7 +33,7 @@ export default function App() {
             <Badge content={99} dot color="warning">
                <Button>Button</Button>
             </Badge>
-         </Box>
+         </Box> */}
       </div>
    );
 }

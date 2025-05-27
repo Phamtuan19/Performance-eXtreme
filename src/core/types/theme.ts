@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-import * as CSS from 'csstype';
 import { CSSObject } from 'styled-components';
 
 import {
@@ -12,8 +10,9 @@ import {
    PXComponentTooltip,
    PXComponentSpinner,
 } from '@/components/atoms';
+import { StandardCSSProperties } from '@/types';
 
-import { UnstableSxConfigProps } from '../styled';
+import { UnstableSxConfig, UnstableSxConfigProps } from '../styled';
 import { BreakpointKey } from '../styled/breakpoint';
 import {
    VARIANTS_TYPOGRAPHY,
@@ -23,9 +22,6 @@ import {
    PxComponentInput,
 } from '../theme';
 import { DeepOptional } from '../utils';
-
-/** Hàm kiểu function nhận props và trả về bất kỳ kiểu style nào */
-export type StyleFunction<Props> = (props: Props) => any;
 
 /** Cấu trúc màu cơ bản cho palette (primary, secondary, error...) */
 export type PaletteColor = {
@@ -51,7 +47,7 @@ export type Palette = {
    common: {
       black: string;
       white: string;
-      [key: string]: any;
+      [key: string]: string;
    };
    primary: PaletteColor;
    secondary: PaletteColor;
@@ -65,6 +61,7 @@ export type Palette = {
       color: string;
       borderColor: string;
    };
+   // eslint-disable-next-line @typescript-eslint/no-explicit-any
    [key: string]: any;
 };
 
@@ -84,13 +81,6 @@ export type Breakpoints = {
 /** Cấu trúc từng kiểu typography */
 export type TypographyVariant = keyof typeof VARIANTS_TYPOGRAPHY.VARIANTS;
 
-/** Định nghĩa cho từng component: defaultProps, variants, style base */
-export type ComponentStyle = {
-   defaultProps?: Record<string, any>;
-   variants?: Record<string, any>;
-   styleOverrides?: Record<string, any>;
-};
-
 export interface PXComponentTextarea {
    defaultProps: {
       autoExpand: boolean;
@@ -103,7 +93,6 @@ export interface PXComponentTextarea {
    };
 }
 
-/** Mapping tên component -> style định nghĩa */
 export type Components = {
    PXButton?: Partial<PxComponentButton>;
    PXBox?: Partial<PxComponentBox>;
@@ -127,15 +116,12 @@ export interface Theme {
    components?: Components;
    pxToRem: (px: number) => string;
    spacing: (value: number) => string | number;
-   unstable_sxConfig?: Record<string, any>;
+   unstable_sxConfig?: UnstableSxConfig;
    __createdByCreateTheme?: boolean;
 }
 
 /** Tuỳ chọn khi khởi tạo theme */
 export type ThemeOptions = DeepOptional<Theme>;
-
-/** Kiểu CSS hỗ trợ fallback và number | string */
-export type StandardCSSProperties = CSS.PropertiesFallback<number | string>;
 
 /**
  * Tập hợp toàn bộ các CSS property, bao gồm cả props mở rộng từ `sxConfig`
@@ -145,51 +131,42 @@ export interface AllConfigCSSProperties
       UnstableSxConfigProps {}
 
 /**
- * Giá trị hỗ trợ responsive dưới dạng object với breakpoint
- * Ví dụ: { xs: 10, md: 20 }
- */
-export type ResponsiveStylesValue<T> = Partial<Record<BreakpointKey, T>>;
-
-/**
  * Hỗ trợ nhiều dạng responsive value: object, array hoặc trực tiếp
  */
-export type ResponsiveValue<T> =
-   | T
-   | Array<T | null>
-   | {
-        xs?: T;
-        sm?: T;
-        md?: T;
-        lg?: T;
-        xl?: T;
-     };
+export type ResponsiveValue<T> = T | Array<T | null> | Partial<Record<BreakpointKey, T>>;
 
 /**
  * Định nghĩa một object CSS có khả năng responsive
+ * 1 giá trị có thể là giá trị trực tiếp, array, hoặc object theo breakpoint
+ * @example
+ *  {
+ *  color: 'red', // giá trị trực tiếp
+ *  margin: ['10px', '20px', null, '30px'], // array với giá trị cho từng breakpoint
+ *  padding: {
+ *   xs: '5px', // giá trị cho breakpoint xs
+ *   sm: '10px', // giá trị cho breakpoint sm
+ *   md: '15px', // giá trị cho breakpoint md
+ *   lg: '20px', // giá trị cho breakpoint lg
+ *  }
  */
-type StyledCSSProperties = {
-   [K in keyof AllConfigCSSProperties]?: ResponsiveValue<AllConfigCSSProperties[K]>;
+type ResponsiveCSSObject = {
+   [K in keyof CSSObject]?: ResponsiveValue<CSSObject[K]>;
 };
 
 /**
- * CSS object hỗ trợ selector lồng nhau và responsive
- * Dùng cho nội bộ hệ thống style engine
- */
-export interface NestedCSSObject extends StyledCSSProperties {
-   [selector: string]: StyledCSSProperties | NestedCSSObject | ResponsiveValue<any> | undefined;
-}
-
-/**
  * Kiểu dữ liệu `sx` hỗ trợ 3 dạng:
- * 1. Object thông thường
- * 2. Array nhiều object
+ * 1. Object thông thường (chưa hỗ trợ responsive)
+ * 2. Array nhiều object (chưa hỗ trợ responsive)
  * 3. Callback nhận `theme` => object
  */
-export type SxProps<Theme = any> = CSSObject | ((theme: Theme) => CSSObject);
+export type SxProps<Theme> =
+   | ResponsiveCSSObject
+   | ((theme: Theme) => ResponsiveCSSObject)
+   | Array<ResponsiveCSSObject | ((theme: Theme) => ResponsiveCSSObject)>;
 
 /**
  * Props mở rộng cho bất kỳ component nào dùng hệ thống `sx`
  */
-export type SxConfigProps = StyledCSSProperties & {
+export type SxConfigProps = AllConfigCSSProperties & {
    sx?: SxProps<Theme>;
 };

@@ -1,14 +1,10 @@
-import { StandardCSSProperties } from '@/core/types';
-
-export type SpacingKey = {
-   [key: string]: { keys: string | string[]; transform: 'spacing' };
-};
+import { StandardCSSProperties } from '@/types';
 
 /**
  * Cấu hình các key padding hỗ trợ trong hệ thống spacing.
  * Mỗi key ánh xạ đến một hoặc nhiều CSS property và áp dụng transform 'spacing'.
  */
-export const paddingSpacingKey: SpacingKey = {
+export const paddingSpacingKey = {
    p: { keys: 'padding', transform: 'spacing' },
    pt: { keys: 'paddingTop', transform: 'spacing' },
    pr: { keys: 'paddingRight', transform: 'spacing' },
@@ -16,6 +12,7 @@ export const paddingSpacingKey: SpacingKey = {
    pl: { keys: 'paddingLeft', transform: 'spacing' },
    px: { keys: ['paddingLeft', 'paddingRight'], transform: 'spacing' },
    py: { keys: ['paddingTop', 'paddingBottom'], transform: 'spacing' },
+   padding: { keys: ['paddingTop', 'paddingBottom', 'paddingLeft', 'paddingRight'], transform: 'spacing' },
    paddingX: { keys: ['paddingLeft', 'paddingRight'], transform: 'spacing' },
    paddingY: { keys: ['paddingTop', 'paddingBottom'], transform: 'spacing' },
    paddingTop: { keys: 'paddingTop', transform: 'spacing' },
@@ -28,7 +25,7 @@ export const paddingSpacingKey: SpacingKey = {
  * Cấu hình các key margin hỗ trợ trong hệ thống spacing.
  * Mỗi key ánh xạ đến một hoặc nhiều CSS property và áp dụng transform 'spacing'.
  */
-export const marginSpacingKey: SpacingKey = {
+export const marginSpacingKey = {
    m: { keys: 'margin', transform: 'spacing' },
    mt: { keys: 'marginTop', transform: 'spacing' },
    mr: { keys: 'marginRight', transform: 'spacing' },
@@ -36,6 +33,7 @@ export const marginSpacingKey: SpacingKey = {
    ml: { keys: 'marginLeft', transform: 'spacing' },
    mx: { keys: ['marginLeft', 'marginRight'], transform: 'spacing' },
    my: { keys: ['marginTop', 'marginBottom'], transform: 'spacing' },
+   margin: { keys: ['marginTop', 'marginBottom', 'marginLeft', 'marginRight'], transform: 'spacing' },
    marginX: { keys: ['marginLeft', 'marginRight'], transform: 'spacing' },
    marginY: { keys: ['marginTop', 'marginBottom'], transform: 'spacing' },
    marginTop: { keys: 'marginTop', transform: 'spacing' },
@@ -47,7 +45,7 @@ export const marginSpacingKey: SpacingKey = {
 /**
  * Gộp tất cả các key spacing (padding + margin) lại thành một đối tượng duy nhất.
  */
-export const spacingKey: SpacingKey = {
+export const spacingKey = {
    ...paddingSpacingKey,
    ...marginSpacingKey,
 };
@@ -70,7 +68,7 @@ export type SpacingConfig = {
 
    ml?: StandardCSSProperties['marginLeft'] | number | string;
 
-   mx?: StandardCSSProperties['marginLeft']; // cả mx và my sẽ apply lên 2 phía, ta sẽ xử lý trong hàm conver | number | stringt
+   mx?: StandardCSSProperties['marginLeft'] | number | string;
 
    my?: StandardCSSProperties['marginTop'] | number | string;
 

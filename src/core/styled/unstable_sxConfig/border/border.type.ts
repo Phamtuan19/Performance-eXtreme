@@ -1,8 +1,9 @@
-import { StandardCSSProperties, StyleFunction } from '@/core/types';
+import { Palette } from '@/core/types';
+import { StandardCSSProperties } from '@/types';
 
 export type BorderConfigValue = {
    keys?: string | readonly string[];
-   transform?: StyleFunction<string | undefined> | string;
+   transform?: string | ((props: string | undefined) => string | number) | ((value: unknown) => string | Palette);
 };
 
 export type Borders = {

@@ -1,21 +1,6 @@
-import { SxProps, Theme, VARIANTS_BUTTON } from '@/core';
-import { UnstableSxConfigProps } from '@/core/styled';
+import { SxConfigProps, VARIANTS_BUTTON } from '@/core';
 
-export interface ButtonBaseProps
-   extends Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, 'color'>,
-      UnstableSxConfigProps {
-   /**
-    * Custom style với hệ thống sx (hỗ trợ responsive, theme-aware)
-    */
-   sx?: SxProps<Theme>;
-
-   /**
-    * Nội dung con hiển thị trong nút
-    */
-   children?: React.ReactNode;
-}
-
-export interface ButtonStyleRoot extends UnstableSxConfigProps {
+export interface ButtonStyleProps extends SxConfigProps {
    /**
     * Trạng thái disabled của nút
     */
@@ -25,11 +10,6 @@ export interface ButtonStyleRoot extends UnstableSxConfigProps {
     * Nút chiếm toàn bộ chiều ngang của container
     */
    fullWidth?: boolean;
-
-   /**
-    * Custom style hệ thống sx
-    */
-   sx?: SxProps<Theme>;
 
    /**
     * Kiểu hiển thị nút (contained, outlined, text)
@@ -47,10 +27,15 @@ export interface ButtonStyleRoot extends UnstableSxConfigProps {
    size?: (typeof VARIANTS_BUTTON.SIZE)[number];
 }
 
-export interface ButtonProps
-   extends Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, 'color'>,
-      ButtonBaseProps,
-      UnstableSxConfigProps {
+export type ButtonBaseProps = Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, 'color'> &
+   ButtonStyleProps & {
+      /**
+       * Nội dung con hiển thị trong nút
+       */
+      children?: React.ReactNode;
+   };
+
+export type ButtonProps = ButtonBaseProps & {
    /**
     * Icon hiển thị ở đầu nội dung nút
     */
@@ -127,4 +112,4 @@ export interface ButtonProps
     * Nút sẽ chiếm toàn bộ chiều ngang container
     */
    fullWidth?: boolean;
-}
+};
