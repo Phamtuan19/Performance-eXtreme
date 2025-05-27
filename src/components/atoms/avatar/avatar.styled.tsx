@@ -10,7 +10,7 @@ export const StyledAvatar = styled.div<{
    theme: Theme;
    $styleProps: Omit<AvatarStyledProps, 'badgeColor' | 'badgePosition' | 'showBadge'>;
 }>(({ theme, $styleProps }) => {
-   const { size, shape, ...resProps } = $styleProps;
+   const { size, shape, color, ...resProps } = $styleProps;
 
    const { pixelSize, ...resCssVariant } = typeof size === 'string' ? (AVATAR_CSS_VARIANT.size[size] ?? {}) : {};
 
@@ -21,7 +21,7 @@ export const StyledAvatar = styled.div<{
       display: 'inline-flex',
       alignItems: 'center',
       justifyContent: 'center',
-      backgroundColor: theme.palette.gray[300],
+      backgroundColor: color === 'default' ? theme.palette.gray[300] : (theme.palette[color]?.main ?? color),
       color: theme.palette.common.white,
       border: `1px solid ${theme.palette.common.white}`,
       fontWeight: 500,

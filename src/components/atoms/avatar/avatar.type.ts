@@ -16,6 +16,8 @@ export interface PXComponentAvatar {
        */
       shape: 'circle' | 'square';
 
+      color: TypeInputColor | 'default' | string;
+
       /**
        * Màu của badge nếu có, ví dụ: 'primary', 'success', 'error',...
        */

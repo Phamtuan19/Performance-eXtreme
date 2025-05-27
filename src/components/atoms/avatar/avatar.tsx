@@ -17,6 +17,7 @@ const Avatar = React.forwardRef<HTMLDivElement, AvatarProps>((props, ref) => {
       sx,
       src,
       alt,
+      color = PXAvatar.color,
       size = PXAvatar.size,
       shape = PXAvatar.shape,
       showBadge = PXAvatar.showBadge,
@@ -37,7 +38,7 @@ const Avatar = React.forwardRef<HTMLDivElement, AvatarProps>((props, ref) => {
          ref={ref}
          {...remainingProps}
          className={cn('PXAvatar__root', remainingProps.className)}
-         $styleProps={{ sx, ...styleProps, size, shape }}
+         $styleProps={{ sx, ...styleProps, color, size, shape }}
       >
          {showInitials ? (
             <span className="PXAvatar__initials">{children ?? title?.charAt(0).toUpperCase()}</span>

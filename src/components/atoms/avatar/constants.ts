@@ -5,6 +5,7 @@ export const AVATAR_DEFAULT_PROPS: PXComponentAvatar['defaultProps'] = {
    shape: 'circle',
    badgeColor: 'primary',
    showBadge: false,
+   color: 'default',
    badgePosition: 'top-right',
 };
 
