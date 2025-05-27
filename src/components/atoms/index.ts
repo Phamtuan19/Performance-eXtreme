@@ -12,6 +12,8 @@ export * from './divider';
 
 export * from './input';
 
+export * from './label';
+
 export * from './radio';
 
 export * from './spinner';
