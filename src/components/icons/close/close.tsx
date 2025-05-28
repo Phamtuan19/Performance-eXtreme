@@ -1,4 +1,4 @@
-import { cn } from '@/core/utils';
+import { cn } from '@PUI/core/utils';
 
 import { SvgCommonProps } from '../svg.type';
 

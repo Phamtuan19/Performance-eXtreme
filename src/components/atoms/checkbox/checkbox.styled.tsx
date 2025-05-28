@@ -1,7 +1,7 @@
 import styled, { css, CSSObject, keyframes } from 'styled-components';
 
-import { Theme, TypeInputColor, TypeInputSize } from '@/core';
-import { sxConfig } from '@/core/styled';
+import { Theme, TypeInputColor, TypeInputSize } from '@PUI/core';
+import { sxConfig } from '@PUI/core/styled';
 
 import { CheckBoxStyledProps } from './checkbox.type';
 import { createCheckboxCssVariant } from './constants';

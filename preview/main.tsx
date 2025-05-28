@@ -1,6 +1,6 @@
 import ReactDOM from 'react-dom/client';
 
-import { ThemeProvider } from '@/core/theme';
+import { ThemeProvider } from '@PUI/core';
 
 import App from './app';
 

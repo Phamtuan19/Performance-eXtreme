@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
-import { SxProps, Theme, TypeInputColor, TypeInputSize } from '@/core';
-import { sxConfig } from '@/core/styled';
+import { SxProps, Theme, TypeInputColor, TypeInputSize } from '@PUI/core';
+import { sxConfig } from '@PUI/core/styled';
 
 import { RADIO_CSS_VARIANT } from './constants';
 import { RadioStyledProps } from './radio.type';

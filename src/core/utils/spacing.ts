@@ -7,29 +7,7 @@ const checkValidUnit = (argsInput: string): string => {
          `LOUT: The value "${argsInput}" does not have a valid unit. Expected one of "px", "em", "rem", "%", "vh", or "vw". Defaulting to "px".`,
       );
    }
-   return argsInput; // Nếu đã có đơn vị đo lường, trả về nguyên chuỗi
-};
-
-/**
- * Biến đổi giá trị spacing thành chuỗi thông báo dựa trên kiểu dữ liệu.
- *
- * @param spacing - Giá trị spacing cần biến đổi.
- * @returns Chuỗi mô tả kiểu dữ liệu của giá trị spacing.
- */
-export const transformSpacing = (spacing: number | string | any[] | Record<string, any>): string => {
-   if (Array.isArray(spacing)) {
-      return 'Prop spacing in array';
-   }
-
-   if (typeof spacing === 'object') {
-      return 'Prop spacing in object';
-   }
-
-   if (typeof spacing === 'number') {
-      return 'Prop spacing in number';
-   }
-
-   return 'Prop spacing in string';
+   return argsInput;
 };
 
 /**
@@ -60,7 +38,7 @@ const createSpacing = (spacingInput: number = 8): SpacingFunction => {
       return args
          .map((item) => {
             if (typeof item === 'string') {
-               return checkValidUnit(item); // Kiểm tra đơn vị cho chuỗi
+               return checkValidUnit(item);
             }
 
             if (typeof item === 'number') {
@@ -75,9 +53,9 @@ const createSpacing = (spacingInput: number = 8): SpacingFunction => {
                return `${item}px`;
             }
 
-            return item; // Trả về giá trị nguyên bản nếu không thuộc loại trên
+            return item;
          })
-         .join(', '); // Kết hợp lại các giá trị
+         .join(', ');
    };
 
    spacing.lout = true;

@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
-import { Theme } from '@/core';
-import { sxConfig } from '@/core/styled';
+import { Theme } from '@PUI/core';
+import { sxConfig } from '@PUI/core/styled';
 
 import { SWITCH_CSS_VARIANT } from './constants';
 import { SwitchStyledProps } from './switch.type';

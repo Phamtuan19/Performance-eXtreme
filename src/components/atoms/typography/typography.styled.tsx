@@ -1,8 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import { Theme } from '@/core';
-import { sxConfig } from '@/core/styled';
+import { Theme } from '@PUI/core';
+import { sxConfig } from '@PUI/core/styled';
 
 import { createPXTypographyCssVariant, TYPOGRAPHY_DEFAULT_PROPS } from './constants';
 import { TypographyStyleRoot } from './typography.type';

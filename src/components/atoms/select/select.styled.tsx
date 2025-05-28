@@ -1,7 +1,7 @@
 import styled, { CSSObject } from 'styled-components';
 
-import { sxConfig } from '@/core/styled';
-import { hexToRgba } from '@/core/utils';
+import { sxConfig } from '@PUI/core/styled';
+import { hexToRgba } from '@PUI/core/utils';
 
 import { PXComponentSelect, SelectStyleProps } from './select.type';
 
@@ -236,7 +236,7 @@ export const SelectOptionItem = styled('div')<{ $styleProps: { selected?: boolea
    };
 });
 
-export const SelectSuffixIcon = styled('span')((props) => {
+export const SelectSuffixIcon = styled('span')(() => {
    return {
       display: 'flex',
       alignItems: 'center',

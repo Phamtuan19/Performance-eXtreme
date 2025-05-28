@@ -7,7 +7,7 @@ export default defineConfig({
    plugins: [react()],
    resolve: {
       alias: {
-         '@': path.resolve(__dirname, '../src'), // alias trỏ đến thư viện chính
+         '@PUI': path.resolve(__dirname, '../src'), // alias trỏ đến thư viện chính
       },
    },
    server: {

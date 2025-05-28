@@ -1,7 +1,7 @@
 import React, { Children, isValidElement } from 'react';
 
-import { separateProps } from '@/core/styled';
-import { cn } from '@/core/utils';
+import { separateProps } from '@PUI/core/styled';
+import { cn } from '@PUI/core/utils';
 
 import Avatar from './avatar';
 import { StyledAvatarGroup } from './avatar.styled';

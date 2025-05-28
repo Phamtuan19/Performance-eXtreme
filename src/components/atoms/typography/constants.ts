@@ -1,4 +1,4 @@
-import { type Palette, type PxComponentTypography, VARIANTS_TYPOGRAPHY } from '@/core';
+import { type Palette, type PxComponentTypography, VARIANTS_TYPOGRAPHY } from '@PUI/core';
 
 export const TYPOGRAPHY_DEFAULT_PROPS: PxComponentTypography['defaultProps'] = {
    variant: VARIANTS_TYPOGRAPHY.VARIANTS.h1,

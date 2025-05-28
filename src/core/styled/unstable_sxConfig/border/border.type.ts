@@ -1,5 +1,5 @@
-import { Palette } from '@/core/types';
-import { StandardCSSProperties } from '@/types';
+import { Palette } from '@PUI/core/types';
+import { StandardCSSProperties } from '@PUI/types';
 
 export type BorderConfigValue = {
    keys?: string | readonly string[];

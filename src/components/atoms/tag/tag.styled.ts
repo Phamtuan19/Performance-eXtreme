@@ -1,7 +1,7 @@
 import styled, { CSSObject } from 'styled-components';
 
-import { Theme, ThemeSize } from '@/core';
-import { sxConfig } from '@/core/styled';
+import { Theme, ThemeSize } from '@PUI/core';
+import { sxConfig } from '@PUI/core/styled';
 
 import { TagStyledProps } from './tag.type';
 

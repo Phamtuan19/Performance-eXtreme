@@ -1,7 +1,7 @@
 import styled, { CSSObject } from 'styled-components';
 
-import { Theme } from '@/core';
-import { sxConfig } from '@/core/styled';
+import { Theme } from '@PUI/core';
+import { sxConfig } from '@PUI/core/styled';
 
 import { AvatarGroupStyleProps, AvatarStyledProps } from './avatar.type';
 import { AVATAR_CSS_VARIANT } from './constants';

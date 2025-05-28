@@ -1,6 +1,6 @@
-import { getTheme } from '@/core/theme';
-import { isColorCode, isValidCssColor } from '@/core/utils';
-import { StandardCSSProperties } from '@/types';
+import { getTheme } from '@PUI/core/theme';
+import { isColorCode, isValidCssColor } from '@PUI/core/utils';
+import { StandardCSSProperties } from '@PUI/types';
 
 export const transformColorFn = (value: unknown) => {
    const theme = getTheme();

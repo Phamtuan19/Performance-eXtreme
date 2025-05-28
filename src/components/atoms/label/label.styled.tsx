@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import { sxConfig } from '@/core/styled';
+import { sxConfig } from '@PUI/core/styled';
 
 import { LabelStyledProps } from './label.type';
 

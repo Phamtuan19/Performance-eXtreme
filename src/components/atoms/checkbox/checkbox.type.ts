@@ -1,8 +1,8 @@
 import React from 'react';
 import { CSSObject } from 'styled-components';
 
-import { SxProps, Theme, ThemeColor, TypeInputSize } from '@/core';
-import { UnstableSxConfigProps } from '@/core/styled';
+import { SxProps, Theme, ThemeColor, TypeInputSize } from '@PUI/core';
+import { UnstableSxConfigProps } from '@PUI/core/styled';
 
 export interface PXComponentCheckbox {
    /**

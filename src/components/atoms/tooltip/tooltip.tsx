@@ -3,9 +3,9 @@ import { computePosition, offset, flip, shift, arrow as arrowFloatingUI, Placeme
 import React, { useState, useRef, useEffect } from 'react';
 import { createPortal } from 'react-dom';
 
-import { getTheme } from '@/core';
-import { separateProps } from '@/core/styled';
-import { cn } from '@/core/utils';
+import { getTheme } from '@PUI/core';
+import { separateProps } from '@PUI/core/styled';
+import { cn } from '@PUI/core/utils';
 
 import { Arrow, TooltipWrapper } from './tooltip.styled';
 import { TooltipProps } from './tooltip.type';

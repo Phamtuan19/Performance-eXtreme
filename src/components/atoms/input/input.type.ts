@@ -1,7 +1,7 @@
 import React from 'react';
 
-import type { SxProps, Theme, TypeInputColor, TypeInputSize, TypeInputVariant } from '@/core';
-import { UnstableSxConfigProps } from '@/core/styled';
+import type { SxProps, Theme, TypeInputColor, TypeInputSize, TypeInputVariant } from '@PUI/core';
+import { UnstableSxConfigProps } from '@PUI/core/styled';
 
 export interface InputStyledProps {
    sx?: SxProps<Theme>;

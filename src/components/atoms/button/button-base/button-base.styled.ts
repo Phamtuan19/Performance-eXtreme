@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
-import { SxConfigProps, Theme } from '@/core';
-import { sxConfig } from '@/core/styled';
+import { SxConfigProps, Theme } from '@PUI/core';
+import { sxConfig } from '@PUI/core/styled';
 
 export const ButtonBaseRoot = styled('button')<{ theme: Theme; $styleProps: SxConfigProps }>((props) => {
    const { theme, $styleProps } = props;

@@ -2,8 +2,8 @@
 import React from 'react';
 import { CSSObject } from 'styled-components';
 
-import { SxConfigProps, ThemeColor, ThemeSize } from '@/core';
-import { DeepOptionalNullable } from '@/core/utils';
+import { SxConfigProps, ThemeColor, ThemeSize } from '@PUI/core';
+import { DeepOptionalNullable } from '@PUI/core/helpers';
 
 export type PXComponentSelect = {
    defaultProps: {

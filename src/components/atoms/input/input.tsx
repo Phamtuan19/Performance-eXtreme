@@ -1,9 +1,9 @@
 import React from 'react';
 
-import { CircularProgress } from '@/components/icons';
-import { getTheme } from '@/core';
-import { separateProps } from '@/core/styled';
-import { cn } from '@/core/utils';
+import { CircularProgress } from '@PUI/components/icons';
+import { getTheme } from '@PUI/core';
+import { separateProps } from '@PUI/core/styled';
+import { cn } from '@PUI/core/utils';
 
 import { INPUT_DEFAULT_PROPS } from './constants';
 import { HelperText, IconEnd, IconStart, InputContainer, InputStyle, InputWrapper } from './input.styled';

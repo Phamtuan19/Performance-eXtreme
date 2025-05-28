@@ -1,20 +1,18 @@
 // config/vite.base.ts
-import { PluginOption } from 'vite';
-import react from '@vitejs/plugin-react';
 import path from 'path';
+
+import react from '@vitejs/plugin-react';
+import { PluginOption } from 'vite';
 
 export const baseConfig = {
    plugins: [react()] as PluginOption[],
    resolve: {
       alias: {
-         '@': path.resolve(__dirname, '../src'),
-         '@core': path.resolve(__dirname, '../src/core'),
-         '@components': path.resolve(__dirname, '../src/components'),
-         '@theme': path.resolve(__dirname, '../src/theme'),
-         // '@utils': path.resolve(__dirname, '../src/utils'),
-         '@hooks': path.resolve(__dirname, '../src/hooks'),
-         '@icons': path.resolve(__dirname, '../src/icons'),
-         '@types': path.resolve(__dirname, '../src/types'),
+         '@PUI/core': path.resolve(__dirname, '../src/core'),
+         '@PUI/components': path.resolve(__dirname, '../src/components'),
+         '@PUI/hooks': path.resolve(__dirname, '../src/hooks'),
+         '@PUI/icons': path.resolve(__dirname, '../src/components/icons'),
+         '@PUI/types': path.resolve(__dirname, '../src/types'),
       },
    },
    css: {

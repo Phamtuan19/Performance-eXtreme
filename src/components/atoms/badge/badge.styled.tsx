@@ -1,7 +1,7 @@
 import styled, { CSSObject } from 'styled-components';
 
-import { Palette, Theme } from '@/core';
-import { sxConfig } from '@/core/styled';
+import { Palette, Theme } from '@PUI/core';
+import { sxConfig } from '@PUI/core/styled';
 
 import { BadgeStyledProps } from './badge.type';
 

@@ -2,7 +2,7 @@ import { merge } from 'lodash';
 import React from 'react';
 import { ThemeProvider as StyledThemeProvider } from 'styled-components';
 
-import { ThemeOptions } from '@/core/types';
+import { ThemeOptions } from '@PUI/core/types';
 
 import { DEFAULT_THEME } from '../theme';
 
