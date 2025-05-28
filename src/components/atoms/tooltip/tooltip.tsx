@@ -34,7 +34,7 @@ const Tooltip = React.forwardRef<HTMLDivElement, TooltipProps>((props, forwarded
 
    const [visible, setVisible] = useState(open ?? false);
    const [style, setStyle] = useState<React.CSSProperties>({});
-   const targetRef = useRef<HTMLElement>(null); // đổi tên để không trùng với forwardedRef
+   const targetRef = useRef<HTMLElement>(null);
    const tooltipRef = useRef<HTMLDivElement>(null);
    const arrowRef = useRef<HTMLDivElement>(null);
    const timeoutRef = useRef<number>(0);

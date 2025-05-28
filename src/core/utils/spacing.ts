@@ -56,6 +56,7 @@ const createSpacing = (spacingInput: number = 8): SpacingFunction => {
       }
 
       const args = argsInput.length === 0 ? [1] : argsInput;
+      console.log('🚀 ~ createSpacing ~ args:', args);
 
       return args
          .map((item) => {
@@ -67,7 +68,12 @@ const createSpacing = (spacingInput: number = 8): SpacingFunction => {
                if (item < 0) {
                   console.warn(`LOUT: Negative spacing value ${item} should be avoided.`);
                }
-               return `${item * spacingInput}px`;
+
+               if (item <= 20) {
+                  return `${item * spacingInput}px`;
+               }
+
+               return `${item}px`;
             }
 
             return item; // Trả về giá trị nguyên bản nếu không thuộc loại trên

@@ -14,7 +14,7 @@ export const InputWrapper = styled('div')<{
 
    const fallbackColor = theme.palette.primary?.light || '#3b82f6';
    const paletteColor = theme.palette[color] || theme.palette.primary;
-   const borderColorHover = paletteColor?.dark;
+   const borderColorHover = paletteColor?.main;
    const borderColorFocus = paletteColor?.main || fallbackColor;
    const boxShadowColor = paletteColor?.light || fallbackColor;
 
@@ -22,6 +22,7 @@ export const InputWrapper = styled('div')<{
       theme.components?.PXInput?.styleOverrides ?? createInputCssVariant(theme.palette).styleOverrides;
 
    return {
+      boxSizing: 'border-box',
       overflow: 'hidden',
       position: 'relative',
       display: 'inline-flex',
@@ -32,7 +33,7 @@ export const InputWrapper = styled('div')<{
       borderRadius: '0.5rem',
       transition: 'all 0.2s ease',
       width: '100%',
-      height: 'max-content',
+      //   height: 'max-content',
       cursor: disabled ? 'not-allowed' : 'text',
 
       ...(disabled
@@ -142,9 +143,28 @@ export const HelperText = styled('div')<{ theme: Theme; $error?: boolean }>`
    user-select: none;
 `;
 
-export const InputContainer = styled.div<{ $fullWidth?: boolean }>`
-   display: inline-flex;
-   flex-direction: column;
-   width: ${({ $fullWidth }) => ($fullWidth ? '100%' : 'auto')};
-   gap: 4px;
-`;
+export const InputContainer = styled.div<{ $styleProps: Pick<InputStyledProps, 'fullWidth' | 'size'> }>(
+   ({ theme, $styleProps }) => {
+      const { fullWidth, size } = $styleProps;
+
+      const styleOverrideSize =
+         theme.components?.PXInput?.styleOverrides?.size ?? createInputCssVariant(theme.palette).styleOverrides.size;
+
+      let heightValue: string | number | undefined = undefined;
+      const sizeStyle = styleOverrideSize?.[size ?? 'medium'];
+      if (typeof sizeStyle === 'object' && sizeStyle !== null && 'height' in sizeStyle) {
+         heightValue = sizeStyle.height;
+      } else if (typeof sizeStyle === 'string' || typeof sizeStyle === 'number') {
+         heightValue = sizeStyle;
+      }
+
+      return {
+         boxSizing: 'border-box',
+         display: 'inline-flex',
+         flexDirection: 'column',
+         width: fullWidth ? '100%' : 'auto',
+         height: heightValue,
+         gap: 4,
+      };
+   },
+);

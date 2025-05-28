@@ -24,16 +24,19 @@ export const createInputCssVariant = (
 
          size: {
             small: {
+               height: '28px',
                fontSize: '0.875rem',
-               padding: '0.25rem 0.75rem',
+               padding: '0rem 0.75rem',
             },
             medium: {
+               height: '36px',
                fontSize: '1rem',
-               padding: '0.5rem 0.75rem',
+               padding: '0rem 0.75rem',
             },
             large: {
+               height: '48px',
                fontSize: '1.125rem',
-               padding: '0.75rem 0.75rem',
+               padding: '0rem 0.75rem',
             },
          },
 

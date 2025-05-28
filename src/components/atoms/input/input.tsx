@@ -40,7 +40,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>((props, ref) => {
    const describedBy = helperText ? `${inputId}-helper-text` : undefined;
 
    return (
-      <InputContainer $fullWidth={fullWidth}>
+      <InputContainer $styleProps={{ fullWidth, size }}>
          <InputWrapper
             className={cn(`${CLASS_NAME}__wrapper`, className, {
                [`${CLASS_NAME}--error`]: error,
