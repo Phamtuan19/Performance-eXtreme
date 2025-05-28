@@ -56,7 +56,6 @@ const createSpacing = (spacingInput: number = 8): SpacingFunction => {
       }
 
       const args = argsInput.length === 0 ? [1] : argsInput;
-      console.log('🚀 ~ createSpacing ~ args:', args);
 
       return args
          .map((item) => {

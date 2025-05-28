@@ -16,6 +16,8 @@ export * from './label';
 
 export * from './radio';
 
+export * from './select';
+
 export * from './spinner';
 
 export * from './switch';

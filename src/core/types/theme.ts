@@ -9,6 +9,7 @@ import {
    PXComponentDivider,
    PXComponentTooltip,
    PXComponentSpinner,
+   PXComponentSelect,
 } from '@/components/atoms';
 import { StandardCSSProperties } from '@/types';
 
@@ -26,8 +27,8 @@ import { DeepOptional } from '../utils';
 /** Cấu trúc màu cơ bản cho palette (primary, secondary, error...) */
 export type PaletteColor = {
    main: string;
-   light?: string;
-   dark?: string;
+   light: string;
+   dark: string;
    contrastText: string;
 };
 
@@ -107,6 +108,7 @@ export type Components = {
    PXDivider?: Partial<PXComponentDivider>;
    PXTooltip?: Partial<PXComponentTooltip>;
    PXSpinner?: Partial<PXComponentSpinner>;
+   PXSelect?: Partial<PXComponentSelect>;
 };
 
 /** Theme chuẩn dùng trong hệ thống */
