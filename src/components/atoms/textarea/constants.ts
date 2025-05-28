@@ -1,4 +1,4 @@
-import { PXComponentTextarea } from '@/core';
+import { PXComponentTextarea } from '@PUI/core';
 
 export const TEXTAREA_DEFAULT_PROPS: PXComponentTextarea['defaultProps'] = {
    autoExpand: true,

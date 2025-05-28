@@ -1,4 +1,4 @@
-import { StandardCSSProperties } from '@/types';
+import { StandardCSSProperties } from '@PUI/types';
 
 export const positionCss = ['static', 'relative', 'absolute', 'fixed', 'sticky'];
 

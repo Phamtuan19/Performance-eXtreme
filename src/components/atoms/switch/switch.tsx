@@ -1,7 +1,7 @@
 import React from 'react';
 
-import { getTheme } from '@/core';
-import { separateProps } from '@/core/styled';
+import { getTheme } from '@PUI/core';
+import { separateProps } from '@PUI/core/styled';
 
 import { SWITCH_DEFAULT_PROPS } from './constants';
 import {

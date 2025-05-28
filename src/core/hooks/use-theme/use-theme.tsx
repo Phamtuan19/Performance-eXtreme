@@ -1,3 +1,0 @@
-function useThemex() {}
-
-export { useThemex };

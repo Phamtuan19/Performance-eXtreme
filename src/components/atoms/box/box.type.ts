@@ -1,5 +1,5 @@
-import { SxProps, Theme } from '@/core';
-import { UnstableSxConfigProps } from '@/core/styled';
+import { SxProps, Theme } from '@PUI/core';
+import { UnstableSxConfigProps } from '@PUI/core/styled';
 
 export interface BoxProps extends Omit<React.HTMLAttributes<HTMLDivElement>, 'color'>, UnstableSxConfigProps {
    /**

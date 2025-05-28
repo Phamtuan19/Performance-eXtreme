@@ -1,9 +1,9 @@
 import React, { useRef } from 'react';
 
-import { CircularProgress } from '@/components/icons';
-import { getTheme } from '@/core';
-import { separateProps } from '@/core/styled';
-import { cn } from '@/core/utils';
+import { CircularProgress } from '@PUI/components/icons';
+import { getTheme } from '@PUI/core';
+import { separateProps } from '@PUI/core/styled';
+import { cn } from '@PUI/core/utils';
 
 import { ButtonRoot } from './button.styled';
 import { ButtonProps } from './button.type';

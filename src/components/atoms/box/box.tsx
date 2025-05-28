@@ -1,5 +1,5 @@
-import { separateProps } from '@/core/styled';
-import { cn } from '@/core/utils';
+import { separateProps } from '@PUI/core/styled';
+import { cn } from '@PUI/core/utils';
 
 import { BoxStyle } from './box.styled';
 import { BoxProps } from './box.type';

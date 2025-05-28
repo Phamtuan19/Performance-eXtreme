@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import { Theme } from '@/core';
+import { Theme } from '@PUI/core';
 
 import { DividerStyledProps } from './divider.type';
 

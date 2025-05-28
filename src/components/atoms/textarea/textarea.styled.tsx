@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
-import { PXComponentTextarea, SxProps, Theme } from '@/core';
-import { sxConfig } from '@/core/styled';
+import { PXComponentTextarea, SxProps, Theme } from '@PUI/core';
+import { sxConfig } from '@PUI/core/styled';
 
 export const Wrapper = styled('div')({
    position: 'relative',

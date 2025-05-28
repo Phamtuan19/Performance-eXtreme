@@ -1,4 +1,4 @@
-import { StandardCSSProperties } from '@/types';
+import { StandardCSSProperties } from '@PUI/types';
 
 export type FlexCssItem = {
    key: string;

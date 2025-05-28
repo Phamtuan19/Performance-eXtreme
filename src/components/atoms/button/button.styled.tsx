@@ -1,9 +1,9 @@
 import React from 'react';
 import styled, { CSSObject } from 'styled-components';
 
-import { Theme } from '@/core';
-import { sxConfig } from '@/core/styled';
-import { hexToRgba } from '@/core/utils';
+import { Theme } from '@PUI/core';
+import { sxConfig } from '@PUI/core/styled';
+import { hexToRgba } from '@PUI/core/utils';
 
 import { ButtonBase } from './button-base';
 import { ButtonStyleProps } from './button.type';

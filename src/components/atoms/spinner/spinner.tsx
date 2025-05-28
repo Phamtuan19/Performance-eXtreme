@@ -1,7 +1,7 @@
 // import { rest } from 'lodash';
 // import React from 'react';
 
-// import { getTheme } from '@/core';
+// import { getTheme } from '@PUI/core';
 
 // import { LoaderWrapper, LoaderMessage } from './spinner.styled';
 // import { SpinnerProps } from './spinner.type';
@@ -27,9 +27,9 @@
 // export default Spinner;
 import React from 'react';
 
-import { getTheme } from '@/core';
-import { separateProps } from '@/core/styled';
-import { cn } from '@/core/utils';
+import { getTheme } from '@PUI/core';
+import { separateProps } from '@PUI/core/styled';
+import { cn } from '@PUI/core/utils';
 
 import { SpinnerWrapper } from './spinner.styled';
 import { SpinnerProps } from './spinner.type';

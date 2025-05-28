@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
-import { SxProps, Theme } from '@/core';
-import { sxConfig, UnstableSxConfigProps } from '@/core/styled';
+import { SxProps, Theme } from '@PUI/core';
+import { sxConfig, UnstableSxConfigProps } from '@PUI/core/styled';
 
 export const BoxStyle = styled(({ as: Component = 'div', ...rest }) => <Component {...rest} />)<{
    theme: Theme;

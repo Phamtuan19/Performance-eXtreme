@@ -1,6 +1,6 @@
 import { CSSObject } from 'styled-components';
 
-import { TypographyVariant } from '@/core/types';
+import { TypographyVariant } from '@PUI/core/types';
 
 import { VARIANTS_TYPOGRAPHY } from './typography';
 

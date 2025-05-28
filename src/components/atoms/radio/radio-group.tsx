@@ -1,7 +1,7 @@
 import React from 'react';
 
-import { separateProps } from '@/core/styled';
-import { cn } from '@/core/utils';
+import { separateProps } from '@PUI/core/styled';
+import { cn } from '@PUI/core/utils';
 
 import Radio from './radio';
 import { RadioGroupWrapper } from './radio.styled';

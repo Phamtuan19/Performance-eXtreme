@@ -1,7 +1,7 @@
 import { CSSObject } from 'styled-components';
 
-import { SxProps, Theme, TypeInputColor, TypeInputSize } from '@/core';
-import { UnstableSxConfigProps } from '@/core/styled';
+import { TypeInputSize, TypeInputColor, SxProps, Theme } from '@PUI/core';
+import { UnstableSxConfigProps } from '@PUI/core/styled';
 
 // Interface định nghĩa cấu hình mặc định cho PXAvatar component
 export interface PXComponentAvatar {

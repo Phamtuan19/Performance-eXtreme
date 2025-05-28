@@ -10,9 +10,10 @@ import {
    PXComponentTooltip,
    PXComponentSpinner,
    PXComponentSelect,
-} from '@/components/atoms';
-import { StandardCSSProperties } from '@/types';
+} from '@PUI/components/atoms';
+import { StandardCSSProperties } from '@PUI/types';
 
+import { DeepOptional } from '../helpers';
 import { UnstableSxConfig, UnstableSxConfigProps } from '../styled';
 import { BreakpointKey } from '../styled/breakpoint';
 import {
@@ -22,7 +23,6 @@ import {
    PxComponentTypography,
    PxComponentInput,
 } from '../theme';
-import { DeepOptional } from '../utils';
 
 /** Cấu trúc màu cơ bản cho palette (primary, secondary, error...) */
 export type PaletteColor = {

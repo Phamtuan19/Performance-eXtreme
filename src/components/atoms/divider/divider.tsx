@@ -1,8 +1,8 @@
 import React from 'react';
 
-import { getTheme } from '@/core';
-import { separateProps } from '@/core/styled';
-import { cn } from '@/core/utils';
+import { getTheme } from '@PUI/core';
+import { separateProps } from '@PUI/core/styled';
+import { cn } from '@PUI/core/utils';
 
 import { DividerRoot, DividerTextInner } from './divider.styled';
 import { DividerProps } from './divider.type';

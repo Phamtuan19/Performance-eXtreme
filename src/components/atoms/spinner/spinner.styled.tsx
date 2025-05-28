@@ -1,6 +1,6 @@
 import styled, { css, keyframes } from 'styled-components';
 
-import { sxConfig } from '@/core/styled';
+import { sxConfig } from '@PUI/core/styled';
 
 import { SPINNER_SIZE_DEFAULT } from './constants';
 import { SpinnerStyleProps } from './spinner.type';

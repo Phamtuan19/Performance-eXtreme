@@ -2,9 +2,9 @@ import { computePosition, flip, offset } from '@floating-ui/dom';
 import React, { useId, useState, useRef, useEffect, useCallback } from 'react';
 import { createPortal } from 'react-dom';
 
-import { separateProps } from '@/core/styled';
-import { cn } from '@/core/utils';
-import { useLockBodyScroll, useOnClickOutside } from '@/hooks';
+import { separateProps } from '@PUI/core/styled';
+import { cn } from '@PUI/core/utils';
+import { useLockBodyScroll, useOnClickOutside } from '@PUI/hooks';
 
 import {
    SelectOptionItem,

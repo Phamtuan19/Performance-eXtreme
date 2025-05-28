@@ -1,7 +1,7 @@
 import { CSSObject } from 'styled-components';
 
-import { SxProps, Theme, TypeInputColor, TypeInputSize } from '@/core';
-import { UnstableSxConfigProps } from '@/core/styled';
+import { SxProps, Theme, TypeInputColor, TypeInputSize } from '@PUI/core';
+import { UnstableSxConfigProps } from '@PUI/core/styled';
 
 export interface PXComponentSwitch {
    defaultProps: {
