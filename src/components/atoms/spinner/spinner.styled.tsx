@@ -1,9 +1,7 @@
 import styled, { css, keyframes } from 'styled-components';
 
-import { sxConfig } from '@PUI/core/styled';
-
 import { SPINNER_SIZE_DEFAULT } from './constants';
-import { SpinnerStyleProps } from './spinner.type';
+import type { SpinnerStyleProps } from './spinner.type';
 
 const rotate = keyframes`
   0% { transform: rotate(0deg); }
@@ -38,13 +36,13 @@ export const SpinnerWrapper = styled('span')<{
 
       ${styleOverrides?.color?.[color as keyof typeof styleOverrides.color]}
       ${resOverridesSize}
-      ${sxConfig(rest)}
+      ${theme.sxConfig(rest)}
    `;
 });
 
 export const LoaderWrapper = styled('div')<{
    $styleProps: SpinnerStyleProps;
-}>(({ $styleProps }) => {
+}>(({ theme, $styleProps }) => {
    const { fullScreen, overlay, ...rest } = $styleProps;
 
    return {
@@ -59,7 +57,7 @@ export const LoaderWrapper = styled('div')<{
       backgroundColor: overlay || fullScreen ? 'rgba(255,255,255,0.6)' : 'transparent',
       zIndex: 9999,
 
-      ...sxConfig(rest),
+      ...theme.sxConfig(rest),
    };
 });
 

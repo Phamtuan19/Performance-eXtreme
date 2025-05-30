@@ -4,7 +4,7 @@ import { separateProps } from '@PUI/core/styled';
 import { cn } from '@PUI/core/utils';
 
 import { LabelContainer } from './label.styled';
-import { LabelProps } from './label.type';
+import type { LabelProps } from './label.type';
 
 const Label = React.forwardRef<HTMLLabelElement, LabelProps>((props, ref) => {
    const { sx, children, required = false, disabled = false, requiredColor, className, ...resProps } = props;

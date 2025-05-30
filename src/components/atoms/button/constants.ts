@@ -1,4 +1,5 @@
-import { Palette, PxComponentButton, VARIANTS_BUTTON } from '@PUI/core';
+import type { Palette, PxComponentButton } from '@PUI/core';
+import { VARIANTS_BUTTON } from '@PUI/core';
 
 export const CLASS_NAME_BUTTON = 'PXButton';
 

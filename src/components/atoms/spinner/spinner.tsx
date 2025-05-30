@@ -32,7 +32,7 @@ import { separateProps } from '@PUI/core/styled';
 import { cn } from '@PUI/core/utils';
 
 import { SpinnerWrapper } from './spinner.styled';
-import { SpinnerProps } from './spinner.type';
+import type { SpinnerProps } from './spinner.type';
 
 const Spinner = React.forwardRef<HTMLSpanElement, SpinnerProps>((props, ref) => {
    const theme = getTheme();

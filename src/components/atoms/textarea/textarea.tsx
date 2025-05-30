@@ -5,7 +5,7 @@ import { separateProps } from '@PUI/core/styled';
 
 import { TEXTAREA_DEFAULT_PROPS } from './constants';
 import { Wrapper, StyledTextarea } from './textarea.styled';
-import { TextareaProps } from './textarea.type';
+import type { TextareaProps } from './textarea.type';
 
 const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>((props, ref) => {
    const theme = getTheme();

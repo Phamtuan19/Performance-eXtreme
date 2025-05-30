@@ -1,10 +1,17 @@
-import styled, { CSSObject } from 'styled-components';
+import type { CSSObject } from 'styled-components';
+import styled from 'styled-components';
 
-import { Theme } from '@PUI/core';
-import { sxConfig } from '@PUI/core/styled';
+import { type Theme } from '@PUI/core';
+import { isThemeColor } from '@PUI/core/utils';
 
-import { AvatarGroupStyleProps, AvatarStyledProps } from './avatar.type';
+import type { AvatarGroupStyleProps, AvatarStyledProps } from './avatar.type';
 import { AVATAR_CSS_VARIANT } from './constants';
+
+function getThemeColor(theme: Theme, color: string): string {
+   if (color === 'default') return theme.palette.gray[300];
+   if (isThemeColor(color)) return theme.palette[color].main;
+   return color;
+}
 
 export const StyledAvatar = styled.div<{
    theme: Theme;
@@ -21,7 +28,7 @@ export const StyledAvatar = styled.div<{
       display: 'inline-flex',
       alignItems: 'center',
       justifyContent: 'center',
-      backgroundColor: color === 'default' ? theme.palette.gray[300] : (theme.palette[color]?.main ?? color),
+      backgroundColor: getThemeColor(theme, color),
       color: theme.palette.common.white,
       border: `1px solid ${theme.palette.common.white}`,
       fontWeight: 500,
@@ -41,7 +48,7 @@ export const StyledAvatar = styled.div<{
 
       ...resCssVariant,
 
-      ...sxConfig(resProps),
+      ...theme.sxConfig(resProps),
    };
 });
 
@@ -61,7 +68,7 @@ export const Badge = styled.span<{
       position: 'absolute',
       width: '0.5em',
       height: '0.5em',
-      backgroundColor: theme.palette[badgeColor]?.main ?? badgeColor,
+      backgroundColor: getThemeColor(theme, badgeColor),
       border: '0.5px solid white',
       borderRadius: '100%',
       ...placementStyle[badgePosition],
@@ -70,7 +77,7 @@ export const Badge = styled.span<{
 
 export const StyledAvatarGroup = styled.div<{
    $styleProps: AvatarGroupStyleProps;
-}>(({ $styleProps }) => {
+}>(({ theme, $styleProps }) => {
    const { spacing, direction, ...resProps } = $styleProps;
 
    return {
@@ -83,6 +90,6 @@ export const StyledAvatarGroup = styled.div<{
          marginRight: direction === 'rtl' ? -spacing : 0,
       },
 
-      ...sxConfig(resProps),
+      ...theme.sxConfig(resProps),
    };
 });

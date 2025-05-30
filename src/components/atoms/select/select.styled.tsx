@@ -1,9 +1,9 @@
-import styled, { CSSObject } from 'styled-components';
+import type { CSSObject } from 'styled-components';
+import styled from 'styled-components';
 
-import { sxConfig } from '@PUI/core/styled';
 import { hexToRgba } from '@PUI/core/utils';
 
-import { PXComponentSelect, SelectStyleProps } from './select.type';
+import type { PXComponentSelect, SelectStyleProps } from './select.type';
 
 const DEFAULT_CSS_VARIANT_SIZE: PXComponentSelect['styleOverrides']['size'] = {
    small: {
@@ -73,7 +73,7 @@ export const SelectContainer = styled('div')<{
 
       ...(PXSelectOverrides?.color ? PXSelectOverrides.color[color as keyof typeof PXSelectOverrides.color] : {}),
 
-      ...sxConfig(resProps),
+      ...theme.sxConfig(resProps),
    };
 });
 
@@ -180,7 +180,7 @@ export const SelectDropdown = styled('div')<{ $styleProps: { dropdownStyle?: CSS
          display: 'none', // Chrome, Safari
       },
 
-      ...sxConfig(dropdownStyle),
+      ...theme.sxConfig({ ...dropdownStyle }),
    };
 });
 
@@ -206,7 +206,7 @@ export const SelectOptionItem = styled('div')<{ $styleProps: { selected?: boolea
       cursor: 'pointer',
       fontSize: '1rem',
       backgroundColor: isActive ? hexToRgba(theme.palette.primary.light, 0.2) : theme.palette.common.white,
-      color: theme.palette.text.primary,
+      color: theme.palette.common.black,
       borderRadius: 4,
 
       '&:hover': {

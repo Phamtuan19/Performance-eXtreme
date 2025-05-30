@@ -5,7 +5,7 @@ import { separateProps } from '@PUI/core/styled';
 import { cn } from '@PUI/core/utils';
 
 import { DividerRoot, DividerTextInner } from './divider.styled';
-import { DividerProps } from './divider.type';
+import type { DividerProps } from './divider.type';
 
 const Divider = React.forwardRef<HTMLDivElement, DividerProps>((props, ref) => {
    const theme = getTheme();

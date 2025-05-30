@@ -1,4 +1,4 @@
-import { Theme } from '@PUI/core';
+import type { Theme } from '@PUI/core';
 import 'styled-components';
 
 declare module 'styled-components' {

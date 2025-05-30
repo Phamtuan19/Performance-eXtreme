@@ -1,6 +1,6 @@
-import { CSSObject } from 'styled-components';
+import type { CSSObject } from 'styled-components';
 
-import { TypeInputColor, TypeInputSize, TypeInputVariant } from './input';
+import type { TypeInputColor, TypeInputSize, TypeInputVariant } from './input';
 
 export interface PxComponentInput {
    defaultProps: {

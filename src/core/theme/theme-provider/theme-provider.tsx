@@ -1,38 +1,43 @@
-import { merge } from 'lodash';
 import React from 'react';
 import { ThemeProvider as StyledThemeProvider } from 'styled-components';
 
-import { ThemeOptions } from '@PUI/core/types';
+import type { Theme } from '@PUI/core/types';
 
-import { DEFAULT_THEME } from '../theme';
+import { GlobalStyle } from './global-style';
 
 interface PXThemeProviderProps {
    children: React.ReactNode;
-   theme: ThemeOptions;
+   theme: Theme;
 }
 
 const ThemeProvider = (props: PXThemeProviderProps) => {
-   const { theme: userTheme, children } = props;
+   const { theme, children } = props;
 
    // Development environment checks for theme validity
    if (process.env.NODE_ENV !== 'production') {
-      if (typeof userTheme === 'function') {
-         // eslint-disable-next-line no-console
-         console.error(
+      if (typeof theme === 'function') {
+         throw new Error(
             [
-               'LOTUS: You are providing a theme function prop to the ThemeProvider component:',
+               'PUI: You are providing a theme function prop to the ThemeProvider component:',
                '<ThemeProvider theme={outerTheme => outerTheme} />',
                '',
                'However, no outer theme is present.',
-               'Make sure a theme is already injected higher in the React tree ' + 'or provide a theme object.',
+               'Make sure a theme is already injected higher in the React tree or provide a theme object.',
             ].join('\n'),
          );
       }
+
+      if ((typeof theme === 'object' && !theme.__createdByCreateTheme) || !theme.__createdByCreateTheme) {
+         throw new Error('PUI: Invalid theme provided to ThemeProvider. Theme must be created using createTheme().');
+      }
    }
 
-   const mergedTheme = merge(DEFAULT_THEME, userTheme || {});
-
-   return <StyledThemeProvider theme={mergedTheme}>{children}</StyledThemeProvider>;
+   return (
+      <StyledThemeProvider theme={theme}>
+         <GlobalStyle />
+         {children}
+      </StyledThemeProvider>
+   );
 };
 
 export { ThemeProvider };

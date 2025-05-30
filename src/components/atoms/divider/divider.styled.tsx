@@ -1,8 +1,8 @@
 import styled from 'styled-components';
 
-import { Theme } from '@PUI/core';
+import type { Theme } from '@PUI/core';
 
-import { DividerStyledProps } from './divider.type';
+import type { DividerStyledProps } from './divider.type';
 
 export const DividerRoot = styled('div')<{
    theme: Theme;

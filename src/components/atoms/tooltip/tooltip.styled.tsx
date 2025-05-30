@@ -1,9 +1,8 @@
 import styled from 'styled-components';
 
-import { Theme } from '@PUI/core';
-import { sxConfig } from '@PUI/core/styled';
+import type { Theme } from '@PUI/core';
 
-import { TooltipStyleProps } from './tooltip.type';
+import type { TooltipStyleProps } from './tooltip.type';
 
 // Hàm xử lý màu chung
 const getBackgroundColor = (theme: Theme, color: string | undefined) => {
@@ -41,7 +40,7 @@ export const TooltipWrapper = styled.div<{
       color: textColor,
       ...colorOverrides,
       ...styleOverrides?.root,
-      ...sxConfig(resStyleProps),
+      ...theme.sxConfig(resStyleProps),
    };
 });
 

@@ -1,5 +1,5 @@
-import { Palette } from '@PUI/core';
-import { PxComponentInput } from '@PUI/core/theme/components/input';
+import type { Palette } from '@PUI/core';
+import type { PxComponentInput } from '@PUI/core/theme/components/input';
 
 export const INPUT_DEFAULT_PROPS: Required<PxComponentInput['defaultProps']> = {
    variant: 'outline',

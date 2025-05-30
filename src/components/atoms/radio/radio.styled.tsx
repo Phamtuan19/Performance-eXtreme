@@ -1,10 +1,9 @@
 import styled from 'styled-components';
 
-import { SxProps, Theme, TypeInputColor, TypeInputSize } from '@PUI/core';
-import { sxConfig } from '@PUI/core/styled';
+import type { SxProps, Theme, TypeInputColor, TypeInputSize } from '@PUI/core';
 
 import { RADIO_CSS_VARIANT } from './constants';
-import { RadioStyledProps } from './radio.type';
+import type { RadioStyledProps } from './radio.type';
 
 export const RadioWrapper = styled('label')<{
    theme: Theme;
@@ -29,7 +28,7 @@ export const RadioWrapper = styled('label')<{
       },
 
       ...styleOverrides,
-      ...sxConfig({ ...restProps, sx }),
+      ...theme.sxConfig({ ...restProps, sx }),
    };
 });
 

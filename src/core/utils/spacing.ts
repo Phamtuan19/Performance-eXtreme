@@ -4,7 +4,7 @@ const checkValidUnit = (argsInput: string): string => {
    // Kiểm tra nếu chuỗi không chứa bất kỳ đơn vị đo lường nào
    if (!/[\d\s](px|em|rem|%|vh|vw|auto)$/.test(argsInput)) {
       console.error(
-         `LOUT: The value "${argsInput}" does not have a valid unit. Expected one of "px", "em", "rem", "%", "vh", or "vw". Defaulting to "px".`,
+         `PUI: The value "${argsInput}" does not have a valid unit. Expected one of "px", "em", "rem", "%", "vh", or "vw". Defaulting to "px".`,
       );
    }
    return argsInput;
@@ -18,18 +18,18 @@ const checkValidUnit = (argsInput: string): string => {
  */
 type SpacingFunction = {
    (...argsInput: (string | number)[]): string;
-   lout?: boolean;
+   PUI?: boolean;
 };
 
 const createSpacing = (spacingInput: number = 8): SpacingFunction => {
-   if ((spacingInput as any).lout) {
+   if ((spacingInput as any).PUI) {
       return spacingInput as unknown as SpacingFunction;
    }
 
    const spacing: SpacingFunction = (...argsInput) => {
       if (process.env.NODE_ENV !== 'production') {
          if (argsInput.length > 4) {
-            console.error(`LOUT: Too many arguments provided, expected between 0 and 4, got ${argsInput.length}`);
+            console.error(`PUI: Too many arguments provided, expected between 0 and 4, got ${argsInput.length}`);
          }
       }
 
@@ -43,7 +43,7 @@ const createSpacing = (spacingInput: number = 8): SpacingFunction => {
 
             if (typeof item === 'number') {
                if (item < 0) {
-                  console.warn(`LOUT: Negative spacing value ${item} should be avoided.`);
+                  console.warn(`PUI: Negative spacing value ${item} should be avoided.`);
                }
 
                if (item <= 20) {
@@ -58,7 +58,7 @@ const createSpacing = (spacingInput: number = 8): SpacingFunction => {
          .join(', ');
    };
 
-   spacing.lout = true;
+   spacing.PUI = true;
 
    return spacing;
 };

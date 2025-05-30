@@ -5,7 +5,7 @@ import { cn } from '@PUI/core/utils';
 
 import Avatar from './avatar';
 import { StyledAvatarGroup } from './avatar.styled';
-import { AvatarGroupProps, AvatarProps } from './avatar.type';
+import type { AvatarGroupProps, AvatarProps } from './avatar.type';
 
 const AvatarGroup = React.forwardRef<HTMLDivElement, AvatarGroupProps>((props, ref) => {
    const {

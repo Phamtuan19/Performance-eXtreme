@@ -1,11 +1,9 @@
-import React from 'react';
+import type React from 'react';
 
-import { PXComponentTextarea, SxProps, Theme } from '@PUI/core';
-import { UnstableSxConfigProps } from '@PUI/core/styled';
+import type { PXComponentTextarea, SxConfigProps } from '@PUI/core';
 
-export interface TextareaProps
-   extends Omit<React.TextareaHTMLAttributes<HTMLTextAreaElement>, 'color'>,
-      UnstableSxConfigProps,
-      Partial<PXComponentTextarea['defaultProps']> {
-   sx?: SxProps<Theme>;
-}
+export type TextareaStyledProps = SxConfigProps;
+
+export type TextareaProps = Omit<React.TextareaHTMLAttributes<HTMLTextAreaElement>, 'color'> &
+   TextareaStyledProps &
+   Partial<PXComponentTextarea['defaultProps']>;

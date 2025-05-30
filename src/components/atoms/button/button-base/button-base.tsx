@@ -3,7 +3,7 @@ import React from 'react';
 import separateProps from '@PUI/core/styled/separate-props';
 import { cn } from '@PUI/core/utils';
 
-import { ButtonBaseProps } from '../button.type';
+import type { ButtonBaseProps } from '../button.type';
 
 import { ButtonBaseRoot } from './button-base.styled';
 

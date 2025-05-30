@@ -1,7 +1,7 @@
-import { CSSObject } from 'styled-components';
+import type { CSSObject } from 'styled-components';
 
-import { TypeInputSize, TypeInputColor, SxProps, Theme } from '@PUI/core';
-import { UnstableSxConfigProps } from '@PUI/core/styled';
+import type { TypeInputSize, TypeInputColor, ThemeColor, SxConfigProps } from '@PUI/core';
+import type { UnstableSxConfigProps } from '@PUI/core/styled';
 
 // Interface định nghĩa cấu hình mặc định cho PXAvatar component
 export interface PXComponentAvatar {
@@ -16,12 +16,12 @@ export interface PXComponentAvatar {
        */
       shape: 'circle' | 'square';
 
-      color: TypeInputColor | 'default' | string;
+      color: ThemeColor | 'default' | string;
 
       /**
        * Màu của badge nếu có, ví dụ: 'primary', 'success', 'error',...
        */
-      badgeColor: TypeInputColor | string;
+      badgeColor: ThemeColor | string;
 
       /**
        * Có hiển thị badge hay không.
@@ -70,12 +70,8 @@ export interface PXComponentAvatar {
 
 // Props cho styled component Avatar (chỉ dùng để style)
 export type AvatarStyledProps = PXComponentAvatar['defaultProps'] &
-   UnstableSxConfigProps & {
-      /**
-       * Custom style sử dụng hệ thống `sx`, hỗ trợ responsive và nhận giá trị từ theme
-       */
-      sx?: SxProps<Theme>;
-   };
+   Omit<UnstableSxConfigProps, 'color'> &
+   SxConfigProps;
 
 // Props chính cho component Avatar
 export type AvatarProps = Partial<AvatarStyledProps> &
@@ -101,20 +97,16 @@ export type AvatarProps = Partial<AvatarStyledProps> &
       children?: React.ReactNode;
    };
 
-export type AvatarGroupStyleProps = UnstableSxConfigProps & {
-   /**
-    * Custom style sử dụng hệ thống `sx`, hỗ trợ responsive và nhận giá trị từ theme
-    */
-   sx?: SxProps<Theme>;
+export type AvatarGroupStyleProps = UnstableSxConfigProps &
+   SxConfigProps & {
+      spacing: number;
 
-   spacing: number;
-
-   direction: 'ltr' | 'rtl';
-};
+      direction: 'ltr' | 'rtl';
+   };
 
 export interface AvatarGroupProps
-   extends Omit<React.HTMLAttributes<HTMLDivElement>, 'color'>,
-      Partial<AvatarGroupStyleProps> {
+   extends Omit<React.HTMLAttributes<HTMLDivElement>, 'color' | 'content' | 'translate'>,
+      Omit<Partial<AvatarGroupStyleProps>, 'translate'> {
    children: React.ReactNode;
    maxCount?: number;
    size?: TypeInputSize | number;

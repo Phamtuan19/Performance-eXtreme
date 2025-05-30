@@ -1,7 +1,7 @@
-import { CSSObject } from 'styled-components';
+import type { CSSObject } from 'styled-components';
 
-import { ThemeSize, ThemeColor, SxConfigProps } from '@PUI/core';
-import { UnstableSxConfigProps } from '@PUI/core/styled';
+import type { ThemeSize, ThemeColor, SxConfigProps } from '@PUI/core';
+import type { UnstableSxConfigProps } from '@PUI/core/styled';
 
 export type PXComponentSpinner = {
    defaultProps: {

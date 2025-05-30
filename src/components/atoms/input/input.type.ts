@@ -1,11 +1,9 @@
-import React from 'react';
+import type React from 'react';
 
-import type { SxProps, Theme, TypeInputColor, TypeInputSize, TypeInputVariant } from '@PUI/core';
-import { UnstableSxConfigProps } from '@PUI/core/styled';
+import type { SxConfigProps, TypeInputColor, TypeInputSize, TypeInputVariant } from '@PUI/core';
+import type { UnstableSxConfigProps } from '@PUI/core/styled';
 
-export interface InputStyledProps {
-   sx?: SxProps<Theme>;
-
+export type InputStyledProps = SxConfigProps & {
    /**
     * Kiểu hiển thị của nút: 'contained' | 'outlined' | 'text'
     */
@@ -37,28 +35,27 @@ export interface InputStyledProps {
     * Icon hiển thị ở cuối (bên phải) nội dung nút
     */
    endIcon?: React.ReactNode | null;
-}
+};
 
-export interface InputProps
-   extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'color' | 'size' | 'height' | 'width'>,
-      Omit<UnstableSxConfigProps, 'color'>,
-      InputStyledProps {
-   /**
-    * Trạng thái loading, hiển thị icon hoặc nội dung đang xử lý
-    */
-   loading?: boolean;
+export type InputProps = Omit<React.InputHTMLAttributes<HTMLInputElement>, 'color' | 'size' | 'height' | 'width'> &
+   Omit<UnstableSxConfigProps, 'color'> &
+   InputStyledProps & {
+      /**
+       * Trạng thái loading, hiển thị icon hoặc nội dung đang xử lý
+       */
+      loading?: boolean;
 
-   /**
-    * Custom icon loading thay vì mặc định (ví dụ: spinner riêng)
-    */
-   loadingIndicator?: React.ReactNode | null;
+      /**
+       * Custom icon loading thay vì mặc định (ví dụ: spinner riêng)
+       */
+      loadingIndicator?: React.ReactNode | null;
 
-   /**
-    * Vị trí hiển thị icon loading: 'start' | 'end' | 'center'
-    */
-   loadingPosition?: 'start' | 'end';
+      /**
+       * Vị trí hiển thị icon loading: 'start' | 'end' | 'center'
+       */
+      loadingPosition?: 'start' | 'end';
 
-   error?: boolean;
+      error?: boolean;
 
-   helperText?: React.ReactNode;
-}
+      helperText?: React.ReactNode;
+   };

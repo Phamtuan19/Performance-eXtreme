@@ -1,17 +1,18 @@
 import styled from 'styled-components';
 
-import { SxProps, Theme } from '@PUI/core';
-import { sxConfig, UnstableSxConfigProps } from '@PUI/core/styled';
+import type { Theme } from '@PUI/core';
+
+import type { BoxStyledProps } from './box.type';
 
 export const BoxStyle = styled(({ as: Component = 'div', ...rest }) => <Component {...rest} />)<{
    theme: Theme;
-   $styleProps: UnstableSxConfigProps & { sx: SxProps<Theme> };
+   $styleProps: BoxStyledProps;
 }>((props) => {
    const { theme, $styleProps } = props;
 
    const { root } = theme.components?.PXBox?.styleOverrides ?? {};
 
-   const result = sxConfig({ ...root, ...$styleProps });
+   const result = theme.sxConfig($styleProps, root);
 
    return result;
 });

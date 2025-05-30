@@ -1,4 +1,4 @@
-import { PXComponentSpinner } from './spinner.type';
+import type { PXComponentSpinner } from './spinner.type';
 
 export const SPINNER_SIZE_DEFAULT: PXComponentSpinner['styleOverrides']['size'] = {
    small: {

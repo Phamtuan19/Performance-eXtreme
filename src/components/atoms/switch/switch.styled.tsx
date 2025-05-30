@@ -1,17 +1,16 @@
 import styled from 'styled-components';
 
-import { Theme } from '@PUI/core';
-import { sxConfig } from '@PUI/core/styled';
+import type { Theme } from '@PUI/core';
 
 import { SWITCH_CSS_VARIANT } from './constants';
-import { SwitchStyledProps } from './switch.type';
+import type { SwitchStyledProps } from './switch.type';
 
 export const SwitchLabel = styled.label<{
    $styleProps: Omit<
       SwitchStyledProps,
       'size' | 'color' | 'size' | 'unCheckedLabel' | 'checkedLabel' | 'defaultChecked' | 'color'
    >;
-}>(({ $styleProps }) => {
+}>(({ theme, $styleProps }) => {
    const { disabled, loading, ...resProps } = $styleProps;
 
    return {
@@ -25,7 +24,7 @@ export const SwitchLabel = styled.label<{
       opacity: 1,
       transition: 'opacity 0.3s ease',
 
-      ...sxConfig(resProps),
+      ...theme.sxConfig(resProps),
    };
 });
 

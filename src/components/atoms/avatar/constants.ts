@@ -1,4 +1,4 @@
-import { PXComponentAvatar } from './avatar.type';
+import type { PXComponentAvatar } from './avatar.type';
 
 export const AVATAR_DEFAULT_PROPS: PXComponentAvatar['defaultProps'] = {
    size: 'medium',

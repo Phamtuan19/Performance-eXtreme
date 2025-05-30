@@ -1,5 +1,5 @@
 export * from './theme-provider';
 
-export * from './theme';
+export * from './theme-default';
 
 export * from './components';

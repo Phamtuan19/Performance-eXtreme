@@ -16,7 +16,7 @@ import {
    SelectItem,
    SelectSuffixIcon,
 } from './select.styled';
-import { SelectProps, OptionType } from './select.type';
+import type { SelectProps, OptionType } from './select.type';
 
 const Select = React.forwardRef<HTMLInputElement, SelectProps>((props, ref) => {
    const {

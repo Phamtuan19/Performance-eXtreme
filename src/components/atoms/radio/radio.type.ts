@@ -1,7 +1,6 @@
-import { CSSObject } from 'styled-components';
+import type { CSSObject } from 'styled-components';
 
-import { SxProps, Theme, TypeInputColor, TypeInputSize } from '@PUI/core';
-import { UnstableSxConfigProps } from '@PUI/core/styled';
+import type { SxConfigProps, SxProps, Theme, TypeInputColor, TypeInputSize } from '@PUI/core';
 
 /**
  * Interface định nghĩa cấu hình cho component Radio trong thư viện PX UI.
@@ -72,17 +71,10 @@ export interface PXComponentRadio {
    };
 }
 
-export type RadioStyledProps = UnstableSxConfigProps &
-   PXComponentRadio['defaultProps'] & {
-      /**
-       * Custom style với hệ thống sx (hỗ trợ responsive, theme-aware)
-       */
-      sx?: SxProps<Theme>;
-   };
+export type RadioStyledProps = PXComponentRadio['defaultProps'] & SxConfigProps;
 
 export type RadioProps = Omit<React.InputHTMLAttributes<HTMLInputElement>, 'color' | 'size' | 'height' | 'width'> &
-   Partial<RadioStyledProps> &
-   UnstableSxConfigProps & {
+   Partial<RadioStyledProps> & {
       /**
        * Sự kiện khi Radio thay đổi trạng thái
        */
@@ -143,4 +135,4 @@ export interface RadioGroupBaseProps extends Omit<React.HTMLAttributes<HTMLDivEl
 /**
  * Props của RadioGroup mở rộng thêm config sx không ổn định
  */
-export type RadioGroupProps = RadioGroupBaseProps & UnstableSxConfigProps;
+export type RadioGroupProps = RadioGroupBaseProps & SxConfigProps;

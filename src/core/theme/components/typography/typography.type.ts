@@ -1,8 +1,8 @@
-import { CSSObject } from 'styled-components';
+import type { CSSObject } from 'styled-components';
 
-import { TypographyVariant } from '@PUI/core/types';
+import type { TypographyVariant } from '@PUI/core/types';
 
-import { VARIANTS_TYPOGRAPHY } from './typography';
+import type { VARIANTS_TYPOGRAPHY } from './typography';
 
 export type PxComponentTypography = {
    defaultProps: {

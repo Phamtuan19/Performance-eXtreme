@@ -1,7 +1,6 @@
-import { CSSObject } from 'styled-components';
+import type { CSSObject } from 'styled-components';
 
-import { SxProps, Theme, TypeInputColor, TypeInputSize } from '@PUI/core';
-import { UnstableSxConfigProps } from '@PUI/core/styled';
+import type { SxConfigProps, SxProps, Theme, TypeInputColor, TypeInputSize } from '@PUI/core';
 
 export interface PXComponentSwitch {
    defaultProps: {
@@ -78,7 +77,7 @@ export interface PXComponentSwitch {
 }
 
 export type SwitchStyledProps = PXComponentSwitch['defaultProps'] &
-   UnstableSxConfigProps & {
+   SxConfigProps & {
       /**
        * Custom style với hệ thống sx (hỗ trợ responsive, theme-aware).
        */

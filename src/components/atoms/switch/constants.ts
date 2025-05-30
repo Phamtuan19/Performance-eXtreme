@@ -1,4 +1,4 @@
-import { PXComponentSwitch } from './switch.type';
+import type { PXComponentSwitch } from './switch.type';
 
 export const SWITCH_DEFAULT_PROPS: PXComponentSwitch['defaultProps'] = {
    checked: false,

@@ -1,11 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import { Theme } from '@PUI/core';
-import { sxConfig } from '@PUI/core/styled';
+import type { Theme } from '@PUI/core';
 
 import { createPXTypographyCssVariant, TYPOGRAPHY_DEFAULT_PROPS } from './constants';
-import { TypographyStyleRoot } from './typography.type';
+import type { TypographyStyleRoot } from './typography.type';
 
 const TypographyForwardRef = React.forwardRef<
    HTMLElement,
@@ -47,6 +46,6 @@ export const TypographyStyled = styled(TypographyForwardRef).withConfig({
       ...(italic ? styleOverrides.italic : {}),
       ...(disabled ? styleOverrides.disabled : {}),
 
-      ...sxConfig({ ...styleOverrides.root, sx, ...resProps }),
+      ...theme.sxConfig({ ...styleOverrides.root, sx, ...resProps }),
    };
 });
