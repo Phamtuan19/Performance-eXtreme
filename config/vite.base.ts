@@ -2,7 +2,7 @@
 import path from 'path';
 
 import react from '@vitejs/plugin-react';
-import { PluginOption } from 'vite';
+import type { PluginOption } from 'vite';
 
 export const baseConfig = {
    plugins: [react()] as PluginOption[],

@@ -3,7 +3,7 @@ import { useState, forwardRef } from 'react';
 import { EyeOff, Eye } from '@PUI/components/icons';
 
 import Input from './input';
-import { InputProps } from './input.type';
+import type { InputProps } from './input.type';
 
 const InputPassword = forwardRef<HTMLInputElement, Omit<InputProps, 'type' | 'endIcon'>>((props, ref) => {
    const [showPassword, setShowPassword] = useState(false);

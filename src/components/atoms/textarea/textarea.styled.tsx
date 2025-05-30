@@ -1,7 +1,8 @@
 import styled from 'styled-components';
 
-import { PXComponentTextarea, SxProps, Theme } from '@PUI/core';
-import { sxConfig } from '@PUI/core/styled';
+import type { Theme } from '@PUI/core';
+
+import type { TextareaStyledProps } from './textarea.type';
 
 export const Wrapper = styled('div')({
    position: 'relative',
@@ -10,17 +11,14 @@ export const Wrapper = styled('div')({
 
 export const StyledTextarea = styled.textarea<{
    theme: Theme;
-   $styleProps: { sx: SxProps<Theme> } & Omit<PXComponentTextarea['defaultProps'], 'disabled'>;
+   $styleProps: Omit<TextareaStyledProps, 'disabled'>;
 }>(({ theme, $styleProps }) => {
    const { palette } = theme;
-   const { error, resize, autoExpand } = $styleProps;
+   const { error, resize, autoExpand, ...resProps } = $styleProps;
 
    const gray = palette.gray ?? palette.grey ?? palette.neutral;
 
-   const resultSxConfig = sxConfig({
-      ...(theme.components?.PXTextarea?.styleOverrides?.root ?? {}),
-      ...$styleProps,
-   });
+   const resultSxConfig = theme.sxConfig(resProps, theme.components?.PXTextarea?.styleOverrides?.root);
 
    return {
       fontFamily: 'inherit',

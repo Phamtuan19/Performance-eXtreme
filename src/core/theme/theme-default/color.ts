@@ -305,28 +305,3 @@ export const stone = {
    '900': '#1c1917',
    '950': '#0c0a09',
 };
-
-export const colors = {
-   red,
-   orange,
-   amber,
-   yellow,
-   lime,
-   green,
-   emerald,
-   teal,
-   cyan,
-   sky,
-   blue,
-   indigo,
-   violet,
-   purple,
-   fuchsia,
-   pink,
-   rose,
-   slate,
-   zinc,
-   neutral,
-   gray,
-   stone,
-};

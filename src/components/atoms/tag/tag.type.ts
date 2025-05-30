@@ -1,8 +1,8 @@
-import React from 'react';
+import type React from 'react';
 
-import { SxConfigProps, ThemeColor, ThemeSize, ThemeVariant } from '@PUI/core';
+import type { SxConfigProps, ThemeColor, ThemeSize, ThemeVariant } from '@PUI/core';
 
-import { AvatarProps } from '../avatar';
+import type { AvatarProps } from '../avatar';
 
 export type TagStyledProps = SxConfigProps & {
    color: ThemeColor;

@@ -1,4 +1,4 @@
-import { StandardCSSProperties } from '@PUI/types';
+import type { StandardCSSProperties } from '@PUI/types';
 
 const typography = {
    fontFamily: {},

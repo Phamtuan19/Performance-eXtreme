@@ -6,7 +6,7 @@ import { separateProps } from '@PUI/core/styled';
 import { cn } from '@PUI/core/utils';
 
 import { ButtonRoot } from './button.styled';
-import { ButtonProps } from './button.type';
+import type { ButtonProps } from './button.type';
 import { CLASS_NAME_BUTTON, CLASS_NAME_RIPPLE } from './constants';
 
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>((props, ref) => {

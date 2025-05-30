@@ -1,9 +1,9 @@
-import styled, { CSSObject } from 'styled-components';
+import type { CSSObject } from 'styled-components';
+import styled from 'styled-components';
 
-import { Theme, ThemeSize } from '@PUI/core';
-import { sxConfig } from '@PUI/core/styled';
+import type { Theme } from '@PUI/core';
 
-import { TagStyledProps } from './tag.type';
+import type { TagStyledProps } from './tag.type';
 
 const sizeStyles: Record<Exclude<ThemeSize, 'large'>, CSSObject> = {
    small: {
@@ -49,7 +49,7 @@ export const TagContainer = styled.span<{ theme: Theme; $styleProps: TagStyledPr
 
       ...variantStyle,
 
-      ...sxConfig(resProps),
+      ...theme.sxConfig(resProps),
    };
 });
 

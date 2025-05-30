@@ -1,12 +1,12 @@
 import React from 'react';
-import styled, { CSSObject } from 'styled-components';
+import type { CSSObject } from 'styled-components';
+import styled from 'styled-components';
 
-import { Theme } from '@PUI/core';
-import { sxConfig } from '@PUI/core/styled';
+import type { Theme } from '@PUI/core';
 import { hexToRgba } from '@PUI/core/utils';
 
 import { ButtonBase } from './button-base';
-import { ButtonStyleProps } from './button.type';
+import type { ButtonStyleProps } from './button.type';
 import { createButtonDefaultCssVariant, BUTTON_DEFAULT_CSS, CLASS_NAME_RIPPLE } from './constants';
 
 const renderButtonStyle = ({
@@ -73,6 +73,7 @@ export const ButtonRoot = styled(ForwardedButton)<{
 }>((props) => {
    const { theme, $styleProps } = props;
    const buttonDefaultProps = theme.components?.PXButton?.defaultProps ?? BUTTON_DEFAULT_CSS;
+   const styleOverrides = theme.components?.PXButton?.styleOverrides?.root;
 
    const {
       color = buttonDefaultProps.color,
@@ -83,7 +84,7 @@ export const ButtonRoot = styled(ForwardedButton)<{
       ...resProps
    } = $styleProps;
 
-   const resultSxConfig = sxConfig({ ...resProps, sx });
+   const resultSxConfig = theme.sxConfig({ ...resProps, sx }, styleOverrides);
 
    return {
       position: 'relative',
@@ -132,7 +133,7 @@ export const ButtonRoot = styled(ForwardedButton)<{
          },
       },
 
-      ...(theme.components?.PXButton?.styleOverrides?.root ?? {}),
+      //   ...(theme.components?.PXButton?.styleOverrides?.root ?? {}),
 
       ...resultSxConfig,
    };

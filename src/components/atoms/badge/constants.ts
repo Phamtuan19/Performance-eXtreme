@@ -1,4 +1,4 @@
-import { PXComponentBadge } from './badge.type';
+import type { PXComponentBadge } from './badge.type';
 
 export const BADGE_DEFAULT_PROPS: PXComponentBadge['defaultProps'] = {
    color: 'primary',

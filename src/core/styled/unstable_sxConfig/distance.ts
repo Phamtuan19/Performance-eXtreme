@@ -1,6 +1,6 @@
-import { StandardCSSProperties } from '@PUI/types';
+import type { StandardCSSProperties } from '@PUI/types';
 
-export type DistanceKey =
+type DistanceKey =
    | 'width'
    | 'minWidth'
    | 'maxWidth'
@@ -12,16 +12,48 @@ export type DistanceKey =
    | 'bottom'
    | 'left';
 
-export type DistanceValue = {
+type DistanceValue = {
    keys?: string;
    transform?: 'spacing';
 };
 
-export type Distance = {
+type Distance = {
    [key in DistanceKey]: DistanceValue;
 };
 
+const distance: Distance = {
+   width: {
+      keys: 'width',
+      transform: 'spacing',
+   },
+   minWidth: {
+      keys: 'minWidth',
+      transform: 'spacing',
+   },
+   maxWidth: {
+      keys: 'maxWidth',
+      transform: 'spacing',
+   },
+   height: {
+      keys: 'height',
+      transform: 'spacing',
+   },
+   minHeight: {
+      keys: 'minHeight',
+      transform: 'spacing',
+   },
+   maxHeight: {
+      keys: 'maxHeight',
+      transform: 'spacing',
+   },
+   top: {},
+   right: {},
+   bottom: {},
+   left: {},
+};
+
 export type DistanceConfig = {
+   //    width?: CSS.PropertiesFallback['width'];
    width?: StandardCSSProperties['width'];
 
    minWidth?: StandardCSSProperties['minWidth'];
@@ -42,3 +74,5 @@ export type DistanceConfig = {
 
    left?: StandardCSSProperties['left'];
 };
+
+export default distance;

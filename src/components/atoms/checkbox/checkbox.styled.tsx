@@ -1,10 +1,39 @@
-import styled, { css, CSSObject, keyframes } from 'styled-components';
+import type { CSSObject } from 'styled-components';
+import styled, { css, keyframes } from 'styled-components';
 
-import { Theme, TypeInputColor, TypeInputSize } from '@PUI/core';
-import { sxConfig } from '@PUI/core/styled';
+import type { Theme, TypeInputColor, TypeInputSize } from '@PUI/core';
 
-import { CheckBoxStyledProps } from './checkbox.type';
-import { createCheckboxCssVariant } from './constants';
+import type { CheckBoxStyledProps, PXComponentCheckbox } from './checkbox.type';
+
+const CHECKBOX_CSS_VARIANT: PXComponentCheckbox['styleOverrides'] = {
+   root: {},
+   size: {
+      large: {
+         fontSize: '1.125rem',
+         width: '20px',
+         height: '20px',
+      },
+      medium: {
+         fontSize: '1rem',
+         width: '18px',
+         height: '18px',
+      },
+      small: {
+         fontSize: '0.875rem',
+         width: '16px',
+         height: '16px',
+      },
+   },
+   color: {
+      primary: {},
+      secondary: {},
+      success: {},
+      error: {},
+      warning: {},
+      info: {},
+      default: {},
+   },
+};
 
 const checkmarkIn = keyframes`
   0% {
@@ -59,7 +88,7 @@ export const CheckBoxWrapper = styled('label')<{
       },
 
       ...styleOverrides,
-      ...sxConfig({ ...restProps, sx }),
+      ...theme.sxConfig({ ...restProps, sx }),
    };
 });
 
@@ -106,11 +135,12 @@ export const CheckBoxInner = styled('span')<{
    const { checked, disabled, size, color, indeterminate } = $styleProps;
 
    const PXCheckBox = theme.components?.PXCheckBox;
-   const cssVariant = createCheckboxCssVariant(theme.palette);
 
-   const cssSize = PXCheckBox?.styleOverrides?.size?.[size as TypeInputSize] ?? cssVariant.size[size as TypeInputSize];
+   const cssSize =
+      PXCheckBox?.styleOverrides?.size?.[size as TypeInputSize] ?? CHECKBOX_CSS_VARIANT.size[size as TypeInputSize];
    const cssColor =
-      PXCheckBox?.styleOverrides?.color?.[color as TypeInputColor] ?? cssVariant.color[color as TypeInputColor];
+      PXCheckBox?.styleOverrides?.color?.[color as TypeInputColor] ??
+      CHECKBOX_CSS_VARIANT.color[color as TypeInputColor];
 
    const borderColor = theme.palette.disabled.borderColor;
 

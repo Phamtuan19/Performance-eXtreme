@@ -1,7 +1,7 @@
-import { CSSObject } from 'styled-components';
+import type { CSSObject } from 'styled-components';
 
-import { SxConfigProps, ThemeColor } from '@PUI/core';
-import { UnstableSxConfigProps } from '@PUI/core/styled';
+import type { SxConfigProps, ThemeColor } from '@PUI/core';
+import type { UnstableSxConfigProps } from '@PUI/core/styled';
 
 /**
  * Kiểu định nghĩa variant của Divider, gồm:

@@ -4,10 +4,11 @@ import { Close } from '@PUI/components/icons';
 import { separateProps } from '@PUI/core/styled';
 import { cn } from '@PUI/core/utils';
 
-import { Avatar, AvatarProps } from '../avatar';
+import type { AvatarProps } from '../avatar';
+import { Avatar } from '../avatar';
 
 import { DeleteIcon, TagContainer } from './tag.styled';
-import { TagProps } from './tag.type';
+import type { TagProps } from './tag.type';
 
 const Tag = React.forwardRef<HTMLSpanElement, TagProps>((props, ref) => {
    const {

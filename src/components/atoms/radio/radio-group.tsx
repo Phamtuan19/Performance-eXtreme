@@ -5,7 +5,7 @@ import { cn } from '@PUI/core/utils';
 
 import Radio from './radio';
 import { RadioGroupWrapper } from './radio.styled';
-import { RadioGroupProps, RadioProps } from './radio.type';
+import type { RadioGroupProps, RadioProps } from './radio.type';
 
 const RadioGroup = React.forwardRef<HTMLDivElement, RadioGroupProps>((props, ref) => {
    const {

@@ -5,8 +5,17 @@ import { separateProps } from '@PUI/core/styled';
 import { cn } from '@PUI/core/utils';
 
 import { CheckBoxContainer, CheckBoxInner, CheckBoxLabel, CheckBoxWrapper, InputCheckBox } from './checkbox.styled';
-import { CheckBoxProps } from './checkbox.type';
-import { CHECKBOX_DEFAULT_PROPS } from './constants';
+import type { CheckBoxProps, PXComponentCheckbox } from './checkbox.type';
+
+const CHECKBOX_DEFAULT_PROPS: PXComponentCheckbox['defaultProps'] = {
+   size: 'medium',
+   color: 'primary',
+   disabled: false,
+   checked: false,
+   defaultChecked: false,
+   indeterminate: false,
+   error: false,
+};
 
 const Checkbox = React.forwardRef<HTMLInputElement, CheckBoxProps>((props, ref) => {
    const theme = getTheme();

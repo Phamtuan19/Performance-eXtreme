@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 
-import { SxConfigProps, Theme } from '@PUI/core';
-import { sxConfig } from '@PUI/core/styled';
+import type { SxConfigProps, Theme } from '@PUI/core';
 
 export const ButtonBaseRoot = styled('button')<{ theme: Theme; $styleProps: SxConfigProps }>((props) => {
    const { theme, $styleProps } = props;
@@ -44,6 +43,6 @@ export const ButtonBaseRoot = styled('button')<{ theme: Theme; $styleProps: SxCo
       },
 
       // Only spread style properties that are compatible with styled-components
-      ...sxConfig($styleProps),
+      ...theme.sxConfig($styleProps),
    };
 });

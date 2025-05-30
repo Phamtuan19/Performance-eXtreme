@@ -1,4 +1,4 @@
-import { SvgCommonProps } from '../svg.type';
+import type { SvgCommonProps } from '../svg.type';
 
 const Eye = ({ width = 16, height = 16, className, ...rest }: SvgCommonProps) => {
    return (

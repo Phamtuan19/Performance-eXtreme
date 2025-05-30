@@ -1,8 +1,7 @@
-import React from 'react';
-import { CSSObject } from 'styled-components';
+import type React from 'react';
+import type { CSSObject } from 'styled-components';
 
-import { SxProps, Theme, ThemeColor, TypeInputSize } from '@PUI/core';
-import { UnstableSxConfigProps } from '@PUI/core/styled';
+import type { SxConfigProps, ThemeColor, TypeInputSize } from '@PUI/core';
 
 export interface PXComponentCheckbox {
    /**
@@ -76,17 +75,10 @@ export interface PXComponentCheckbox {
    };
 }
 
-export type CheckBoxStyledProps = UnstableSxConfigProps &
-   PXComponentCheckbox['defaultProps'] & {
-      /**
-       * Custom style với hệ thống sx (hỗ trợ responsive, theme-aware)
-       */
-      sx?: SxProps<Theme>;
-   };
+export type CheckBoxStyledProps = PXComponentCheckbox['defaultProps'] & SxConfigProps;
 
 export type CheckBoxProps = Omit<React.InputHTMLAttributes<HTMLInputElement>, 'color' | 'size' | 'height' | 'width'> &
-   Partial<CheckBoxStyledProps> &
-   UnstableSxConfigProps & {
+   Partial<CheckBoxStyledProps> & {
       /**
        * Sự kiện khi checkbox thay đổi trạng thái
        */

@@ -1,12 +1,17 @@
+import type { BordersConfig } from './border';
 import { borders } from './border';
-import { BordersConfig } from './border/border.type';
-import { ColorConfig, colors } from './colors';
-import { display, DisplayCssConfig, flexCssKey } from './display';
-import { DistanceConfig } from './distance';
-import distance from './distance/distance';
-import { PositionConfig, positionCss } from './position';
-import { SpacingConfig, spacingKey } from './spacing';
-import typography, { TypographyConfig } from './typography';
+import type { ColorConfig } from './colors';
+import { colors } from './colors';
+import type { DisplayCssConfig } from './display';
+import { display, flexCssKey } from './display';
+import type { DistanceConfig } from './distance';
+import distance from './distance';
+import type { PositionConfig } from './position';
+import { positionCss } from './position';
+import type { SpacingConfig } from './spacing';
+import { spacingKey } from './spacing';
+import type { TypographyConfig } from './typography';
+import typography from './typography';
 
 /**
  *

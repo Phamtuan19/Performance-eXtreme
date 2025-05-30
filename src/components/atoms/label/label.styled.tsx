@@ -1,8 +1,6 @@
 import styled from 'styled-components';
 
-import { sxConfig } from '@PUI/core/styled';
-
-import { LabelStyledProps } from './label.type';
+import type { LabelStyledProps } from './label.type';
 
 export const LabelContainer = styled('label')<{ $styleProps: LabelStyledProps }>((props) => {
    const { theme, $styleProps } = props;
@@ -30,6 +28,6 @@ export const LabelContainer = styled('label')<{ $styleProps: LabelStyledProps }>
          },
       }),
 
-      ...sxConfig(resProps),
+      ...theme.sxConfig(resProps),
    };
 });

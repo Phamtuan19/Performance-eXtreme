@@ -1,6 +1,6 @@
 import { cn } from '@PUI/core/utils';
 
-import { SvgCommonProps } from '../svg.type';
+import type { SvgCommonProps } from '../svg.type';
 
 const Close = (props: SvgCommonProps) => {
    const { width = 24, height = 24, className, ...rest } = props;

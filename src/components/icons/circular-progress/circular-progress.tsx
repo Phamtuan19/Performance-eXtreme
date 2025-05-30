@@ -1,22 +1,12 @@
-import styled, { css, keyframes } from 'styled-components';
-
-// Định nghĩa keyframes
-const spinnerSpin = keyframes`
-   0% {
-      transform: rotate(0deg);
-   }
-   100% {
-      transform: rotate(360deg);
-   }
-`;
+import styled, { css } from 'styled-components';
 
 // Styled component với css
-const SpinnerWrapper = styled.svg`
+const SpinnerWrapper = styled('svg')`
    z-index: 0;
    position: relative;
    overflow: hidden;
-   animation: ${css`
-      ${spinnerSpin} 0.8s linear infinite
+   animation: ${({ theme }) => css`
+      ${theme.keyframes.spinnerSpin} 0.8s linear infinite
    `};
 
    & circle:first-of-type {

@@ -1,16 +1,9 @@
-import styled, { CSSObject } from 'styled-components';
+import type { CSSObject } from 'styled-components';
+import styled from 'styled-components';
 
-import { Palette, Theme } from '@PUI/core';
-import { sxConfig } from '@PUI/core/styled';
+import type { Palette, Theme } from '@PUI/core';
 
-import { BadgeStyledProps } from './badge.type';
-
-const placementStyle: Record<string, CSSObject> = {
-   'top-left': { top: 0, left: 0, transform: 'translate(-50%, -50%)' },
-   'top-right': { top: 0, right: 0, transform: 'translate(50%, -50%)' },
-   'bottom-left': { bottom: 0, left: 0, transform: 'translate(-50%, 50%)' },
-   'bottom-right': { bottom: 0, right: 0, transform: 'translate(50%, 50%)' },
-};
+import type { BadgeStyledProps } from './badge.type';
 
 const getAnimationPresets = (
    animationType: BadgeStyledProps['animationType'],
@@ -21,10 +14,10 @@ const getAnimationPresets = (
    if (animationType === 'none') return {};
 
    const baseTranslate = {
-      'top-left': 'translate(-50%, -50%)',
-      'top-right': 'translate(50%, -50%)',
-      'bottom-left': 'translate(-50%, 50%)',
-      'bottom-right': 'translate(50%, 50%)',
+      'top-left': 'var(--px-translate-top-left)',
+      'top-right': 'var(--px-translate-top-right)',
+      'bottom-left': 'var(--px-translate-bottom-left)',
+      'bottom-right': 'var(--px-translate-bottom-right)',
    }[badgePosition ?? 'top-right'];
 
    switch (animationType) {
@@ -59,7 +52,7 @@ const getAnimationPresets = (
                position: 'absolute',
                inset: 0,
                borderRadius: '50%',
-               boxShadow: `0 0 0 0 ${palette[color]?.main ?? color}`,
+               boxShadow: `0 0 0 0 ${palette[color].main ?? color}`,
                animation: 'px-badge-wave 1.2s infinite',
                zIndex: -1,
             },
@@ -117,7 +110,7 @@ export const BadgeContainer = styled('span')<{
    theme: Theme;
    $styledProps: Omit<BadgeStyledProps, 'animationType' | 'badgePosition' | 'color' | 'dot'>;
 }>((props) => {
-   const { $styledProps } = props;
+   const { theme, $styledProps } = props;
 
    return {
       position: 'relative',
@@ -126,9 +119,16 @@ export const BadgeContainer = styled('span')<{
       width: 'fit-content',
       height: 'fit-content',
 
-      ...sxConfig($styledProps),
+      ...theme.sxConfig($styledProps),
    };
 });
+
+const placementStyle: Record<string, CSSObject> = {
+   'top-left': { top: 0, left: 0, transform: 'var(--px-translate-top-left)' },
+   'top-right': { top: 0, right: 0, transform: 'var(--px-translate-top-right)' },
+   'bottom-left': { bottom: 0, left: 0, transform: 'var(--px-translate-bottom-left)' },
+   'bottom-right': { bottom: 0, right: 0, transform: 'var(--px-translate-bottom-right)' },
+};
 
 export const BadgeContent = styled('sup')<{
    theme: Theme;

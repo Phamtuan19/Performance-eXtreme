@@ -5,7 +5,7 @@ import { separateProps } from '@PUI/core/styled';
 import { cn } from '@PUI/core/utils';
 
 import { BadgeContainer, BadgeContent } from './badge.styled';
-import { BadgeProps } from './badge.type';
+import type { BadgeProps } from './badge.type';
 import { BADGE_DEFAULT_PROPS } from './constants';
 
 const Badge = React.forwardRef<HTMLSpanElement, BadgeProps>((props, ref) => {

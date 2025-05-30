@@ -1,9 +1,9 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import React from 'react';
-import { CSSObject } from 'styled-components';
+import type React from 'react';
+import type { CSSObject } from 'styled-components';
 
-import { SxConfigProps, ThemeColor, ThemeSize } from '@PUI/core';
-import { DeepOptionalNullable } from '@PUI/core/helpers';
+import type { SxConfigProps, ThemeColor, ThemeSize } from '@PUI/core';
+import type { DeepOptionalNullable } from '@PUI/core/helpers';
 
 export type PXComponentSelect = {
    defaultProps: {

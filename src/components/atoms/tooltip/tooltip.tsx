@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { computePosition, offset, flip, shift, arrow as arrowFloatingUI, Placement } from '@floating-ui/dom';
+import type { Placement } from '@floating-ui/dom';
+import { computePosition, offset, flip, shift, arrow as arrowFloatingUI } from '@floating-ui/dom';
 import React, { useState, useRef, useEffect } from 'react';
 import { createPortal } from 'react-dom';
 
@@ -8,7 +9,7 @@ import { separateProps } from '@PUI/core/styled';
 import { cn } from '@PUI/core/utils';
 
 import { Arrow, TooltipWrapper } from './tooltip.styled';
-import { TooltipProps } from './tooltip.type';
+import type { TooltipProps } from './tooltip.type';
 
 const Tooltip = React.forwardRef<HTMLDivElement, TooltipProps>((props, forwardedRef) => {
    const theme = getTheme();

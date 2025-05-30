@@ -12,7 +12,7 @@ import {
    SwitchTrackLabel,
    SwitchLoadingSpinner,
 } from './switch.styled';
-import { SwitchProps } from './switch.type';
+import type { SwitchProps } from './switch.type';
 
 const Switch = React.forwardRef<HTMLInputElement, SwitchProps>((props, ref) => {
    const theme = getTheme();

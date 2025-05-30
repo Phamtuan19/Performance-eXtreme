@@ -1,6 +1,16 @@
-import { transformColorFn } from '../colors';
+import type { Palette } from '@PUI/core/types';
+import type { StandardCSSProperties } from '@PUI/types';
 
-import { Borders } from './border.type';
+import { transformColorFn } from './colors';
+
+type BorderConfigValue = {
+   keys?: string | readonly string[];
+   transform?: string | ((props: string | undefined) => string | number) | ((value: unknown) => string | Palette);
+};
+
+type Borders = {
+   readonly [key: string]: BorderConfigValue;
+};
 
 const transformBorderFn = (borderValue: string | number | undefined): string => {
    if (borderValue === undefined || borderValue === null || borderValue === '') {
@@ -80,14 +90,28 @@ export const borders: Borders = {
    outlineStyle: {},
 } as const;
 
-export const borderStyleCss = [
-   'none',
-   'solid',
-   'dashed',
-   'dotted',
-   'double',
-   'groove',
-   'ridge',
-   'inset',
-   'outset',
-] as const;
+export type BordersConfig = {
+   border?: StandardCSSProperties['border'];
+
+   borderWidth?: StandardCSSProperties['borderWidth'];
+
+   borderStyle?: StandardCSSProperties['borderStyle'];
+
+   borderTop?: StandardCSSProperties['borderTop'];
+
+   borderRight?: StandardCSSProperties['borderRight'];
+
+   borderBottom?: StandardCSSProperties['borderBottom'];
+
+   borderLeft?: StandardCSSProperties['borderLeft'];
+
+   borderRadius?: StandardCSSProperties['borderRadius'];
+
+   outline?: StandardCSSProperties['outline'];
+
+   outlineColor?: StandardCSSProperties['outlineColor'];
+
+   outlineWidth?: StandardCSSProperties['outlineWidth'];
+
+   outlineStyle?: StandardCSSProperties['outlineStyle'];
+};

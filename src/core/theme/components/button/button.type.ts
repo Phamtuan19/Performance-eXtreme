@@ -1,7 +1,7 @@
-import React from 'react';
-import { CSSObject } from 'styled-components';
+import type React from 'react';
+import type { CSSObject } from 'styled-components';
 
-import { VARIANTS_BUTTON } from './button';
+import type { VARIANTS_BUTTON } from './button';
 
 export type PxComponentButton = {
    defaultProps?: {

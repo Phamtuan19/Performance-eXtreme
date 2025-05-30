@@ -6,7 +6,7 @@ import { cn } from '@PUI/core/utils';
 
 import { TYPOGRAPHY_DEFAULT_PROPS } from './constants';
 import { TypographyStyled } from './typography.styled';
-import { TypographyProps } from './typography.type';
+import type { TypographyProps } from './typography.type';
 
 const CLASS_NAME = 'PXUITypography';
 

@@ -2,7 +2,7 @@ import { separateProps } from '@PUI/core/styled';
 import { cn } from '@PUI/core/utils';
 
 import { BoxStyle } from './box.styled';
-import { BoxProps } from './box.type';
+import type { BoxProps } from './box.type';
 
 const CLASS_NAME = 'PXBox';
 

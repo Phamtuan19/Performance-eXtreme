@@ -1,4 +1,4 @@
-import { SxConfigProps, VARIANTS_BUTTON } from '@PUI/core';
+import type { SxConfigProps, VARIANTS_BUTTON } from '@PUI/core';
 
 export interface ButtonStyleProps extends SxConfigProps {
    /**

@@ -7,7 +7,7 @@ import { cn } from '@PUI/core/utils';
 
 import { INPUT_DEFAULT_PROPS } from './constants';
 import { HelperText, IconEnd, IconStart, InputContainer, InputStyle, InputWrapper } from './input.styled';
-import { InputProps } from './input.type';
+import type { InputProps } from './input.type';
 
 const CLASS_NAME = 'PXInput';
 

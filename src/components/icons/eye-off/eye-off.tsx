@@ -1,4 +1,4 @@
-import { SvgCommonProps } from '../svg.type';
+import type { SvgCommonProps } from '../svg.type';
 
 const EyeOff = ({ width = 16, height = 16, fill = '#000000', className, ...rest }: SvgCommonProps) => {
    return (

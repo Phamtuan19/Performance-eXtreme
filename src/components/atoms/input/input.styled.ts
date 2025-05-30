@@ -1,10 +1,10 @@
-import styled, { CSSObject } from 'styled-components';
+import type { CSSObject } from 'styled-components';
+import styled from 'styled-components';
 
-import { Theme } from '@PUI/core';
-import { sxConfig } from '@PUI/core/styled';
+import type { Theme } from '@PUI/core';
 
 import { createInputCssVariant } from './constants';
-import { InputStyledProps } from './input.type';
+import type { InputStyledProps } from './input.type';
 
 export const InputWrapper = styled('div')<{
    theme: Theme;
@@ -64,7 +64,7 @@ export const InputWrapper = styled('div')<{
 
       ...styleOverrides.color?.[color],
       ...styleOverrides.variant?.[variant!],
-      ...sxConfig({ ...styleOverrides.root, sx, ...restProps }),
+      ...theme.sxConfig({ ...restProps, sx }, styleOverrides.root),
    };
 });
 

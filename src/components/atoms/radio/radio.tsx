@@ -6,7 +6,7 @@ import { cn } from '@PUI/core/utils';
 
 import { RADIO_DEFAULT_PROPS } from './constants';
 import { RadioWrapper, RadioBoxContainer, InputRadio, RadioInner, RadioBoxLabel } from './radio.styled';
-import { RadioProps } from './radio.type';
+import type { RadioProps } from './radio.type';
 
 /**
  * Component Radio sử dụng cho hệ thống PX UI.

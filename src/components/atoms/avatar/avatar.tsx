@@ -5,7 +5,7 @@ import { separateProps } from '@PUI/core/styled';
 import { cn } from '@PUI/core/utils';
 
 import { StyledAvatar, Badge } from './avatar.styled';
-import { AvatarProps } from './avatar.type';
+import type { AvatarProps } from './avatar.type';
 import { AVATAR_DEFAULT_PROPS } from './constants';
 
 const Avatar = React.forwardRef<HTMLDivElement, AvatarProps>((props, ref) => {

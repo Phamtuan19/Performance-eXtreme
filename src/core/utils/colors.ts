@@ -1,3 +1,6 @@
+import { THEME_COLORS } from '../theme';
+import type { ThemeColor } from '../types';
+
 export const isColorCode = (value: unknown) => {
    if (typeof value !== 'string') return false;
 
@@ -29,3 +32,5 @@ export function hexToRgba(hex: string, alpha: number = 1) {
    // Trả về chuỗi RGBA
    return `rgba(${r}, ${g}, ${b}, ${alpha})`;
 }
+
+export const isThemeColor = (c: string): c is ThemeColor => (THEME_COLORS as readonly string[]).includes(c);

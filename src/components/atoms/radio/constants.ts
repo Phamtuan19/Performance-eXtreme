@@ -1,4 +1,4 @@
-import { PXComponentRadio } from './radio.type';
+import type { PXComponentRadio } from './radio.type';
 
 export const RADIO_DEFAULT_PROPS: PXComponentRadio['defaultProps'] = {
    size: 'medium',
