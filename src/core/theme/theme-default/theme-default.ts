@@ -47,9 +47,9 @@ const PALETTE: Palette = {
       warning: amber['600'], // màu cảnh báo vàng cam
    },
    disabled: {
-      backgroundColor: '#f5f5f5',
+      backgroundColor: '#f5f5f5', // gray-100
       color: gray['400'],
-      borderColor: '#d9d9d9',
+      borderColor: '#d9d9d9', // gray-300
    },
 
    primary: {

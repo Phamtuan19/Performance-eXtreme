@@ -30,20 +30,41 @@ export interface PXComponentTextarea {
    };
 }
 
+/**
+ * Các thành phần UI tùy chỉnh của thư viện PX UI.
+ * Mỗi thành phần có kiểu DeepOptional để:
+ * - Cho phép mỗi thuộc tính trong thành phần có thể là undefined (tùy chọn).
+ * - Đệ quy áp dụng optional cho các trường con (nested).
+ * Ví dụ: có thể override style hoặc props của PXButton, PXInput,... một cách linh hoạt.
+ */
 export type Components = {
    PXButton?: DeepOptional<PXComponentButton>;
-   PXBox?: Partial<PxComponentBox>;
-   PXTypography?: Partial<PxComponentTypography>;
-   PXInput?: Partial<PxComponentInput>;
-   PXTextarea?: Partial<PXComponentTextarea>;
-   PXCheckBox?: Partial<PXComponentCheckbox>;
-   PXRadio?: Partial<PXComponentRadio>;
-   PXSwitch?: Partial<PXComponentSwitch>;
+
+   PXBox?: DeepOptional<PxComponentBox>;
+
+   PXTypography?: DeepOptional<PxComponentTypography>;
+
+   PXInput?: DeepOptional<PxComponentInput>;
+
+   PXTextarea?: DeepOptional<PXComponentTextarea>;
+
+   PXCheckBox?: DeepOptional<PXComponentCheckbox>;
+
+   PXRadio?: DeepOptional<PXComponentRadio>;
+
+   PXSwitch?: DeepOptional<PXComponentSwitch>;
+
    PXAvatar?: DeepOptional<PXComponentAvatar>;
+
    PXAvatarGroup?: DeepOptional<PXComponentAvatarGroup>;
-   PXBadge?: Partial<PXComponentBadge>;
-   PXDivider?: Partial<PXComponentDivider>;
-   PXTooltip?: Partial<PXComponentTooltip>;
-   PXSpinner?: Partial<PXComponentSpinner>;
-   PXSelect?: Partial<PXComponentSelect>;
+
+   PXBadge?: DeepOptional<PXComponentBadge>;
+
+   PXDivider?: DeepOptional<PXComponentDivider>;
+
+   PXTooltip?: DeepOptional<PXComponentTooltip>;
+
+   PXSpinner?: DeepOptional<PXComponentSpinner>;
+
+   PXSelect?: DeepOptional<PXComponentSelect>;
 };
