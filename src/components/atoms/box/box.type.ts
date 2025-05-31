@@ -3,8 +3,8 @@ import type { CSSObject } from 'styled-components';
 import type { SxConfigProps } from '@PUI/core';
 
 export type PxComponentBox = {
-   styleOverrides?: {
-      root?: CSSObject;
+   styleOverrides: {
+      root: CSSObject;
    };
 };
 

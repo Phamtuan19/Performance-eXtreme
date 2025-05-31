@@ -2,7 +2,6 @@ import { merge } from 'lodash';
 import type { CSSObject } from 'styled-components';
 import styled from 'styled-components';
 
-import type { TypeInputColor, TypeInputSize } from '@PUI/core';
 import { type Theme } from '@PUI/core';
 import { isThemeColor } from '@PUI/core/utils';
 
@@ -41,11 +40,7 @@ export const StyledAvatar = styled.div<{
    theme: Theme;
    $styleProps: Omit<AvatarStyledProps, 'badgeColor' | 'badgePosition' | 'showBadge'>;
 }>(({ theme, $styleProps }) => {
-   const styleOverrides = merge({}, theme.components.PXAvatar?.styleOverrides, AVATAR_CSS_VARIANT) as {
-      root: CSSObject;
-      size: Record<TypeInputSize, CSSObject & { pixelSize: number }>;
-      color: Record<TypeInputColor, CSSObject>;
-   };
+   const styleOverrides = merge({}, theme.components.PXAvatar?.styleOverrides, AVATAR_CSS_VARIANT);
 
    const { size, shape, color, ...resProps } = $styleProps;
 

@@ -10,11 +10,15 @@ export const BoxStyle = styled(({ as: Component = 'div', ...rest }) => <Componen
 }>((props) => {
    const { theme, $styleProps } = props;
 
-   const { root } = theme.components?.PXBox?.styleOverrides ?? {};
+   const rootOverride = theme.components.PXBox?.styleOverrides?.root;
 
-   const result = theme.sxConfig($styleProps, root);
+   const result = theme.sxConfig($styleProps);
 
-   return result;
+   return {
+      ...rootOverride,
+
+      ...result,
+   };
 });
 
 BoxStyle.displayName = 'BoxStyle';

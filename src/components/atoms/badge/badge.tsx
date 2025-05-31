@@ -1,3 +1,4 @@
+import { merge } from 'lodash';
 import React from 'react';
 
 import { getTheme } from '@PUI/core';
@@ -19,17 +20,12 @@ const Badge = React.forwardRef<HTMLSpanElement, BadgeProps>((props, ref) => {
 
    const PXBadge = theme.components?.PXBadge?.defaultProps ?? BADGE_DEFAULT_PROPS;
 
-   const {
-      sx,
-      color = PXBadge.color,
-      badgePosition = PXBadge.badgePosition,
-      dot = PXBadge.dot,
-      animationType = PXBadge.animationType,
-      content,
-      maxContent,
-      children,
-      ...resProps
-   } = props;
+   const { sx, color, badgePosition, dot, animationType, content, maxContent, children, ...resProps } = merge(
+      {},
+      BADGE_DEFAULT_PROPS,
+      PXBadge,
+      props,
+   );
 
    const { styleProps, remainingProps } = separateProps(resProps);
 
@@ -49,16 +45,16 @@ const Badge = React.forwardRef<HTMLSpanElement, BadgeProps>((props, ref) => {
          {children}
          {displayContent !== null && (
             <BadgeContent
-               className={cn('PXBadge-content', {
-                  'PXBadge-dot': dot,
-                  [`PXBadge-animation-${animationType}`]: animationType !== 'none',
-                  'PXBadge-content-multiple-words': multipleWord,
+               className={cn('px-badge-content', {
+                  'px-badge-dot': dot,
+                  [`px-badge-animation-${animationType}`]: animationType !== 'none',
+                  'px-badge-content-multiple-words': multipleWord,
                })}
                $styledProps={{ animationType, dot, color, badgePosition, multipleWord }}
             >
                {!dot && displayContent}
 
-               {animationType === 'wave-multi' && <span className="PXBadge-wave-third" />}
+               {animationType === 'wave-multi' && <span className="px-badge-wave-third" />}
             </BadgeContent>
          )}
       </BadgeContainer>

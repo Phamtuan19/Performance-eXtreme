@@ -4,8 +4,6 @@ import { cn } from '@PUI/core/utils';
 import { BoxStyle } from './box.styled';
 import type { BoxProps } from './box.type';
 
-const CLASS_NAME = 'PXBox';
-
 const Box = (props: BoxProps) => {
    const { className, children, sx, component, ...rest } = props;
 
@@ -15,7 +13,7 @@ const Box = (props: BoxProps) => {
       <BoxStyle
          as={component}
          {...remainingProps}
-         className={cn(`${CLASS_NAME}__wrapper`, className)}
+         className={cn('px-box-wrapper', className)}
          $styleProps={{ ...styleProps, sx }}
       >
          {children}
