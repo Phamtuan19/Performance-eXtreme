@@ -22,12 +22,8 @@ const Avatar = React.forwardRef<HTMLDivElement, AvatarProps>((props, ref) => {
 
    const PXAvatar = theme.components?.PXAvatar?.defaultProps;
 
-   const { src, alt, color, size, shape, showBadge, badgeColor, badgePosition, children, title, ...resProps } = merge(
-      {},
-      AVATAR_DEFAULT_PROPS,
-      PXAvatar,
-      props,
-   );
+   const { sx, src, alt, color, size, shape, showBadge, badgeColor, badgePosition, children, title, ...resProps } =
+      merge({}, AVATAR_DEFAULT_PROPS, PXAvatar, props);
 
    const { styleProps, remainingProps } = separateProps(resProps);
 
@@ -40,7 +36,7 @@ const Avatar = React.forwardRef<HTMLDivElement, AvatarProps>((props, ref) => {
          ref={ref}
          {...remainingProps}
          className={cn('px-avatar-root', remainingProps.className)}
-         $styleProps={{ ...styleProps, color, size, shape }}
+         $styleProps={{ ...styleProps, sx, color, size, shape }}
       >
          {showInitials ? (
             <span className="px-avatar-initials">{children ?? title?.charAt(0).toUpperCase()}</span>

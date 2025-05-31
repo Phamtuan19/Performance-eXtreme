@@ -2,6 +2,7 @@ import { merge } from 'lodash';
 import type { CSSObject } from 'styled-components';
 import styled from 'styled-components';
 
+import type { TypeInputColor, TypeInputSize } from '@PUI/core';
 import { type Theme } from '@PUI/core';
 import { isThemeColor } from '@PUI/core/utils';
 
@@ -40,14 +41,22 @@ export const StyledAvatar = styled.div<{
    theme: Theme;
    $styleProps: Omit<AvatarStyledProps, 'badgeColor' | 'badgePosition' | 'showBadge'>;
 }>(({ theme, $styleProps }) => {
-   const { styleOverrides } = theme.components.PXAvatar ?? {};
+   const styleOverrides = merge({}, theme.components.PXAvatar?.styleOverrides, AVATAR_CSS_VARIANT) as {
+      root: CSSObject;
+      size: Record<TypeInputSize, CSSObject & { pixelSize: number }>;
+      color: Record<TypeInputColor, CSSObject>;
+   };
 
    const { size, shape, color, ...resProps } = $styleProps;
 
-   const { pixelSize, ...resCssVariant } =
-      typeof size === 'string' ? merge({}, AVATAR_CSS_VARIANT.size[size], styleOverrides?.size?.[size]) : {};
+   const sizeStyle =
+      typeof size === 'string' && styleOverrides.size?.[size]
+         ? merge({}, AVATAR_CSS_VARIANT.size[size], styleOverrides.size[size])
+         : undefined;
 
-   const safePixelSize = typeof size === 'string' ? pixelSize && pixelSize : size;
+   const pixelSize = sizeStyle?.pixelSize ?? (typeof size === 'number' ? size : undefined);
+
+   const resCssVariant = sizeStyle ? { ...sizeStyle, pixelSize: undefined } : {};
 
    return {
       position: 'relative',
@@ -59,10 +68,10 @@ export const StyledAvatar = styled.div<{
       border: `1px solid ${theme.palette.common.white}`,
       fontWeight: 500,
       userSelect: 'none',
-      width: safePixelSize,
-      height: safePixelSize,
+      width: pixelSize,
+      height: pixelSize,
       borderRadius: shape === 'circle' ? '100%' : '15%',
-      fontSize: Math.floor(safePixelSize! / 2.5),
+      fontSize: Math.floor(pixelSize! / 2.5),
 
       img: {
          width: '100%',
@@ -77,9 +86,9 @@ export const StyledAvatar = styled.div<{
          outlineOffset: 1,
       },
 
-      ...styleOverrides?.root,
+      ...(styleOverrides?.root ?? {}),
 
-      ...resCssVariant,
+      ...(resCssVariant as CSSObject),
 
       ...(styleOverrides?.color && typeof color === 'string' && color in styleOverrides.color
          ? styleOverrides.color[color as keyof typeof styleOverrides.color]
@@ -129,7 +138,7 @@ export const StyledAvatarGroup = styled.div<{
       // child avatar xử lý overlay
       '& > *': {
          position: 'relative',
-         zIndex: 1,
+         //  zIndex: 1,
          transition: 'margin 0.2s ease, z-index 0.2s ease, transform 0.2s ease',
          willChange: 'transform',
       },

@@ -51,9 +51,12 @@ const AvatarGroup = React.forwardRef<HTMLDivElement, AvatarGroupProps>((props, r
                size,
                shape,
                className: cn('px-avatar-group-avatar', avatarChild.props.className),
-               style: {
+               sx: {
                   zIndex: total - idx,
                },
+               //    style: {
+               //       zIndex: total - idx,
+               //    },
             });
          })}
 
