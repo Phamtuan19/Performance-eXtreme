@@ -46,7 +46,7 @@ const getAnimationPresets = (
          };
       case 'wave':
          return {
-            position: 'relative',
+            position: 'absolute',
             '&::after': {
                content: "''",
                position: 'absolute',
@@ -116,8 +116,8 @@ export const BadgeContainer = styled('span')<{
       position: 'relative',
       boxSizing: 'border-box',
       display: 'inline-flex',
-      width: 'fit-content',
-      height: 'fit-content',
+      width: 'max-content',
+      height: 'max-content',
 
       ...theme.sxConfig($styledProps),
    };

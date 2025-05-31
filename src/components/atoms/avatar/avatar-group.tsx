@@ -54,9 +54,6 @@ const AvatarGroup = React.forwardRef<HTMLDivElement, AvatarGroupProps>((props, r
                sx: {
                   zIndex: total - idx,
                },
-               //    style: {
-               //       zIndex: total - idx,
-               //    },
             });
          })}
 

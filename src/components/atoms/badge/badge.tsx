@@ -5,8 +5,14 @@ import { separateProps } from '@PUI/core/styled';
 import { cn } from '@PUI/core/utils';
 
 import { BadgeContainer, BadgeContent } from './badge.styled';
-import type { BadgeProps } from './badge.type';
-import { BADGE_DEFAULT_PROPS } from './constants';
+import type { BadgeProps, PXComponentBadge } from './badge.type';
+
+const BADGE_DEFAULT_PROPS: PXComponentBadge['defaultProps'] = {
+   color: 'primary',
+   badgePosition: 'top-right',
+   animationType: 'none',
+   dot: false,
+};
 
 const Badge = React.forwardRef<HTMLSpanElement, BadgeProps>((props, ref) => {
    const theme = getTheme();
