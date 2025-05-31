@@ -1,26 +1,24 @@
 import type { CSSObject } from 'styled-components';
 
-import type { SxConfigProps, SxProps, Theme, TypeInputColor, TypeInputSize } from '@PUI/core';
+import type { SxConfigProps, SxProps, Theme, ThemeColor, ThemeSize } from '@PUI/core';
+import type { DeepOptional } from '@PUI/core/helpers';
 
 /**
  * Interface định nghĩa cấu hình cho component Radio trong thư viện PX UI.
  */
 export interface PXComponentRadio {
-   /**
-    * Các giá trị mặc định cho component Radio.
-    */
    defaultProps: {
       /**
        * Màu sắc của Radio: ví dụ 'primary', 'secondary', 'danger', 'success', v.v...
        * Tương ứng với các màu trong theme.palette.
        */
-      color: TypeInputColor;
+      color: ThemeColor;
 
       /**
        * Kích thước của Radio: 'small' | 'medium' | 'large'.
        * Ảnh hưởng đến đường kính của vòng tròn hiển thị.
        */
-      size: TypeInputSize;
+      size: ThemeSize;
 
       /**
        * Nếu true, Radio sẽ bị disable và không thể tương tác.
@@ -46,10 +44,6 @@ export interface PXComponentRadio {
       error: boolean;
    };
 
-   /**
-    * Ghi đè style cho từng phần của component.
-    * Dùng để custom hoặc mở rộng theme một cách linh hoạt.
-    */
    styleOverrides: {
       /**
        * Style cho phần root bọc ngoài của radio.
@@ -61,20 +55,42 @@ export interface PXComponentRadio {
        * Style theo từng kích thước: sm, md, lg.
        * Ảnh hưởng trực tiếp đến size của hình tròn (radio circle).
        */
-      size: Record<TypeInputSize, CSSObject>;
+      size: Record<ThemeSize, CSSObject>;
 
       /**
        * Style theo từng màu sắc: primary, secondary, v.v.
        * Gồm borderColor và backgroundColor (khi checked).
        */
-      color: Record<TypeInputColor, CSSObject>;
+      color: Record<ThemeColor, CSSObject>;
    };
 }
 
 export type RadioStyledProps = PXComponentRadio['defaultProps'] & SxConfigProps;
 
-export type RadioProps = Omit<React.InputHTMLAttributes<HTMLInputElement>, 'color' | 'size' | 'height' | 'width'> &
-   Partial<RadioStyledProps> & {
+type InputRadioSafeProps = Omit<
+   React.InputHTMLAttributes<HTMLInputElement>,
+   | 'accept'
+   | 'alt'
+   | 'capture'
+   | 'files'
+   | 'formAction'
+   | 'formEncType'
+   | 'formMethod'
+   | 'formNoValidate'
+   | 'formTarget'
+   | 'height'
+   | 'width'
+   | 'multiple'
+   | 'src'
+   | 'step'
+   | 'min'
+   | 'max'
+   | 'size'
+   | 'list'
+   | 'type'
+   | 'color'
+> &
+   DeepOptional<RadioStyledProps> & {
       /**
        * Sự kiện khi Radio thay đổi trạng thái
        */
@@ -85,6 +101,8 @@ export type RadioProps = Omit<React.InputHTMLAttributes<HTMLInputElement>, 'colo
        */
       label?: React.ReactNode;
    };
+
+export type RadioProps = InputRadioSafeProps;
 
 export type RadioOption = Partial<Pick<PXComponentRadio['defaultProps'], 'size' | 'disabled'>> & {
    label: React.ReactNode;
@@ -118,7 +136,7 @@ export interface RadioGroupBaseProps extends Omit<React.HTMLAttributes<HTMLDivEl
     * Style theo từng kích thước: sm, md, lg.
     * Ảnh hưởng trực tiếp đến size của hình tròn (radio circle).
     */
-   size?: TypeInputSize;
+   size?: ThemeSize;
 
    /** Hướng hiển thị của nhóm radio, mặc định 'column' */
    direction?: 'row' | 'column';

@@ -1,35 +1,33 @@
+import { merge } from 'lodash';
 import React from 'react';
 
 import { getTheme } from '@PUI/core';
 import { separateProps } from '@PUI/core/styled';
 import { cn } from '@PUI/core/utils';
 
-import { RADIO_DEFAULT_PROPS } from './constants';
 import { RadioWrapper, RadioBoxContainer, InputRadio, RadioInner, RadioBoxLabel } from './radio.styled';
-import type { RadioProps } from './radio.type';
+import type { PXComponentRadio, RadioProps } from './radio.type';
 
-/**
- * Component Radio sử dụng cho hệ thống PX UI.
- * Hỗ trợ cả controlled và uncontrolled.
- */
+const RADIO_DEFAULT_PROPS: PXComponentRadio['defaultProps'] = {
+   size: 'medium',
+   color: 'primary',
+   disabled: false,
+   checked: false,
+   defaultChecked: false,
+   error: false,
+};
+
 const Radio = React.forwardRef<HTMLInputElement, RadioProps>((props, ref) => {
    const theme = getTheme();
 
-   const PXRadio = theme.components?.PXRadio?.defaultProps ?? RADIO_DEFAULT_PROPS;
+   const PXRadio = theme.components?.PXRadio?.defaultProps;
 
-   const {
-      label,
-      sx,
-      size = PXRadio.size,
-      checked,
-      defaultChecked = PXRadio.defaultChecked,
-      disabled = PXRadio.disabled,
-      color = PXRadio.color,
-      error = PXRadio.error,
-      onChange,
-      onKeyDown,
-      ...resProps
-   } = props;
+   const { label, sx, size, checked, defaultChecked, disabled, color, error, onChange, onKeyDown, ...resProps } = merge(
+      {},
+      RADIO_DEFAULT_PROPS,
+      PXRadio,
+      props,
+   );
 
    const { styleProps, remainingProps } = separateProps(resProps);
 

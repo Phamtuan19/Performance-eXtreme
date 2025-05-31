@@ -1,16 +1,46 @@
+import { merge } from 'lodash';
 import styled from 'styled-components';
 
-import type { SxProps, Theme, TypeInputColor, TypeInputSize } from '@PUI/core';
+import type { SxProps, Theme } from '@PUI/core';
 
-import { RADIO_CSS_VARIANT } from './constants';
-import type { RadioStyledProps } from './radio.type';
+import type { PXComponentRadio, RadioStyledProps } from './radio.type';
+
+const RADIO_CSS_VARIANT: PXComponentRadio['styleOverrides'] = {
+   root: {},
+   size: {
+      large: {
+         fontSize: '1.125rem',
+         width: '24px',
+         height: '24px',
+      },
+      medium: {
+         fontSize: '1rem',
+         width: '20px',
+         height: '20px',
+      },
+      small: {
+         fontSize: '0.875rem',
+         width: '18px',
+         height: '18px',
+      },
+   },
+   color: {
+      primary: {},
+      secondary: {},
+      success: {},
+      error: {},
+      warning: {},
+      info: {},
+   },
+};
 
 export const RadioWrapper = styled('label')<{
    theme: Theme;
    $styleProps: Omit<RadioStyledProps, 'size' | 'indeterminate' | 'defaultChecked' | 'error'>;
 }>(({ theme, $styleProps }) => {
    const { sx, disabled, color, ...restProps } = $styleProps;
-   const styleOverrides = theme.components?.PXCheckBox?.styleOverrides?.root ?? RADIO_CSS_VARIANT;
+
+   const styleOverrides = merge({}, theme.components?.PXCheckBox?.styleOverrides, RADIO_CSS_VARIANT);
 
    return {
       position: 'relative',
@@ -20,14 +50,14 @@ export const RadioWrapper = styled('label')<{
       gap: '0.5rem',
       userSelect: 'none',
       transition: 'color 0.2s ease',
-      color: disabled ? theme.palette.text.disabled : theme.palette.text.primary,
+      color: disabled ? theme.palette.disabled.color : theme.palette.common.black,
 
       // Hover label sẽ ảnh hưởng span bên trong
       '&:hover span': {
-         borderColor: disabled ? '#d9d9d9' : theme.palette[color as TypeInputColor].main,
+         borderColor: disabled ? '#d9d9d9' : theme.palette[color].main,
       },
 
-      ...styleOverrides,
+      ...styleOverrides.root,
       ...theme.sxConfig({ ...restProps, sx }),
    };
 });
@@ -59,7 +89,7 @@ export const InputRadio = styled('input').attrs({ type: 'checkbox' })<{
       zIndex: 1,
 
       '&:focus + span': {
-         boxShadow: `0 0 0 3px ${theme.palette[color as TypeInputColor].main}33`,
+         boxShadow: `0 0 0 3px ${theme.palette[color].main}33`,
       },
 
       '&:disabled': {
@@ -74,10 +104,7 @@ export const RadioInner = styled.span<{
 }>(({ theme, $styleProps }) => {
    const { size, checked, disabled, color } = $styleProps;
 
-   const PXRadio = theme.components?.PXInput;
-
-   const cssSize =
-      PXRadio?.styleOverrides?.size?.[size as TypeInputSize] ?? RADIO_CSS_VARIANT.size[size as TypeInputSize];
+   const styleOverrides = merge({}, theme.components?.PXCheckBox?.styleOverrides, RADIO_CSS_VARIANT);
 
    const borderColor = theme.palette.disabled.borderColor;
 
@@ -94,16 +121,14 @@ export const RadioInner = styled.span<{
       backgroundColor: backgroundColor,
       transition: 'all 0.2s',
 
-      ...cssSize,
-
       ...(checked && {
          '&::after': {
             content: "''",
             position: 'absolute',
             insetInlineStart: '50%',
             insetBlockStart: '50%',
-            width: cssSize.width ? `calc(${cssSize.width} * 0.4)` : '40%',
-            height: cssSize.height ? `calc(${cssSize.height} * 0.4)` : '40%',
+            width: styleOverrides.size[size].width ? `calc(${styleOverrides.size[size].width} * 0.4)` : '40%',
+            height: styleOverrides.size[size].height ? `calc(${styleOverrides.size[size].height} * 0.4)` : '40%',
             borderRadius: '50%',
             backgroundColor: theme.palette.common.white,
             transform: 'translate(-50%, -50%)',
@@ -117,7 +142,9 @@ export const RadioInner = styled.span<{
          pointerEvents: 'none',
       }),
 
-      ...(PXRadio?.styleOverrides?.color?.[color as TypeInputColor] ?? {}),
+      ...styleOverrides.size[size],
+
+      ...styleOverrides.color[color],
    };
 });
 
