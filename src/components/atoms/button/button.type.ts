@@ -1,6 +1,7 @@
 import type { CSSObject } from 'styled-components';
 
-import type { SxConfigProps, ThemeColor, ThemeSize, ThemeVariant, VARIANTS_BUTTON } from '@PUI/core';
+import type { SxConfigProps, ThemeColor, ThemeSize, ThemeVariant } from '@PUI/core';
+import type { DeepOptional } from '@PUI/core/helpers';
 
 export type PXComponentButton = {
    defaultProps: {
@@ -63,33 +64,6 @@ export type PXComponentButton = {
       size: Record<ThemeSize, CSSObject>;
 
       variant: Record<ThemeVariant, Record<ThemeColor, CSSObject>>;
-
-      //   variant: {
-      //      container: {
-      //         primary: CSSObject;
-      //         secondary: CSSObject;
-      //         success: CSSObject;
-      //         error: CSSObject;
-      //         warning: CSSObject;
-      //         info: CSSObject;
-      //      };
-      //      text: {
-      //         textPrimary: CSSObject;
-      //         textSecondary: CSSObject;
-      //         textSuccess: CSSObject;
-      //         textError: CSSObject;
-      //         textWarning: CSSObject;
-      //         textInfo: CSSObject;
-      //      };
-      //      outlined: {
-      //         outlinedPrimary: CSSObject;
-      //         outlinedSecondary: CSSObject;
-      //         outlinedSuccess: CSSObject;
-      //         outlinedError: CSSObject;
-      //         outlinedWarning: CSSObject;
-      //         outlinedInfo: CSSObject;
-      //      };
-      //   };
    };
 };
 
@@ -103,7 +77,7 @@ export type ButtonBaseProps = Omit<React.ButtonHTMLAttributes<HTMLButtonElement>
       children?: React.ReactNode;
    };
 
-export type ButtonProps = Partial<ButtonBaseProps> & {
+export type ButtonProps = DeepOptional<ButtonBaseProps> & {
    /**
     * Icon hiển thị ở đầu nội dung nút
     */
@@ -113,31 +87,6 @@ export type ButtonProps = Partial<ButtonBaseProps> & {
     * Icon hiển thị ở cuối nội dung nút
     */
    endIcon?: React.ReactNode;
-
-   /**
-    * Trạng thái loading của nút (hiển thị loading indicator, disable button)
-    */
-   loading?: boolean;
-
-   /**
-    * Vị trí hiển thị biểu tượng loading:
-    * - 'start': thay thế `startIcon`
-    * - 'end': thay thế `endIcon`
-    * - 'center': thay thế toàn bộ nội dung
-    */
-   loadingPosition?: 'start' | 'end' | 'center';
-
-   /**
-    * Nội dung hiển thị khi loading = true
-    * Nếu không truyền sẽ dùng nội dung gốc (`children`)
-    */
-   loadingContent?: React.ReactNode;
-
-   /**
-    * Component loading được hiển thị (spinner, icon, v.v.)
-    * Nếu không truyền sẽ mặc định là <CircularProgress />
-    */
-   loadingIndicator?: React.ReactNode;
 
    /**
     * Loại thẻ/component được render (mặc định là 'button', có thể là 'a', 'div',
@@ -152,32 +101,4 @@ export type ButtonProps = Partial<ButtonBaseProps> & {
     * và component sẽ được chuyển thành 'a'
     */
    href?: string;
-
-   /**
-    * Kích thước nút: ví dụ 'sm', 'md', 'lg'
-    * Lấy từ `VARIANTS_BUTTON.SIZE`
-    */
-   size?: (typeof VARIANTS_BUTTON.SIZE)[number];
-
-   /**
-    * Kiểu nút: ví dụ 'contained', 'outlined', 'text'
-    * Lấy từ `VARIANTS_BUTTON.VARIANT`
-    */
-   variant?: (typeof VARIANTS_BUTTON.VARIANT)[number];
-
-   /**
-    * Màu sắc của nút: ví dụ 'primary', 'secondary'
-    * Lấy từ `VARIANTS_BUTTON.COLOR`
-    */
-   color?: (typeof VARIANTS_BUTTON.COLOR)[number];
-
-   /**
-    * Tắt hiệu ứng ripple khi click vào nút
-    */
-   disableRipple?: boolean;
-
-   /**
-    * Nút sẽ chiếm toàn bộ chiều ngang container
-    */
-   fullWidth?: boolean;
 };
