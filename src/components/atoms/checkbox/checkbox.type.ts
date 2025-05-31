@@ -2,6 +2,7 @@ import type React from 'react';
 import type { CSSObject } from 'styled-components';
 
 import type { SxConfigProps, ThemeColor, ThemeSize } from '@PUI/core';
+import type { DeepOptional } from '@PUI/core/helpers';
 
 export interface PXComponentCheckbox {
    /**
@@ -77,8 +78,30 @@ export interface PXComponentCheckbox {
 
 export type CheckBoxStyledProps = PXComponentCheckbox['defaultProps'] & SxConfigProps;
 
-export type CheckBoxProps = Omit<React.InputHTMLAttributes<HTMLInputElement>, 'color' | 'size' | 'height' | 'width'> &
-   Partial<CheckBoxStyledProps> & {
+type InputCheckboxSafeProps = Omit<
+   React.InputHTMLAttributes<HTMLInputElement>,
+   | 'accept'
+   | 'alt'
+   | 'capture'
+   | 'files'
+   | 'formAction'
+   | 'formEncType'
+   | 'formMethod'
+   | 'formNoValidate'
+   | 'formTarget'
+   | 'height'
+   | 'width'
+   | 'multiple'
+   | 'src'
+   | 'step'
+   | 'min'
+   | 'max'
+   | 'size'
+   | 'list'
+   | 'type'
+   | 'color'
+> &
+   DeepOptional<CheckBoxStyledProps> & {
       /**
        * Sự kiện khi checkbox thay đổi trạng thái
        */
@@ -89,3 +112,5 @@ export type CheckBoxProps = Omit<React.InputHTMLAttributes<HTMLInputElement>, 'c
        */
       label?: string;
    };
+
+export type CheckBoxProps = InputCheckboxSafeProps;

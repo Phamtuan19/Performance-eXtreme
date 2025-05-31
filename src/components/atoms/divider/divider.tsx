@@ -28,7 +28,7 @@ const Divider = React.forwardRef<HTMLDivElement, DividerProps>((props, ref) => {
    return (
       <DividerRoot
          {...remainingProps}
-         className={cn('PXDivider-container', className)}
+         className={cn('px-divider-container', className)}
          ref={ref}
          $styleProps={{
             ...styleProps,
@@ -40,7 +40,7 @@ const Divider = React.forwardRef<HTMLDivElement, DividerProps>((props, ref) => {
             hasChildren: !!children,
          }}
       >
-         {children && <DividerTextInner className="PXDivider-text-inner">{children}</DividerTextInner>}
+         {children && <DividerTextInner className="px-divider-text-inner">{children}</DividerTextInner>}
       </DividerRoot>
    );
 });

@@ -1,4 +1,4 @@
-import type { CSSObject } from 'styled-components';
+import { merge } from 'lodash';
 import styled from 'styled-components';
 
 import type { Theme } from '@PUI/core';
@@ -6,20 +6,56 @@ import type { Theme } from '@PUI/core';
 import { createInputCssVariant } from './constants';
 import type { InputStyledProps } from './input.type';
 
+export const InputContainer = styled.div<{
+   $styleProps: Omit<
+      InputStyledProps,
+      | 'startIcon'
+      | 'endIcon'
+      | 'color'
+      | 'variant'
+      | 'disabled'
+      | 'loading'
+      | 'loadingIndicator'
+      | 'loadingPosition'
+      | 'error'
+   >;
+}>(({ theme, $styleProps }) => {
+   const { fullWidth, size, ...resProps } = $styleProps;
+
+   const inputCssVariant = createInputCssVariant(theme.palette).styleOverrides;
+
+   const styleOverrides = merge({}, inputCssVariant, theme.components?.PXInput?.styleOverrides);
+
+   return {
+      boxSizing: 'border-box',
+      display: 'inline-flex',
+      flexDirection: 'column',
+      width: fullWidth ? '100%' : 'auto',
+      gap: 4,
+
+      ...styleOverrides.root,
+
+      ...styleOverrides.size[size],
+
+      ...theme.sxConfig(resProps),
+   };
+});
+
 export const InputWrapper = styled('div')<{
    theme: Theme;
-   $styleProps: Required<NonNullable<Omit<InputStyledProps, 'fullWidth' | 'startIcon' | 'endIcon' | 'size'>>>;
+   $styleProps: Pick<InputStyledProps, 'color' | 'variant' | 'disabled'>;
 }>(({ theme, $styleProps }) => {
-   const { sx, color, variant, disabled, ...restProps } = $styleProps;
+   const { color, variant, disabled } = $styleProps;
+
+   const inputCssVariant = createInputCssVariant(theme.palette).styleOverrides;
+
+   const styleOverrides = merge({}, inputCssVariant, theme.components?.PXInput?.styleOverrides);
 
    const fallbackColor = theme.palette.primary?.light || '#3b82f6';
    const paletteColor = theme.palette[color] || theme.palette.primary;
    const borderColorHover = paletteColor?.main;
    const borderColorFocus = paletteColor?.main || fallbackColor;
    const boxShadowColor = paletteColor?.light || fallbackColor;
-
-   const styleOverrides =
-      theme.components?.PXInput?.styleOverrides ?? createInputCssVariant(theme.palette).styleOverrides;
 
    return {
       boxSizing: 'border-box',
@@ -33,7 +69,6 @@ export const InputWrapper = styled('div')<{
       borderRadius: '0.5rem',
       transition: 'all 0.2s ease',
       width: '100%',
-      //   height: 'max-content',
       cursor: disabled ? 'not-allowed' : 'text',
 
       ...(disabled
@@ -41,10 +76,15 @@ export const InputWrapper = styled('div')<{
               borderColor: theme.palette.gray[300],
               backgroundColor: theme.palette.gray[100],
               boxShadow: 'none',
+
+              '& .px-input-icon': {
+                 backgroundColor: theme.palette.disabled.backgroundColor,
+              },
            }
          : {
               '&:hover': {
-                 borderColor: disabled ? theme.palette.gray[300] : borderColorHover,
+                 borderColor:
+                    variant === 'outline' ? (disabled ? theme.palette.gray[300] : borderColorHover) : 'transparent',
               },
 
               '&:focus-within': {
@@ -58,28 +98,19 @@ export const InputWrapper = styled('div')<{
                           : borderColorFocus
                        : undefined,
 
-                 boxShadow: disabled ? 'none' : variant !== 'standard' ? `0 0 0 2px ${boxShadowColor}66` : 'none',
+                 boxShadow: disabled ? 'none' : variant === 'outline' ? `0 0 0 2px ${boxShadowColor}66` : 'none',
               },
            }),
 
       ...styleOverrides.color?.[color],
-      ...styleOverrides.variant?.[variant!],
-      ...theme.sxConfig({ ...restProps, sx }, styleOverrides.root),
+
+      ...styleOverrides.variant?.[variant],
    };
 });
 
 export const InputStyle = styled('input')<{
    theme: Theme;
-   $styleProps: Pick<InputStyledProps, 'size' | 'variant'>;
-}>(({ theme, $styleProps }) => {
-   const { size, variant } = $styleProps;
-
-   const styleOverrides =
-      theme.components?.PXInput?.styleOverrides ?? createInputCssVariant(theme.palette).styleOverrides;
-
-   const palette = theme.palette;
-   const gray = palette.gray ?? palette.grey ?? palette.neutral;
-
+}>(({ theme }) => {
    return {
       width: '100%',
       fontFamily: 'inherit',
@@ -90,10 +121,11 @@ export const InputStyle = styled('input')<{
       outline: 'none',
       boxSizing: 'border-box',
       flex: 1,
-      backgroundColor: variant === 'filled' ? gray[100] : 'transparent',
+      height: '100%',
+      backgroundColor: 'transparent',
 
       '&::placeholder': {
-         color: gray[400],
+         color: theme.palette.gray[400],
          opacity: 1,
       },
 
@@ -103,36 +135,40 @@ export const InputStyle = styled('input')<{
       },
 
       '&:disabled': {
-         color: gray[500],
+         color: theme.palette.gray[500],
          cursor: 'not-allowed',
-         backgroundColor: gray[100],
-         borderColor: gray[300],
+         backgroundColor: theme.palette.gray[100],
+         borderColor: theme.palette.gray[300],
       },
 
       '&[readonly]': {
-         backgroundColor: gray[100],
+         backgroundColor: theme.palette.gray[100],
          cursor: 'default',
-         color: gray[700],
+         color: theme.palette.gray[700],
       },
-
-      ...styleOverrides.size?.[size!],
    };
 });
 
-const sharedIconStyle = (theme: Theme): CSSObject => ({
-   //    pointerEvents: 'none',
+export const IconStart = styled('span')<{ theme: Theme }>(({ theme }) => ({
    cursor: 'pointer',
    display: 'flex',
    alignItems: 'center',
    justifyContent: 'center',
    alignSelf: 'stretch',
+   height: '100%',
+   minWidth: '2.5rem',
    color: theme.palette.gray[600],
-   paddingLeft: 12,
-   paddingRight: 12,
-});
-
-export const IconStart = styled('span')<{ theme: Theme }>(({ theme }) => sharedIconStyle(theme));
-export const IconEnd = styled('span')<{ theme: Theme }>(({ theme }) => sharedIconStyle(theme));
+}));
+export const IconEnd = styled('span')<{ theme: Theme }>(({ theme }) => ({
+   cursor: 'pointer',
+   display: 'flex',
+   alignItems: 'center',
+   justifyContent: 'center',
+   alignSelf: 'stretch',
+   height: '100%',
+   minWidth: '2.5rem',
+   color: theme.palette.gray[600],
+}));
 
 export const HelperText = styled('div')<{ theme: Theme; $error?: boolean }>`
    font-size: 0.85rem;
@@ -142,29 +178,3 @@ export const HelperText = styled('div')<{ theme: Theme; $error?: boolean }>`
    }};
    user-select: none;
 `;
-
-export const InputContainer = styled.div<{ $styleProps: Pick<InputStyledProps, 'fullWidth' | 'size'> }>(
-   ({ theme, $styleProps }) => {
-      const { fullWidth, size } = $styleProps;
-
-      const styleOverrideSize =
-         theme.components?.PXInput?.styleOverrides?.size ?? createInputCssVariant(theme.palette).styleOverrides.size;
-
-      let heightValue: string | number | undefined = undefined;
-      const sizeStyle = styleOverrideSize?.[size ?? 'medium'];
-      if (typeof sizeStyle === 'object' && sizeStyle !== null && 'height' in sizeStyle) {
-         heightValue = sizeStyle.height;
-      } else if (typeof sizeStyle === 'string' || typeof sizeStyle === 'number') {
-         heightValue = sizeStyle;
-      }
-
-      return {
-         boxSizing: 'border-box',
-         display: 'inline-flex',
-         flexDirection: 'column',
-         width: fullWidth ? '100%' : 'auto',
-         height: heightValue,
-         gap: 4,
-      };
-   },
-);

@@ -1,61 +1,103 @@
 import type React from 'react';
+import type { InputHTMLAttributes } from 'react';
+import type { CSSObject } from 'styled-components';
 
-import type { SxConfigProps, TypeInputColor, TypeInputSize, TypeInputVariant } from '@PUI/core';
-import type { UnstableSxConfigProps } from '@PUI/core/styled';
+import type { SxConfigProps, ThemeColor, ThemeSize } from '@PUI/core';
+import type { DeepOptional } from '@PUI/core/helpers';
 
-export type InputStyledProps = SxConfigProps & {
-   /**
-    * Kiểu hiển thị của nút: 'contained' | 'outlined' | 'text'
-    */
-   variant?: TypeInputVariant;
+type InputVariant = 'outline' | 'filled' | 'standard';
 
-   /**
-    * Màu sắc của nút: 'primary' | 'secondary' | 'danger' | 'success' | ...
-    */
-   color?: TypeInputColor;
+export interface PxComponentInput {
+   defaultProps: {
+      /**
+       * Kiểu hiển thị của nút: 'contained' | 'outlined' | 'text'
+       */
+      variant: InputVariant;
 
-   /**
-    * Kích thước của nút: 'sm' | 'md' | 'lg'
-    */
-   size?: TypeInputSize;
+      /**
+       * Màu sắc của nút: 'primary' | 'secondary' | 'danger' | 'success' | ...
+       */
+      color: ThemeColor;
 
-   /**
-    * Nút chiếm toàn bộ chiều rộng của container
-    */
-   fullWidth?: boolean;
+      /**
+       * Kích thước của nút: 'sm' | 'md' | 'lg'
+       */
+      size: ThemeSize;
 
-   disabled?: boolean;
+      /**
+       * Icon hiển thị ở đầu (bên trái) nội dung nút
+       */
+      startIcon: React.ReactNode | null;
 
-   /**
-    * Icon hiển thị ở đầu (bên trái) nội dung nút
-    */
-   startIcon?: React.ReactNode | null;
+      /**
+       * Icon hiển thị ở cuối (bên phải) nội dung nút
+       */
+      endIcon: React.ReactNode | null;
 
-   /**
-    * Icon hiển thị ở cuối (bên phải) nội dung nút
-    */
-   endIcon?: React.ReactNode | null;
-};
+      /**
+       * Vô hiệu hóa nút, không thể click được
+       */
+      disabled: boolean;
 
-export type InputProps = Omit<React.InputHTMLAttributes<HTMLInputElement>, 'color' | 'size' | 'height' | 'width'> &
-   Omit<UnstableSxConfigProps, 'color'> &
-   InputStyledProps & {
+      /**
+       * Nút chiếm toàn bộ chiều rộng của container
+       */
+      fullWidth: boolean;
+
       /**
        * Trạng thái loading, hiển thị icon hoặc nội dung đang xử lý
        */
-      loading?: boolean;
+      loading: boolean;
 
       /**
        * Custom icon loading thay vì mặc định (ví dụ: spinner riêng)
        */
-      loadingIndicator?: React.ReactNode | null;
+      loadingIndicator: React.ReactNode | null;
 
       /**
        * Vị trí hiển thị icon loading: 'start' | 'end' | 'center'
        */
-      loadingPosition?: 'start' | 'end';
+      loadingPosition: 'start' | 'end';
 
-      error?: boolean;
+      error: boolean;
+   };
+   styleOverrides: {
+      root: CSSObject;
+      size: Record<ThemeSize, CSSObject>;
+      color: Record<ThemeColor, CSSObject>;
+      variant: Record<InputVariant, CSSObject>;
+   };
+}
 
+export type InputStyledProps = PxComponentInput['defaultProps'] & SxConfigProps;
+
+type InputTextSafeProps = Omit<
+   InputHTMLAttributes<HTMLInputElement>,
+   | 'accept'
+   | 'alt'
+   | 'capture'
+   | 'checked'
+   | 'defaultChecked'
+   | 'files'
+   | 'formAction'
+   | 'formEncType'
+   | 'formMethod'
+   | 'formNoValidate'
+   | 'formTarget'
+   | 'height'
+   | 'width'
+   | 'multiple'
+   | 'src'
+   | 'step'
+   | 'min'
+   | 'max'
+   | 'size'
+   | 'list'
+   | 'type'
+   | 'color'
+> &
+   DeepOptional<InputStyledProps> & {
       helperText?: React.ReactNode;
    };
+
+export type InputProps = InputTextSafeProps;

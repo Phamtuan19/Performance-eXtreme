@@ -13,10 +13,11 @@ import type {
    PxComponentBox,
    PXComponentButton,
    PXComponentAvatarGroup,
+   PxComponentInput,
 } from '@PUI/components/atoms';
 
 import type { DeepOptional } from '../helpers';
-import type { PxComponentTypography, PxComponentInput } from '../theme';
+import type { PxComponentTypography } from '../theme';
 
 export interface PXComponentTextarea {
    defaultProps: {

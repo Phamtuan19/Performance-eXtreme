@@ -3,9 +3,9 @@ import { hexToRgba } from '@PUI/core/utils';
 
 import type { PXComponentButton } from './button.type';
 
-export const CLASS_NAME_BUTTON = 'PXButton';
+export const CLASS_NAME_BUTTON = 'px-button';
 
-export const CLASS_NAME_RIPPLE = 'PXRipple';
+export const CLASS_NAME_RIPPLE = 'px-ripple';
 
 const createButtonDefaultCssVariant = (palette: Palette): PXComponentButton['styleOverrides'] => {
    return {

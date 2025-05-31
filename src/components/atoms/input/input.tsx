@@ -1,3 +1,4 @@
+import { merge } from 'lodash';
 import React from 'react';
 
 import { CircularProgress } from '@PUI/components/icons';
@@ -5,11 +6,22 @@ import { getTheme } from '@PUI/core';
 import { separateProps } from '@PUI/core/styled';
 import { cn } from '@PUI/core/utils';
 
-import { INPUT_DEFAULT_PROPS } from './constants';
 import { HelperText, IconEnd, IconStart, InputContainer, InputStyle, InputWrapper } from './input.styled';
-import type { InputProps } from './input.type';
+import type { InputProps, PxComponentInput } from './input.type';
 
-const CLASS_NAME = 'PXInput';
+export const INPUT_DEFAULT_PROPS: Required<PxComponentInput['defaultProps']> = {
+   variant: 'outline',
+   color: 'primary',
+   size: 'medium',
+   startIcon: null,
+   endIcon: null,
+   disabled: false,
+   fullWidth: false,
+   loading: false,
+   loadingIndicator: <CircularProgress />,
+   loadingPosition: 'end',
+   error: false,
+};
 
 const Input = React.forwardRef<HTMLInputElement, InputProps>((props, ref) => {
    const theme = getTheme();
@@ -18,21 +30,21 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>((props, ref) => {
    const {
       className,
       sx,
-      disabled = themeDefault.disabled,
+      disabled,
       loading,
-      size = themeDefault.size,
-      variant = themeDefault.variant,
-      color = themeDefault.color,
-      loadingPosition = themeDefault.loadingPosition,
-      loadingIndicator = themeDefault.loadingIndicator ?? <CircularProgress />,
-      startIcon = themeDefault.startIcon,
-      endIcon = themeDefault.endIcon,
-      fullWidth = themeDefault.fullWidth,
-      error = themeDefault.error,
+      size,
+      variant,
+      color,
+      loadingPosition,
+      loadingIndicator,
+      startIcon,
+      endIcon,
+      fullWidth,
+      error,
       helperText,
       id,
       ...resProps
-   } = props;
+   } = merge({}, INPUT_DEFAULT_PROPS, themeDefault, props);
 
    const { styleProps, remainingProps } = separateProps(resProps);
    const isDisabled = disabled || loading;
@@ -40,38 +52,32 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>((props, ref) => {
    const describedBy = helperText ? `${inputId}-helper-text` : undefined;
 
    return (
-      <InputContainer $styleProps={{ fullWidth, size }}>
+      <InputContainer $styleProps={{ ...styleProps, sx, fullWidth, size }}>
          <InputWrapper
-            className={cn(`${CLASS_NAME}__wrapper`, className, {
-               [`${CLASS_NAME}--error`]: error,
-               [`${CLASS_NAME}--disabled`]: isDisabled,
+            className={cn(`px-input-wrapper`, className, {
+               [`px-input-error`]: error,
+               [`px-input-disabled`]: isDisabled,
             })}
             $styleProps={{
-               ...styleProps,
-               sx: sx ?? {},
-               variant: variant ?? 'filled',
-               color: (error ? 'error' : color) ?? 'primary',
+               variant,
+               color: error ? 'error' : color,
                disabled: isDisabled ?? false,
             }}
          >
             {loading
                ? loadingPosition === 'start' && (
-                    <IconStart
-                       className={`${CLASS_NAME}__icon ${CLASS_NAME}__icon--start ${CLASS_NAME}__icon--loading`}
-                    >
+                    <IconStart className={`px-input-icon px-input-icon-start px-input-icon-loading`}>
                        {loadingIndicator}
                     </IconStart>
                  )
-               : startIcon && (
-                    <IconStart className={`${CLASS_NAME}__icon ${CLASS_NAME}__icon--start`}>{startIcon}</IconStart>
-                 )}
+               : startIcon && <IconStart className={`px-input-icon px-input-icon-start`}>{startIcon}</IconStart>}
 
             <InputStyle
                id={inputId}
                ref={ref}
                disabled={isDisabled}
-               className={`${CLASS_NAME}__input`}
-               $styleProps={{ size, variant }}
+               className={`px-input-root`}
+               //    $styleProps={{ size, variant }}
                aria-invalid={error || undefined}
                aria-describedby={describedBy}
                {...remainingProps}
@@ -79,17 +85,17 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>((props, ref) => {
 
             {loading
                ? loadingPosition === 'end' && (
-                    <IconEnd className={`${CLASS_NAME}__icon ${CLASS_NAME}__icon--end ${CLASS_NAME}__icon--loading`}>
+                    <IconEnd className={`px-input-icon px-input-icon-end px-input-icon-loading`}>
                        {loadingIndicator}
                     </IconEnd>
                  )
-               : endIcon && <IconEnd className={`${CLASS_NAME}__icon ${CLASS_NAME}__icon--end`}>{endIcon}</IconEnd>}
+               : endIcon && <IconEnd className={`px-input-icon px-input-icon--end`}>{endIcon}</IconEnd>}
          </InputWrapper>
 
          {helperText && (
             <HelperText
                id={describedBy}
-               className={cn(`${CLASS_NAME}__helper-text`, { [`${CLASS_NAME}--error`]: error })}
+               className={cn(`px-input-helper-text`, { [`px-input-error`]: error })}
                $error={error}
             >
                {helperText}
