@@ -6,8 +6,8 @@ import type { SxConfigProps, ThemeColor, ThemeSize } from '@PUI/core';
 import type { DeepOptional } from '@PUI/core/helpers';
 
 export interface FieldNames {
-   value?: string;
-   label?: string;
+   value: string;
+   label: string;
 }
 
 export type PXComponentSelect = {

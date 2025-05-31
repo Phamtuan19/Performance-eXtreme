@@ -1,5 +1,5 @@
 {
    "extends": "./config/tsconfig.base.json",
-   "include": ["src", "preview", "config"],
+   "include": ["src", "preview", "config", "playground"],
    "exclude": ["node_modules", "dist"]
 }

@@ -1,7 +1,6 @@
 import type { CSSObject } from 'styled-components';
 import styled from 'styled-components';
 
-import type { DeepOptional } from '@PUI/core/helpers';
 import { hexToRgba } from '@PUI/core/utils';
 
 import type { PXComponentSelect, SelectStyleProps } from './select.type';
@@ -25,11 +24,11 @@ const DEFAULT_CSS_VARIANT_SIZE: PXComponentSelect['styleOverrides']['size'] = {
 };
 
 export const SelectContainer = styled('div')<{
-   $styleProps: Omit<SelectStyleProps, 'isValue' | 'open' | 'loading'>;
+   $styleProps: Omit<SelectStyleProps, 'isValue' | 'open' | 'loading'> & { visible: boolean };
 }>(({ theme, $styleProps }) => {
    const PXSelectOverrides = theme.components?.PXSelect?.styleOverrides;
 
-   const { color, size, disabled, ...resProps } = $styleProps;
+   const { color, size, disabled, visible, ...resProps } = $styleProps;
 
    const borderBaseColor = disabled
       ? theme.palette.disabled.borderColor
@@ -47,7 +46,7 @@ export const SelectContainer = styled('div')<{
       width: 'fit-content',
       fontWeight: 500,
       color: theme.palette.common.black,
-      border: `1px solid ${borderBaseColor}`,
+      border: `1px solid ${visible ? focusBorderColor : borderBaseColor}`,
       borderRadius: 8,
       cursor: disabled ? 'not-allowed' : 'pointer',
       transition: 'border-color 0.2s ease, box-shadow 0.2s ease',
@@ -64,6 +63,10 @@ export const SelectContainer = styled('div')<{
               },
            }),
 
+      '&:focus': {
+         outline: 'none',
+      },
+
       ...(PXSelectOverrides?.size ? PXSelectOverrides.size[size] : DEFAULT_CSS_VARIANT_SIZE[size]),
 
       ...(PXSelectOverrides?.color ? PXSelectOverrides.color[color as keyof typeof PXSelectOverrides.color] : {}),
@@ -73,7 +76,7 @@ export const SelectContainer = styled('div')<{
 });
 
 export const SelectWrapper = styled('div')<{
-   $styleProps: DeepOptional<Pick<SelectStyleProps, 'open' | 'disabled' | 'loading'>> & {
+   $styleProps: Pick<SelectStyleProps, 'open' | 'disabled' | 'loading'> & {
       hasSuffixIcon?: boolean;
    };
 }>((props) => {
@@ -95,7 +98,7 @@ export const SelectWrapper = styled('div')<{
       cursor: 'inherit',
       opacity: disabled ? 0.6 : 1,
 
-      ...(!hasSuffixIcon
+      ...(!hasSuffixIcon || loading
          ? {
               '&::after': {
                  content: '""',
@@ -209,6 +212,15 @@ export const SelectOptionItem = styled('div')<{ $styleProps: { selected?: boolea
             ? hexToRgba(theme.palette.primary.light, 0.2)
             : hexToRgba(theme.palette.gray[400], 0.2),
          color: theme.palette.common.black,
+      },
+
+      '&:focus': {
+         backgroundColor: isActive
+            ? hexToRgba(theme.palette.primary.light, 0.2)
+            : hexToRgba(theme.palette.gray[400], 0.2),
+         color: theme.palette.common.black,
+         border: 'none',
+         outline: 'none',
       },
 
       ...(selected &&

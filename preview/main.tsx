@@ -8,8 +8,19 @@ import App from './app';
 const myTheme = createThemeOption({
    components: {
       PXButton: {
-         defaultProps: {
-            color: 'error',
+         defaultProps: {},
+         styleOverrides: {
+            color: {
+               error: {},
+            },
+         },
+      },
+      PXAvatar: {
+         styleOverrides: {
+            root: {
+               //    width: 500,
+            },
+            color: {},
          },
       },
    },

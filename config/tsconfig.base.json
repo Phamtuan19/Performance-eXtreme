@@ -13,6 +13,11 @@
       "noEmit": true,
       "resolveJsonModule": true,
       "isolatedModules": true,
+
+      "declaration": true,
+      "declarationDir": "dist/types",
+      "emitDeclarationOnly": false,
+
       "baseUrl": ".",
       "paths": {
          "@PUI": ["../src"],
@@ -24,6 +29,6 @@
       },
       "types": ["vite/client"]
    },
-   "include": ["../src", "../preview", "../config"],
+   "include": ["../src", "../preview", "../config", "../dist", "../playground"],
    "exclude": ["node_modules", "dist"]
 }

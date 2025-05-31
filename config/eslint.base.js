@@ -5,7 +5,7 @@ module.exports = {
       ecmaVersion: 'latest',
       sourceType: 'module',
       ecmaFeatures: { jsx: true },
-      project: ['./tsconfig.json'], // nếu dùng TypeScript Project references
+      project: ['./tsconfig.json'],
       tsconfigRootDir: __dirname,
    },
    env: {
@@ -27,7 +27,10 @@ module.exports = {
          version: 'detect',
       },
       'import/resolver': {
-         typescript: {}, // giúp hiểu alias từ tsconfig
+         typescript: {
+            alwaysTryTypes: true,
+            project: './tsconfig.json',
+         }, // giúp hiểu alias từ tsconfig
       },
    },
    plugins: ['react', 'react-hooks', '@typescript-eslint', 'prettier', 'import'],
@@ -70,6 +73,13 @@ module.exports = {
                order: 'asc',
                caseInsensitive: true,
             },
+         },
+      ],
+      '@typescript-eslint/consistent-type-imports': [
+         'error',
+         {
+            prefer: 'type-imports',
+            disallowTypeAnnotations: false,
          },
       ],
    },
