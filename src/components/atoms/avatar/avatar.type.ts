@@ -1,7 +1,6 @@
 import type { CSSObject } from 'styled-components';
 
 import type { TypeInputSize, TypeInputColor, ThemeColor, SxConfigProps } from '@PUI/core';
-import type { UnstableSxConfigProps } from '@PUI/core/styled';
 
 // Interface định nghĩa cấu hình mặc định cho PXAvatar component
 export interface PXComponentAvatar {
@@ -19,7 +18,7 @@ export interface PXComponentAvatar {
       /**
        * Style theo từng màu sắc: primary, secondary, v.v.
        */
-      color: ThemeColor | 'default' | string;
+      color: ThemeColor | 'default';
 
       /**
        * Màu của badge nếu có, ví dụ: 'primary', 'success', 'error',...
@@ -72,9 +71,7 @@ export interface PXComponentAvatar {
 }
 
 // Props cho styled component Avatar (chỉ dùng để style)
-export type AvatarStyledProps = PXComponentAvatar['defaultProps'] &
-   Omit<UnstableSxConfigProps, 'color'> &
-   SxConfigProps;
+export type AvatarStyledProps = PXComponentAvatar['defaultProps'] & SxConfigProps;
 
 // Props chính cho component Avatar
 export type AvatarProps = Partial<AvatarStyledProps> &
@@ -100,20 +97,29 @@ export type AvatarProps = Partial<AvatarStyledProps> &
       children?: React.ReactNode;
    };
 
-export type AvatarGroupStyleProps = UnstableSxConfigProps &
-   SxConfigProps & {
-      spacing: number;
+export type PXComponentAvatarGroup = {
+   defaultProps: {
+      size: TypeInputSize | number;
+
+      shape: 'circle' | 'square';
 
       direction: 'ltr' | 'rtl';
+
+      spacing: number;
    };
 
-export interface AvatarGroupProps
-   extends Omit<React.HTMLAttributes<HTMLDivElement>, 'color' | 'content' | 'translate'>,
-      Omit<Partial<AvatarGroupStyleProps>, 'translate'> {
-   children: React.ReactNode;
-   maxCount?: number;
-   size?: TypeInputSize | number;
-   shape?: 'circle' | 'square';
-   collapseAvatar?: (remainingCount: number) => React.ReactNode;
-   className?: string;
-}
+   styleOverrides: {
+      root: CSSObject;
+   };
+};
+
+export type AvatarGroupStyleProps = PXComponentAvatarGroup['defaultProps'] & SxConfigProps;
+
+export type AvatarGroupProps = Omit<React.HTMLAttributes<HTMLDivElement>, 'color' | 'content' | 'translate'> &
+   Omit<Partial<AvatarGroupStyleProps>, 'translate'> & {
+      children: React.ReactNode;
+
+      maxCount?: number;
+
+      collapseAvatar?: (remainingCount: number) => React.ReactNode;
+   };

@@ -1,25 +1,32 @@
+import { merge } from 'lodash';
 import React, { Children, isValidElement } from 'react';
 
+import { getTheme } from '@PUI/core';
 import { separateProps } from '@PUI/core/styled';
 import { cn } from '@PUI/core/utils';
 
 import Avatar from './avatar';
 import { StyledAvatarGroup } from './avatar.styled';
-import type { AvatarGroupProps, AvatarProps } from './avatar.type';
+import type { AvatarGroupProps, AvatarProps, PXComponentAvatarGroup } from './avatar.type';
+
+const AVATAR_GROUP_DEFAULT_PROPS: PXComponentAvatarGroup['defaultProps'] = {
+   size: 'medium',
+   shape: 'circle',
+   direction: 'ltr',
+   spacing: 8,
+};
 
 const AvatarGroup = React.forwardRef<HTMLDivElement, AvatarGroupProps>((props, ref) => {
-   const {
-      children,
-      maxCount,
-      size = 'medium',
-      shape = 'circle',
-      spacing = 8,
-      collapseAvatar,
-      direction = 'ltr',
-      className,
-      sx,
-      ...resProps
-   } = props;
+   const theme = getTheme();
+
+   const PXAvatarGroup = theme.components.PXAvatarGroup?.defaultProps;
+
+   const { children, maxCount, size, shape, spacing, collapseAvatar, direction, className, ...resProps } = merge(
+      {},
+      AVATAR_GROUP_DEFAULT_PROPS,
+      PXAvatarGroup,
+      props,
+   );
 
    const { styleProps, remainingProps } = separateProps(resProps);
 
@@ -34,8 +41,8 @@ const AvatarGroup = React.forwardRef<HTMLDivElement, AvatarGroupProps>((props, r
       <StyledAvatarGroup
          ref={ref}
          {...remainingProps}
-         className={cn('PXAvatarGroup__root', className)}
-         $styleProps={{ spacing, direction, sx, ...styleProps }}
+         className={cn('px-avatar-group-root', className)}
+         $styleProps={{ ...styleProps, spacing, direction }}
       >
          {displayAvatars.map((child, idx) => {
             const avatarChild = child as React.ReactElement<Partial<AvatarProps>>;
@@ -43,7 +50,7 @@ const AvatarGroup = React.forwardRef<HTMLDivElement, AvatarGroupProps>((props, r
                key: idx,
                size,
                shape,
-               className: cn('PXAvatarGroup__avatar', avatarChild.props.className),
+               className: cn('px-avatar-group-avatar', avatarChild.props.className),
                style: {
                   zIndex: total - idx,
                },
@@ -54,7 +61,7 @@ const AvatarGroup = React.forwardRef<HTMLDivElement, AvatarGroupProps>((props, r
             (collapseAvatar ? (
                collapseAvatar(remainingCount)
             ) : (
-               <Avatar size={size} shape={shape} className="PXAvatarGroup__avatar--collapse">
+               <Avatar size={size} shape={shape} className="px-avatar-group-collapse">
                   +{remainingCount}
                </Avatar>
             ))}

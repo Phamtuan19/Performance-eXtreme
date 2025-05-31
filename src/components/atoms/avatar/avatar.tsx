@@ -1,3 +1,4 @@
+import { merge } from 'lodash';
 import React, { useState } from 'react';
 
 import { getTheme } from '@PUI/core';
@@ -5,28 +6,28 @@ import { separateProps } from '@PUI/core/styled';
 import { cn } from '@PUI/core/utils';
 
 import { StyledAvatar, Badge } from './avatar.styled';
-import type { AvatarProps } from './avatar.type';
-import { AVATAR_DEFAULT_PROPS } from './constants';
+import type { AvatarProps, PXComponentAvatar } from './avatar.type';
+
+const AVATAR_DEFAULT_PROPS: PXComponentAvatar['defaultProps'] = {
+   size: 'medium',
+   shape: 'circle',
+   badgeColor: 'primary',
+   showBadge: false,
+   color: 'default',
+   badgePosition: 'top-right',
+};
 
 const Avatar = React.forwardRef<HTMLDivElement, AvatarProps>((props, ref) => {
    const theme = getTheme();
 
-   const PXAvatar = theme.components?.PXAvatar?.defaultProps ?? AVATAR_DEFAULT_PROPS;
+   const PXAvatar = theme.components?.PXAvatar?.defaultProps;
 
-   const {
-      sx,
-      src,
-      alt,
-      color = PXAvatar.color,
-      size = PXAvatar.size,
-      shape = PXAvatar.shape,
-      showBadge = PXAvatar.showBadge,
-      badgeColor = PXAvatar.badgeColor,
-      badgePosition = PXAvatar.badgePosition,
-      children,
-      title,
-      ...resProps
-   } = props;
+   const { src, alt, color, size, shape, showBadge, badgeColor, badgePosition, children, title, ...resProps } = merge(
+      {},
+      AVATAR_DEFAULT_PROPS,
+      PXAvatar,
+      props,
+   );
 
    const { styleProps, remainingProps } = separateProps(resProps);
 
@@ -35,17 +36,18 @@ const Avatar = React.forwardRef<HTMLDivElement, AvatarProps>((props, ref) => {
 
    return (
       <StyledAvatar
+         tabIndex={0}
          ref={ref}
          {...remainingProps}
-         className={cn('PXAvatar__root', remainingProps.className)}
-         $styleProps={{ sx, ...styleProps, color, size, shape }}
+         className={cn('px-avatar-root', remainingProps.className)}
+         $styleProps={{ ...styleProps, color, size, shape }}
       >
          {showInitials ? (
-            <span className="PXAvatar__initials">{children ?? title?.charAt(0).toUpperCase()}</span>
+            <span className="px-avatar-initials">{children ?? title?.charAt(0).toUpperCase()}</span>
          ) : (
-            <img className="PXAvatar__image" src={src} alt={alt || 'avatar'} onError={() => setImgError(true)} />
+            <img className="px-avatar-image" src={src} alt={alt || 'avatar'} onError={() => setImgError(true)} />
          )}
-         {showBadge && <Badge className="PXAvatar__badge" $styleProps={{ badgePosition, badgeColor }} />}
+         {showBadge && <Badge className="px-avatar-badge" $styleProps={{ badgePosition, badgeColor }} />}
       </StyledAvatar>
    );
 });
