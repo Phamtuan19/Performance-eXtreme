@@ -1,7 +1,7 @@
 import type React from 'react';
 import type { CSSObject } from 'styled-components';
 
-import type { SxConfigProps, ThemeColor, TypeInputSize } from '@PUI/core';
+import type { SxConfigProps, ThemeColor, ThemeSize } from '@PUI/core';
 
 export interface PXComponentCheckbox {
    /**
@@ -12,13 +12,13 @@ export interface PXComponentCheckbox {
        * Màu sắc của Radio: ví dụ 'primary', 'secondary', 'danger', 'success', v.v...
        * Tương ứng với các màu trong theme.palette.
        */
-      color: ThemeColor | 'default';
+      color: ThemeColor;
 
       /**
        * Kích thước của Radio: 'small' | 'medium' | 'large'.
        * Ảnh hưởng đến đường kính của vòng tròn hiển thị.
        */
-      size: TypeInputSize;
+      size: ThemeSize;
 
       /**
        * Nếu true, Radio sẽ bị disable và không thể tương tác.
@@ -65,13 +65,13 @@ export interface PXComponentCheckbox {
        * Style theo từng kích thước: sm, md, lg.
        * Ảnh hưởng trực tiếp đến size của hình tròn (radio circle).
        */
-      size: Record<TypeInputSize, CSSObject>;
+      size: Record<ThemeSize, CSSObject>;
 
       /**
        * Style theo từng màu sắc: primary, secondary, v.v.
        * Gồm borderColor và backgroundColor (khi checked).
        */
-      color: Record<ThemeColor | 'default', CSSObject>;
+      color: Record<ThemeColor, CSSObject>;
    };
 }
 

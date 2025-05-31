@@ -1,7 +1,7 @@
-import type { CSSObject } from 'styled-components';
+import { merge } from 'lodash';
 import styled, { css, keyframes } from 'styled-components';
 
-import type { Theme, TypeInputColor, TypeInputSize } from '@PUI/core';
+import type { Theme } from '@PUI/core';
 
 import type { CheckBoxStyledProps, PXComponentCheckbox } from './checkbox.type';
 
@@ -31,7 +31,6 @@ const CHECKBOX_CSS_VARIANT: PXComponentCheckbox['styleOverrides'] = {
       error: {},
       warning: {},
       info: {},
-      default: {},
    },
 };
 
@@ -70,7 +69,8 @@ export const CheckBoxWrapper = styled('label')<{
    $styleProps: Omit<CheckBoxStyledProps, 'size' | 'indeterminate' | 'defaultChecked' | 'error'>;
 }>(({ theme, $styleProps }) => {
    const { sx, disabled, color, ...restProps } = $styleProps;
-   const styleOverrides = theme.components?.PXCheckBox?.styleOverrides?.root ?? {};
+
+   const rootOverride = theme.components?.PXCheckBox?.styleOverrides?.root;
 
    return {
       position: 'relative',
@@ -80,14 +80,14 @@ export const CheckBoxWrapper = styled('label')<{
       gap: '0.5rem',
       userSelect: 'none',
       transition: 'color 0.2s ease',
-      color: disabled ? theme.palette.text.disabled : theme.palette.text.primary,
+      color: disabled ? theme.palette.disabled.color : theme.palette.common.black,
 
       // Hover label sẽ ảnh hưởng span bên trong
       '&:hover span': {
-         borderColor: disabled ? '#d9d9d9' : theme.palette[color as TypeInputColor].main,
+         borderColor: disabled ? '#d9d9d9' : theme.palette[color].main,
       },
 
-      ...styleOverrides,
+      ...(rootOverride ?? {}),
       ...theme.sxConfig({ ...restProps, sx }),
    };
 });
@@ -119,7 +119,7 @@ export const InputCheckBox = styled('input').attrs({ type: 'checkbox' })<{
       zIndex: 1,
 
       '&:focus + span': {
-         boxShadow: `0 0 0 3px ${theme.palette[color as TypeInputColor].main}33`,
+         boxShadow: `0 0 0 3px ${theme.palette[color].main}33`,
       },
 
       '&:disabled': {
@@ -136,13 +136,7 @@ export const CheckBoxInner = styled('span')<{
 
    const PXCheckBox = theme.components?.PXCheckBox;
 
-   const cssSize =
-      PXCheckBox?.styleOverrides?.size?.[size as TypeInputSize] ?? CHECKBOX_CSS_VARIANT.size[size as TypeInputSize];
-   const cssColor =
-      PXCheckBox?.styleOverrides?.color?.[color as TypeInputColor] ??
-      CHECKBOX_CSS_VARIANT.color[color as TypeInputColor];
-
-   const borderColor = theme.palette.disabled.borderColor;
+   const mergeStyle = merge({}, CHECKBOX_CSS_VARIANT, PXCheckBox?.styleOverrides);
 
    const backgroundColor = checked ? theme.palette[color].main : theme.palette.common.white;
 
@@ -185,7 +179,7 @@ export const CheckBoxInner = styled('span')<{
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      border: 1.5px solid ${checked ? theme.palette[color].main : borderColor};
+      border: 1.5px solid ${checked ? theme.palette[color].main : theme.palette.disabled.borderColor};
       border-radius: 4px;
       background-color: ${backgroundColor};
       overflow: hidden;
@@ -204,8 +198,8 @@ export const CheckBoxInner = styled('span')<{
          ${afterStyle}
       }
 
-      ${css(cssSize as CSSObject)}
-      ${css(cssColor as CSSObject)}
+      ${css(mergeStyle.size[size])}
+      ${css(mergeStyle.color[color])}
 
       ${disabled &&
       css`

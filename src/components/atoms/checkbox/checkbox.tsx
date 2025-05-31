@@ -1,3 +1,4 @@
+import { merge } from 'lodash';
 import React, { useState } from 'react';
 
 import { getTheme } from '@PUI/core';
@@ -19,22 +20,21 @@ const CHECKBOX_DEFAULT_PROPS: PXComponentCheckbox['defaultProps'] = {
 
 const Checkbox = React.forwardRef<HTMLInputElement, CheckBoxProps>((props, ref) => {
    const theme = getTheme();
-   const themeDefault = theme.components?.PXCheckBox?.defaultProps ?? CHECKBOX_DEFAULT_PROPS;
-
+   const themeDefault = theme.components?.PXCheckBox?.defaultProps;
    const {
       label,
       sx,
-      color = themeDefault.color,
-      size = themeDefault.size,
-      disabled = themeDefault.disabled,
+      color,
+      size,
+      disabled,
       checked,
-      defaultChecked = themeDefault.defaultChecked ?? false,
-      indeterminate = themeDefault.indeterminate,
-      error = themeDefault.error,
+      defaultChecked,
+      indeterminate,
+      error,
       onChange,
       onKeyDown,
       ...restProps
-   } = props;
+   } = merge({}, CHECKBOX_DEFAULT_PROPS, themeDefault, props);
 
    const [internalChecked, setInternalChecked] = useState(defaultChecked);
    const isControlled = typeof checked === 'boolean';
@@ -68,9 +68,9 @@ const Checkbox = React.forwardRef<HTMLInputElement, CheckBoxProps>((props, ref) 
             disabled,
             checked: isChecked,
          }}
-         className="PXCheckBox-wrapper"
+         className="px-checkbox-wrapper"
       >
-         <CheckBoxContainer className="PXCheckBox-container">
+         <CheckBoxContainer className="px-checkbox-container">
             <InputCheckBox
                ref={ref}
                type="checkbox"
@@ -80,8 +80,8 @@ const Checkbox = React.forwardRef<HTMLInputElement, CheckBoxProps>((props, ref) 
                onKeyDown={handleKeyDown}
                {...remainingProps}
                $styleProps={{ color: error ? 'error' : color }}
-               className={cn('PXCheckBox-input', {
-                  'PXCheckBox-input-indeterminate': indeterminate,
+               className={cn('px-checkbox-input', {
+                  'px-checkbox-input-indeterminate': indeterminate,
                })}
             />
             <CheckBoxInner
@@ -92,14 +92,14 @@ const Checkbox = React.forwardRef<HTMLInputElement, CheckBoxProps>((props, ref) 
                   color: error ? 'error' : color,
                   indeterminate,
                }}
-               className={cn('PXCheckBox-inner', {
-                  'PXCheckBox-inner-indeterminate': indeterminate,
+               className={cn('px-checkbox-inner', {
+                  'px-checkbox-inner-indeterminate': indeterminate,
                })}
             />
          </CheckBoxContainer>
 
          {label && (
-            <CheckBoxLabel className="PXCheckBox-label" $disabled={disabled}>
+            <CheckBoxLabel className="px-checkbox-label" $disabled={disabled}>
                {label}
             </CheckBoxLabel>
          )}
