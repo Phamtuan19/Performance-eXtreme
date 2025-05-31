@@ -12,7 +12,7 @@ import { CLASS_NAME_BUTTON, CLASS_NAME_RIPPLE } from './constants';
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>((props, ref) => {
    const theme = getTheme();
 
-   const themeDefault = theme.components?.PXButton?.defaultProps ?? {};
+   const PXButton = theme.components?.PXButton?.defaultProps ?? {};
 
    const {
       children,
@@ -21,16 +21,16 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>((props, ref) => 
       component,
       disabled,
       loading,
-      size,
-      variant,
-      color,
+      size = PXButton.size ?? 'medium',
+      variant = PXButton.variant ?? 'container',
+      color = PXButton.color ?? 'primary',
       disableRipple,
-      loadingPosition = themeDefault?.loadingPosition,
-      loadingContent = themeDefault?.loadingContent,
-      loadingIndicator = themeDefault?.loadingIndicator ?? <CircularProgress />,
-      startIcon = themeDefault?.startIcon,
-      endIcon = themeDefault?.endIcon,
-      fullWidth = themeDefault?.fullWidth,
+      loadingPosition = PXButton?.loadingPosition,
+      loadingContent = PXButton?.loadingContent,
+      loadingIndicator = PXButton?.loadingIndicator ?? <CircularProgress />,
+      startIcon = PXButton?.startIcon,
+      endIcon = PXButton?.endIcon,
+      fullWidth = PXButton?.fullWidth,
       ...resProps
    } = props;
 

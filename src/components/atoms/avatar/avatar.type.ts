@@ -16,6 +16,9 @@ export interface PXComponentAvatar {
        */
       shape: 'circle' | 'square';
 
+      /**
+       * Style theo từng màu sắc: primary, secondary, v.v.
+       */
       color: ThemeColor | 'default' | string;
 
       /**

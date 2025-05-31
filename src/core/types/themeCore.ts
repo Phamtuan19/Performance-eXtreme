@@ -8,6 +8,10 @@ import type { Palette } from './color';
 import type { Components } from './components';
 import type { SxConfigProps } from './css';
 
+export type ThemeSize = 'small' | 'medium' | 'large';
+
+export type ThemeVariant = 'container' | 'text' | 'outlined';
+
 export interface Theme {
    palette: Palette;
    breakpoints: Breakpoints;

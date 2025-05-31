@@ -1,4 +1,5 @@
 import ReactDOM from 'react-dom/client';
+import { createGlobalStyle } from 'styled-components';
 
 import { createThemeOption, ThemeProvider } from '@PUI/core';
 
@@ -14,8 +15,23 @@ const myTheme = createThemeOption({
    },
 });
 
+const GlobalStyled = createGlobalStyle`
+  *, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  body {
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+  }
+`;
+
 ReactDOM.createRoot(document.getElementById('root')!).render(
    <ThemeProvider theme={myTheme}>
+      <GlobalStyled />
       <App />
    </ThemeProvider>,
 );

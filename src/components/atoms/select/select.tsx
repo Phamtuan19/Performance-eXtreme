@@ -1,7 +1,9 @@
 import { computePosition, flip, offset } from '@floating-ui/dom';
+import { merge } from 'lodash';
 import React, { useId, useState, useRef, useEffect, useCallback } from 'react';
 import { createPortal } from 'react-dom';
 
+import { getTheme } from '@PUI/core';
 import { separateProps } from '@PUI/core/styled';
 import { cn } from '@PUI/core/utils';
 import { useLockBodyScroll, useOnClickOutside } from '@PUI/hooks';
@@ -19,6 +21,10 @@ import {
 import type { SelectProps, OptionType } from './select.type';
 
 const Select = React.forwardRef<HTMLInputElement, SelectProps>((props, ref) => {
+   const { components } = getTheme();
+
+   const PXSelect = components.PXSelect?.defaultProps;
+
    const {
       sx,
       options,
@@ -26,15 +32,16 @@ const Select = React.forwardRef<HTMLInputElement, SelectProps>((props, ref) => {
       placeholder,
       defaultValue,
       value,
-      disabled,
-      open,
+      disabled = PXSelect?.disabled ?? false,
+      open = PXSelect?.open ?? false,
       loading,
       prefix,
       suffixIcon,
       selected,
-      fieldNames = { label: 'label', value: 'value' },
-      dropdownStyle,
+      fieldNames: rawFieldNames,
+      dropdownStyle = PXSelect?.dropdownStyle,
       multiple,
+      color,
       onChange,
       optionRender,
       dropdownRender,
@@ -54,8 +61,10 @@ const Select = React.forwardRef<HTMLInputElement, SelectProps>((props, ref) => {
    const refWrapper = useRef<HTMLDivElement | null>(null);
    const dropdownRef = useRef<HTMLDivElement | null>(null);
 
-   const labelKey = fieldNames.label ?? 'label';
-   const valueKey = fieldNames.value ?? 'value';
+   const fieldNames = merge({}, rawFieldNames, PXSelect?.fieldNames, { label: 'label', value: 'value' });
+
+   const labelKey = fieldNames.label;
+   const valueKey = fieldNames.value;
    const isDisabled = disabled || loading || false;
 
    // Sync controlled value & open
@@ -69,7 +78,9 @@ const Select = React.forwardRef<HTMLInputElement, SelectProps>((props, ref) => {
 
    useLockBodyScroll(visible);
    useOnClickOutside(refWrapper, () => {
-      open === undefined && setVisible(false);
+      if (open === undefined || visible) {
+         setVisible(false);
+      }
    }, [dropdownRef]);
 
    const updatePosition = useCallback(() => {
@@ -97,7 +108,9 @@ const Select = React.forwardRef<HTMLInputElement, SelectProps>((props, ref) => {
       if (!disabled) setVisible((prev) => !prev);
    };
 
-   const handleChange = (option: OptionType) => {
+   const handleChange = (e: React.MouseEvent, option: OptionType) => {
+      e?.stopPropagation(); // 👈 chống toggle lại
+
       const val = option[valueKey];
 
       if (multiple) {
@@ -114,7 +127,8 @@ const Select = React.forwardRef<HTMLInputElement, SelectProps>((props, ref) => {
             setInternalValue(val);
             onChange?.(val, option);
          }
-         if (open === undefined) setVisible(false);
+
+         setVisible(false);
       }
    };
 
@@ -145,7 +159,7 @@ const Select = React.forwardRef<HTMLInputElement, SelectProps>((props, ref) => {
          return (
             <SelectOptionItem
                key={key}
-               onClick={() => handleChange(option)}
+               onClick={(e) => handleChange(e, option)}
                className={cn('px-select-option-item', {
                   'px-select-option-item-active': isActive,
                   'px-select-option-item-active-selected': isActive && selected,
@@ -178,11 +192,20 @@ const Select = React.forwardRef<HTMLInputElement, SelectProps>((props, ref) => {
       <SelectContainer
          ref={refWrapper}
          className="px-select-container"
-         $styleProps={{ ...styleProps, sx: sx ?? undefined, disabled: isDisabled }}
+         $styleProps={{
+            ...styleProps,
+            sx: sx ?? undefined,
+            disabled: isDisabled,
+            color: color ?? PXSelect?.color ?? 'primary',
+            size: PXSelect?.size ?? 'medium',
+            fieldNames,
+            dropdownStyle: dropdownStyle ?? PXSelect?.dropdownStyle ?? {},
+         }}
+         onClick={toggleVisible}
       >
          <SelectWrapper
             $styleProps={{ open: visible, disabled: isDisabled, loading: !!loading, hasSuffixIcon: !!suffixIcon }}
-            onClick={toggleVisible}
+            className="px-select-wrapper"
          >
             <SelectInput
                id={`px-select-input-${id}`}
@@ -221,4 +244,5 @@ const Select = React.forwardRef<HTMLInputElement, SelectProps>((props, ref) => {
 });
 
 Select.displayName = 'PXSelect';
-export default Select;
+
+export default React.memo(Select);

@@ -1,11 +1,13 @@
-import type { Palette, PxComponentButton } from '@PUI/core';
+import type { Palette } from '@PUI/core';
 import { VARIANTS_BUTTON } from '@PUI/core';
+
+import type { PXComponentButton } from './button.type';
 
 export const CLASS_NAME_BUTTON = 'PXButton';
 
 export const CLASS_NAME_RIPPLE = 'PXRipple';
 
-const BUTTON_DEFAULT_CSS: Required<NonNullable<PxComponentButton['defaultProps']>> = {
+const BUTTON_DEFAULT_CSS: Required<NonNullable<PXComponentButton['defaultProps']>> = {
    variant: VARIANTS_BUTTON.VARIANT[0],
    color: VARIANTS_BUTTON.COLOR[0],
    size: VARIANTS_BUTTON.SIZE[1],
@@ -20,7 +22,7 @@ const BUTTON_DEFAULT_CSS: Required<NonNullable<PxComponentButton['defaultProps']
    loadingContent: null,
 };
 
-const createButtonDefaultCssVariant = (palette: Palette): Pick<PxComponentButton, 'styleOverrides'> => {
+const createButtonDefaultCssVariant = (palette: Palette): Pick<PXComponentButton, 'styleOverrides'> => {
    return {
       styleOverrides: {
          colorPrimary: {
@@ -41,9 +43,6 @@ const createButtonDefaultCssVariant = (palette: Palette): Pick<PxComponentButton
          colorSecondary: {
             color: palette.secondary.contrastText,
          },
-         colorText: {
-            color: palette.text.secondary,
-         },
 
          // Size
          sizeSmall: {
@@ -55,6 +54,7 @@ const createButtonDefaultCssVariant = (palette: Palette): Pick<PxComponentButton
             fontSize: '0.875rem',
          },
          sizeLarge: {
+            borderRadius: 8,
             padding: '8px 24px',
             fontSize: '1.125rem',
          },

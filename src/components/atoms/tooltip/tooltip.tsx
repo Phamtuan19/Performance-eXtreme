@@ -71,9 +71,10 @@ const Tooltip = React.forwardRef<HTMLDivElement, TooltipProps>((props, forwarded
             shift({ padding: 8 }),
             arrowFloatingUI({ element: arrowRef.current }),
          ],
-      }).then(({ x, y, placement, middlewareData }) => {
-         setPlacementState(placement as Placement);
+      }).then(({ x, y, placement: computedPlacement, middlewareData }) => {
+         setPlacementState(computedPlacement as Placement); // cập nhật state (nếu cần dùng sau)
          const { x: arrowX, y: arrowY } = middlewareData.arrow ?? {};
+
          setStyle({
             position: 'absolute',
             top: `${y}px`,
@@ -81,14 +82,30 @@ const Tooltip = React.forwardRef<HTMLDivElement, TooltipProps>((props, forwarded
          });
 
          const arrowEl = arrowRef.current;
+         const [basePlacement] = computedPlacement.split('-');
+
          if (arrowEl) {
             Object.assign(arrowEl.style, {
-               left: arrowX != null ? `${arrowX}px` : '',
-               top: arrowY != null ? `${arrowY}px` : '',
+               left: '',
+               top: '',
+               right: '',
+               bottom: '',
+               // Arrow positioning
+               ...(arrowX != null && (basePlacement === 'top' || basePlacement === 'bottom')
+                  ? { left: `${arrowX}px` }
+                  : {}),
+               ...(arrowY != null && (basePlacement === 'left' || basePlacement === 'right')
+                  ? { top: `${arrowY}px` }
+                  : {}),
+               // Fixed side positioning
+               ...(basePlacement === 'top' && { bottom: '-4px' }),
+               ...(basePlacement === 'bottom' && { top: '-4px' }),
+               ...(basePlacement === 'left' && { right: '-4px' }),
+               ...(basePlacement === 'right' && { left: '-4px' }),
             });
          }
       });
-   }, [visible, placement, offsetValue]);
+   }, [visible, placement, offsetValue, open]);
 
    const setRefs = (node: HTMLDivElement | null) => {
       tooltipRef.current = node;

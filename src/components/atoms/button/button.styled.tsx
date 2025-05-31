@@ -1,26 +1,27 @@
+import { merge } from 'lodash';
 import React from 'react';
-import type { CSSObject } from 'styled-components';
 import styled from 'styled-components';
 
 import type { Theme } from '@PUI/core';
+import type { DeepNonNullable } from '@PUI/core/helpers';
 import { hexToRgba } from '@PUI/core/utils';
 
 import { ButtonBase } from './button-base';
 import type { ButtonStyleProps } from './button.type';
-import { createButtonDefaultCssVariant, BUTTON_DEFAULT_CSS, CLASS_NAME_RIPPLE } from './constants';
+import { createButtonDefaultCssVariant, CLASS_NAME_RIPPLE } from './constants';
 
 const renderButtonStyle = ({
    theme,
-   variant = 'container',
-   color = 'primary',
-   size = 'medium',
+   variant,
+   color,
+   size,
 }: {
    theme: Theme;
-   variant: ButtonStyleProps['variant'];
-   color: ButtonStyleProps['color'];
-   size: ButtonStyleProps['size'];
+   variant: NonNullable<ButtonStyleProps['variant']>;
+   color: NonNullable<ButtonStyleProps['color']>;
+   size: NonNullable<ButtonStyleProps['size']>;
 }) => {
-   const overrides = theme.components?.PXButton ?? createButtonDefaultCssVariant(theme.palette);
+   const overrides = merge({}, createButtonDefaultCssVariant(theme.palette), theme.components?.PXButton);
 
    const cap = (str: string) => str.charAt(0).toUpperCase() + str.slice(1);
 
@@ -45,14 +46,15 @@ const renderButtonStyle = ({
    }
    if (variant === 'outlined') {
       if (
-         (variantColorStyle as Record<string, CSSObject>)['&:active']?.backgroundColor &&
-         typeof (variantColorStyle as Record<string, CSSObject>)['&:active']?.backgroundColor === 'string'
+         variantColorStyle['&:active']?.backgroundColor &&
+         typeof variantColorStyle['&:active']?.backgroundColor === 'string'
       ) {
-         rippleBackgroundColor = (variantColorStyle as Record<string, CSSObject>)['&:active']?.backgroundColor ?? '';
+         rippleBackgroundColor = variantColorStyle['&:active']?.backgroundColor ?? '';
       }
    }
+
    return {
-      ...overrides?.styleOverrides?.[`variant${cap(variant)}`],
+      ...overrides?.styleOverrides?.[`variant${cap(variant)}${cap(color)}`],
       ...overrides?.styleOverrides?.[colorKey],
       ...overrides?.styleOverrides?.[`size${cap(size)}`],
       ...variantColorStyle,
@@ -69,22 +71,13 @@ ForwardedButton.displayName = 'ButtonRoot';
 
 export const ButtonRoot = styled(ForwardedButton)<{
    theme: Theme;
-   $styleProps: ButtonStyleProps;
+   $styleProps: DeepNonNullable<ButtonStyleProps>;
 }>((props) => {
    const { theme, $styleProps } = props;
-   const buttonDefaultProps = theme.components?.PXButton?.defaultProps ?? BUTTON_DEFAULT_CSS;
-   const styleOverrides = theme.components?.PXButton?.styleOverrides?.root;
 
-   const {
-      color = buttonDefaultProps.color,
-      size = buttonDefaultProps.size,
-      variant = buttonDefaultProps.variant,
-      sx,
-      fullWidth,
-      ...resProps
-   } = $styleProps;
+   const { color, size, variant, fullWidth, ...resProps } = $styleProps;
 
-   const resultSxConfig = theme.sxConfig({ ...resProps, sx }, styleOverrides);
+   const resultSxConfig = theme.sxConfig(resProps);
 
    return {
       position: 'relative',
@@ -106,7 +99,7 @@ export const ButtonRoot = styled(ForwardedButton)<{
       textDecoration: 'none',
       width: fullWidth ? '100%' : 'auto',
 
-      ...renderButtonStyle({ theme, color, size, variant }),
+      ...(color && size && variant ? renderButtonStyle({ theme, color, size, variant }) : {}),
 
       [`& .${CLASS_NAME_RIPPLE}`]: {
          position: 'absolute',
@@ -132,8 +125,6 @@ export const ButtonRoot = styled(ForwardedButton)<{
             opacity: 0,
          },
       },
-
-      //   ...(theme.components?.PXButton?.styleOverrides?.root ?? {}),
 
       ...resultSxConfig,
    };

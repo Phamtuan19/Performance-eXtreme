@@ -3,25 +3,44 @@ import type React from 'react';
 import type { CSSObject } from 'styled-components';
 
 import type { SxConfigProps, ThemeColor, ThemeSize } from '@PUI/core';
-import type { DeepOptionalNullable } from '@PUI/core/helpers';
-
-export type PXComponentSelect = {
-   defaultProps: {
-      color: ThemeColor | 'default';
-
-      size: ThemeSize;
-   };
-   styleOverrides: {
-      color: Record<ThemeColor | 'default', CSSObject>;
-
-      size: Record<ThemeSize, CSSObject>;
-   };
-};
+import type { DeepOptional } from '@PUI/core/helpers';
 
 export interface FieldNames {
    value?: string;
    label?: string;
 }
+
+export type PXComponentSelect = {
+   defaultProps: {
+      color: ThemeColor;
+
+      size: ThemeSize;
+
+      disabled: boolean;
+
+      /**
+       * Dropdown open state, can be controlled externally.
+       */
+      open: boolean;
+
+      loading: boolean;
+
+      /**
+       * Custom field name configuration for `label` and `value` in each option object.
+       */
+      fieldNames: FieldNames;
+
+      /**
+       * Custom CSS for the dropdown menu.
+       */
+      dropdownStyle: CSSObject;
+   };
+   styleOverrides: {
+      color: Record<ThemeColor, CSSObject>;
+
+      size: Record<ThemeSize, CSSObject>;
+   };
+};
 
 export type OptionType = {
    label?: string;
@@ -32,30 +51,21 @@ export type OptionType = {
 };
 
 export type SelectStyleProps = SxConfigProps &
-   Partial<PXComponentSelect['defaultProps']> & {
+   PXComponentSelect['defaultProps'] & {
       open: boolean;
 
-      disabled?: boolean;
-
       isValue?: boolean;
-
-      loading?: boolean;
    };
 
 export type SelectProps = Omit<
    React.InputHTMLAttributes<HTMLInputElement>,
    'onChange' | 'color' | 'size' | 'children'
 > &
-   DeepOptionalNullable<Omit<SelectStyleProps, 'isValue'>> & {
+   DeepOptional<Omit<SelectStyleProps, 'isValue'>> & {
       /**
        * List of options to display in the dropdown.
        */
       options: OptionType[];
-
-      /**
-       * Dropdown open state, can be controlled externally.
-       */
-      open?: boolean;
 
       /**
        * Selected value (controlled).
@@ -66,11 +76,6 @@ export type SelectProps = Omit<
        * Default value when the component is mounted.
        */
       defaultValue?: Array<string | number> | string | number;
-
-      /**
-       * Custom field name configuration for `label` and `value` in each option object.
-       */
-      fieldNames?: FieldNames;
 
       /**
        * Component displayed at the beginning of the input, such as an icon or label.
@@ -101,11 +106,6 @@ export type SelectProps = Omit<
        * Show a clear button when a value is selected.
        */
       clearable?: boolean;
-
-      /**
-       * Custom CSS for the dropdown menu.
-       */
-      dropdownStyle?: CSSObject;
 
       /**
        * Callback triggered when the selected value changes.

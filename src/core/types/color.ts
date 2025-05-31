@@ -19,19 +19,6 @@ export type PaletteColor = {
    contrastText: string;
 };
 
-export type TextColors = {
-   primary: string;
-   secondary: string;
-   disabled: string;
-   icon: string;
-   hint: string;
-   link: string;
-   error: string;
-   info: string;
-   success: string;
-   warning: string;
-};
-
 export type Palette = {
    mode: 'light' | 'dark';
    common: {

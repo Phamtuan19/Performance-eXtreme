@@ -5,3 +5,7 @@ export type DeepOptionalNullable<T> = {
 export type DeepOptional<T> = {
    [K in keyof T]?: T[K] extends object ? DeepOptional<T[K]> | undefined : T[K] | undefined;
 };
+
+export type DeepNonNullable<T> = {
+   [K in keyof T]?: T[K] extends object ? DeepOptional<T[K]> : T[K];
+};

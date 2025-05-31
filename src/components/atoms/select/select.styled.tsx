@@ -1,6 +1,7 @@
 import type { CSSObject } from 'styled-components';
 import styled from 'styled-components';
 
+import type { DeepOptional } from '@PUI/core/helpers';
 import { hexToRgba } from '@PUI/core/utils';
 
 import type { PXComponentSelect, SelectStyleProps } from './select.type';
@@ -23,26 +24,20 @@ const DEFAULT_CSS_VARIANT_SIZE: PXComponentSelect['styleOverrides']['size'] = {
    },
 };
 
-const DEFAULT_PROPS: PXComponentSelect['defaultProps'] = {
-   color: 'default',
-   size: 'medium',
-};
-
 export const SelectContainer = styled('div')<{
    $styleProps: Omit<SelectStyleProps, 'isValue' | 'open' | 'loading'>;
 }>(({ theme, $styleProps }) => {
-   const PXSelectDefault = theme.components?.PXSelect?.defaultProps ?? DEFAULT_PROPS;
    const PXSelectOverrides = theme.components?.PXSelect?.styleOverrides;
 
-   const { color = PXSelectDefault.color, size = PXSelectDefault.size, disabled, ...resProps } = $styleProps;
+   const { color, size, disabled, ...resProps } = $styleProps;
 
    const borderBaseColor = disabled
       ? theme.palette.disabled.borderColor
-      : color === 'default' || color !== 'error'
+      : color === 'primary' || color !== 'error'
         ? theme.palette.disabled.borderColor
         : (theme.palette[color]?.main ?? color);
 
-   const focusBorderColor = color === 'default' ? theme.palette.primary.main : (theme.palette[color]?.main ?? color);
+   const focusBorderColor = color === 'primary' ? theme.palette.primary.main : (theme.palette[color]?.main ?? color);
 
    return {
       boxSizing: 'border-box',
@@ -78,7 +73,7 @@ export const SelectContainer = styled('div')<{
 });
 
 export const SelectWrapper = styled('div')<{
-   $styleProps: Pick<SelectStyleProps, 'open' | 'disabled' | 'loading'> & {
+   $styleProps: DeepOptional<Pick<SelectStyleProps, 'open' | 'disabled' | 'loading'>> & {
       hasSuffixIcon?: boolean;
    };
 }>((props) => {

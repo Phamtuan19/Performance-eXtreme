@@ -30,7 +30,7 @@ export const TooltipWrapper = styled.div<{
 
    return {
       position: 'absolute',
-      zIndex: 9999,
+      zIndex: theme.zIndex.tooltip,
       padding: '6px 10px',
       borderRadius: 4,
       fontSize: 14,

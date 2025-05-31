@@ -1,33 +1,118 @@
-import type { SxConfigProps, VARIANTS_BUTTON } from '@PUI/core';
+import type { CSSObject } from 'styled-components';
 
-export interface ButtonStyleProps extends SxConfigProps {
-   /**
-    * Trạng thái disabled của nút
-    */
-   disabled?: boolean;
+import type { SxConfigProps, ThemeColor, ThemeSize, ThemeVariant, VARIANTS_BUTTON } from '@PUI/core';
 
-   /**
-    * Nút chiếm toàn bộ chiều ngang của container
-    */
-   fullWidth?: boolean;
+export type PXComponentButton = {
+   defaultProps?: {
+      /**
+       * Kiểu hiển thị của nút: 'contained' | 'outlined' | 'text'
+       */
+      variant?: ThemeVariant;
 
-   /**
-    * Kiểu hiển thị nút (contained, outlined, text)
-    */
-   variant?: (typeof VARIANTS_BUTTON.VARIANT)[number];
+      /**
+       * Màu sắc của nút: 'primary' | 'secondary' | 'danger' | 'success' | ...
+       */
+      color?: ThemeColor;
 
-   /**
-    * Màu sắc nút (primary, secondary, v.v.)
-    */
-   color?: (typeof VARIANTS_BUTTON.COLOR)[number];
+      /**
+       * Kích thước của nút: 'sm' | 'md' | 'lg'
+       */
+      size?: ThemeSize;
 
-   /**
-    * Kích thước nút (sm, md, lg)
-    */
-   size?: (typeof VARIANTS_BUTTON.SIZE)[number];
-}
+      /**
+       * Icon hiển thị ở đầu (bên trái) nội dung nút
+       */
+      startIcon?: React.ReactNode | null;
 
-export type ButtonBaseProps = Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, 'color'> &
+      /**
+       * Icon hiển thị ở cuối (bên phải) nội dung nút
+       */
+      endIcon?: React.ReactNode | null;
+
+      /**
+       * Vô hiệu hóa nút, không thể click được
+       */
+      disabled?: boolean;
+
+      /**
+       * Nút chiếm toàn bộ chiều rộng của container
+       */
+      fullWidth?: boolean;
+
+      /**
+       * Trạng thái loading, hiển thị icon hoặc nội dung đang xử lý
+       */
+      loading?: boolean;
+
+      /**
+       * Vị trí hiển thị icon loading: 'start' | 'end' | 'center'
+       */
+      loadingPosition?: 'start' | 'end' | 'center';
+
+      /**
+       * Custom icon loading thay vì mặc định (ví dụ: spinner riêng)
+       */
+      loadingIndicator?: React.ReactNode | null;
+
+      /**
+       * Custom nội dung hiển thị khi đang loading (thay thế children)
+       */
+      loadingContent?: React.ReactNode | null;
+
+      /**
+       * Tắt hiệu ứng ripple khi click (thường để tăng hiệu suất hoặc đơn giản UI)
+       */
+      disableRipple?: boolean;
+   };
+
+   styleOverrides?: {
+      root?: CSSObject;
+
+      // Colors
+      colorPrimary?: CSSObject;
+      colorSecondary?: CSSObject;
+      colorSuccess?: CSSObject;
+      colorError?: CSSObject;
+      colorWarning?: CSSObject;
+      colorInfo?: CSSObject;
+
+      // Sizes
+      sizeSmall?: CSSObject;
+      sizeMedium?: CSSObject;
+      sizeLarge?: CSSObject;
+
+      // Variants
+      variantContainer?: CSSObject;
+      variantText?: CSSObject;
+      variantOutlined?: CSSObject;
+      variantTextPrimary?: CSSObject;
+      variantTextSecondary?: CSSObject;
+      variantTextSuccess?: CSSObject;
+      variantTextError?: CSSObject;
+      variantTextWarning?: CSSObject;
+      variantTextInfo?: CSSObject;
+      variantOutlinedPrimary?: CSSObject;
+      variantOutlinedSecondary?: CSSObject;
+      variantOutlinedSuccess?: CSSObject;
+      variantOutlinedError?: CSSObject;
+      variantOutlinedWarning?: CSSObject;
+      variantOutlinedInfo?: CSSObject;
+      variantContainerPrimary?: CSSObject;
+      variantContainerSecondary?: CSSObject;
+      variantContainerSuccess?: CSSObject;
+      variantContainerError?: CSSObject;
+      variantContainerWarning?: CSSObject;
+      variantContainerInfo?: CSSObject;
+
+      disabled?: CSSObject;
+      // Custom
+      [key: string]: CSSObject | undefined;
+   };
+};
+
+export type ButtonStyleProps = PXComponentButton['defaultProps'] & SxConfigProps;
+
+export type ButtonBaseProps = Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, 'color' | 'value'> &
    ButtonStyleProps & {
       /**
        * Nội dung con hiển thị trong nút
