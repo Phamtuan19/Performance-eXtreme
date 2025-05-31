@@ -1,3 +1,4 @@
+import { merge } from 'lodash';
 import React, { useRef } from 'react';
 
 import { CircularProgress } from '@PUI/components/icons';
@@ -6,8 +7,21 @@ import { separateProps } from '@PUI/core/styled';
 import { cn } from '@PUI/core/utils';
 
 import { ButtonRoot } from './button.styled';
-import type { ButtonProps } from './button.type';
+import type { ButtonProps, PXComponentButton } from './button.type';
 import { CLASS_NAME_BUTTON, CLASS_NAME_RIPPLE } from './constants';
+
+const BUTTON_DEFAULT_CSS: PXComponentButton['defaultProps'] = {
+   variant: 'container',
+   color: 'primary',
+   size: 'medium',
+   disabled: false,
+   fullWidth: false,
+   loading: false,
+   loadingPosition: 'start',
+   loadingIndicator: null,
+   disableRipple: false,
+   loadingContent: null,
+};
 
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>((props, ref) => {
    const theme = getTheme();
@@ -21,18 +35,18 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>((props, ref) => 
       component,
       disabled,
       loading,
-      size = PXButton.size ?? 'medium',
-      variant = PXButton.variant ?? 'container',
-      color = PXButton.color ?? 'primary',
+      size,
+      variant,
+      color,
       disableRipple,
-      loadingPosition = PXButton?.loadingPosition,
-      loadingContent = PXButton?.loadingContent,
-      loadingIndicator = PXButton?.loadingIndicator ?? <CircularProgress />,
-      startIcon = PXButton?.startIcon,
-      endIcon = PXButton?.endIcon,
-      fullWidth = PXButton?.fullWidth,
+      loadingPosition,
+      loadingContent,
+      loadingIndicator,
+      startIcon,
+      endIcon,
+      fullWidth,
       ...resProps
-   } = props;
+   } = merge({}, BUTTON_DEFAULT_CSS, PXButton, props);
 
    const rippleRef = useRef<HTMLSpanElement | null>(null);
 
@@ -68,12 +82,12 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>((props, ref) => 
 
    const renderChildren = () => {
       if (loading && loadingPosition === 'center') {
-         return loadingIndicator;
+         return loadingIndicator ?? <CircularProgress />;
       }
 
       return (
          <>
-            {loading && loadingPosition === 'start' && loadingIndicator}
+            {loading && loadingPosition === 'start' && (loadingIndicator ?? <CircularProgress />)}
             {!loading || !loadingContent ? (
                <>
                   {startIcon && <span className="start-icon">{startIcon}</span>}
@@ -83,7 +97,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>((props, ref) => 
             ) : (
                loadingContent
             )}
-            {loading && loadingPosition === 'end' && loadingIndicator}
+            {loading && loadingPosition === 'end' && (loadingIndicator ?? <CircularProgress />)}
          </>
       );
    };

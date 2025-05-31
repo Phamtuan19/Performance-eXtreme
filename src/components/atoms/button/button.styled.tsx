@@ -3,8 +3,6 @@ import React from 'react';
 import styled from 'styled-components';
 
 import type { Theme } from '@PUI/core';
-import type { DeepNonNullable } from '@PUI/core/helpers';
-import { hexToRgba } from '@PUI/core/utils';
 
 import { ButtonBase } from './button-base';
 import type { ButtonStyleProps } from './button.type';
@@ -21,45 +19,25 @@ const renderButtonStyle = ({
    color: NonNullable<ButtonStyleProps['color']>;
    size: NonNullable<ButtonStyleProps['size']>;
 }) => {
-   const overrides = merge({}, createButtonDefaultCssVariant(theme.palette), theme.components?.PXButton);
+   const overrides = merge(
+      {},
+      createButtonDefaultCssVariant(theme.palette),
+      theme.components?.PXButton?.styleOverrides,
+   );
 
-   const cap = (str: string) => str.charAt(0).toUpperCase() + str.slice(1);
+   // Lấy nhóm variant trong overrides.variant, ví dụ overrides.variant.container, overrides.variant.text, overrides.variant.outlined
+   const variantColorStyle = overrides.variant?.[variant][color] ?? {};
 
-   const variantColorKey = `variant${cap(variant)}${cap(color)}`;
-   const colorKey = `color${cap(color)}`;
+   // Lấy style chung color (màu chữ, ... trong overrides.color)
+   const colorStyle = overrides.color?.[color] ?? {};
 
-   // Lấy style base variantColor và color
-   const variantColorStyle = overrides?.styleOverrides?.[variantColorKey] ?? {};
-   const colorStyle = overrides?.styleOverrides?.[colorKey] ?? {};
-
-   // Lấy backgroundColor mặc định
-   const backgroundColor = variantColorStyle.backgroundColor ?? colorStyle.backgroundColor ?? '#000000';
-
-   // Lấy backgroundColor cho ripple:
-   // Nếu variantTextPrimary thì ưu tiên lấy backgroundColor ở &:active
-   let rippleBackgroundColor = backgroundColor;
-
-   if (variant === 'text') {
-      if (variantColorStyle?.color && typeof variantColorStyle.color === 'string') {
-         rippleBackgroundColor = variantColorStyle.color;
-      }
-   }
-   if (variant === 'outlined') {
-      if (
-         variantColorStyle['&:active']?.backgroundColor &&
-         typeof variantColorStyle['&:active']?.backgroundColor === 'string'
-      ) {
-         rippleBackgroundColor = variantColorStyle['&:active']?.backgroundColor ?? '';
-      }
-   }
+   // Lấy style size
+   const sizeStyle = overrides.size?.[size] ?? {};
 
    return {
-      ...overrides?.styleOverrides?.[`variant${cap(variant)}${cap(color)}`],
-      ...overrides?.styleOverrides?.[colorKey],
-      ...overrides?.styleOverrides?.[`size${cap(size)}`],
+      ...colorStyle,
+      ...sizeStyle,
       ...variantColorStyle,
-      '--ripple-color':
-         typeof rippleBackgroundColor === 'string' ? hexToRgba(rippleBackgroundColor, 0.3) : hexToRgba('#000000', 0.3),
    };
 };
 
@@ -71,7 +49,7 @@ ForwardedButton.displayName = 'ButtonRoot';
 
 export const ButtonRoot = styled(ForwardedButton)<{
    theme: Theme;
-   $styleProps: DeepNonNullable<ButtonStyleProps>;
+   $styleProps: ButtonStyleProps;
 }>((props) => {
    const { theme, $styleProps } = props;
 
@@ -99,7 +77,7 @@ export const ButtonRoot = styled(ForwardedButton)<{
       textDecoration: 'none',
       width: fullWidth ? '100%' : 'auto',
 
-      ...(color && size && variant ? renderButtonStyle({ theme, color, size, variant }) : {}),
+      ...renderButtonStyle({ theme, color, size, variant }),
 
       [`& .${CLASS_NAME_RIPPLE}`]: {
          position: 'absolute',

@@ -3,110 +3,93 @@ import type { CSSObject } from 'styled-components';
 import type { SxConfigProps, ThemeColor, ThemeSize, ThemeVariant, VARIANTS_BUTTON } from '@PUI/core';
 
 export type PXComponentButton = {
-   defaultProps?: {
+   defaultProps: {
       /**
        * Kiểu hiển thị của nút: 'contained' | 'outlined' | 'text'
        */
-      variant?: ThemeVariant;
+      variant: ThemeVariant;
 
       /**
        * Màu sắc của nút: 'primary' | 'secondary' | 'danger' | 'success' | ...
        */
-      color?: ThemeColor;
+      color: ThemeColor;
 
       /**
        * Kích thước của nút: 'sm' | 'md' | 'lg'
        */
-      size?: ThemeSize;
-
-      /**
-       * Icon hiển thị ở đầu (bên trái) nội dung nút
-       */
-      startIcon?: React.ReactNode | null;
-
-      /**
-       * Icon hiển thị ở cuối (bên phải) nội dung nút
-       */
-      endIcon?: React.ReactNode | null;
+      size: ThemeSize;
 
       /**
        * Vô hiệu hóa nút, không thể click được
        */
-      disabled?: boolean;
+      disabled: boolean;
 
       /**
        * Nút chiếm toàn bộ chiều rộng của container
        */
-      fullWidth?: boolean;
+      fullWidth: boolean;
 
       /**
        * Trạng thái loading, hiển thị icon hoặc nội dung đang xử lý
        */
-      loading?: boolean;
+      loading: boolean;
 
       /**
        * Vị trí hiển thị icon loading: 'start' | 'end' | 'center'
        */
-      loadingPosition?: 'start' | 'end' | 'center';
+      loadingPosition: 'start' | 'end' | 'center';
 
       /**
        * Custom icon loading thay vì mặc định (ví dụ: spinner riêng)
        */
-      loadingIndicator?: React.ReactNode | null;
+      loadingIndicator: React.ReactNode | null;
 
       /**
        * Custom nội dung hiển thị khi đang loading (thay thế children)
        */
-      loadingContent?: React.ReactNode | null;
+      loadingContent: React.ReactNode | null;
 
       /**
        * Tắt hiệu ứng ripple khi click (thường để tăng hiệu suất hoặc đơn giản UI)
        */
-      disableRipple?: boolean;
+      disableRipple: boolean;
    };
 
-   styleOverrides?: {
-      root?: CSSObject;
+   styleOverrides: {
+      root: CSSObject;
 
-      // Colors
-      colorPrimary?: CSSObject;
-      colorSecondary?: CSSObject;
-      colorSuccess?: CSSObject;
-      colorError?: CSSObject;
-      colorWarning?: CSSObject;
-      colorInfo?: CSSObject;
+      color: Record<ThemeColor, CSSObject>;
 
-      // Sizes
-      sizeSmall?: CSSObject;
-      sizeMedium?: CSSObject;
-      sizeLarge?: CSSObject;
+      size: Record<ThemeSize, CSSObject>;
 
-      // Variants
-      variantContainer?: CSSObject;
-      variantText?: CSSObject;
-      variantOutlined?: CSSObject;
-      variantTextPrimary?: CSSObject;
-      variantTextSecondary?: CSSObject;
-      variantTextSuccess?: CSSObject;
-      variantTextError?: CSSObject;
-      variantTextWarning?: CSSObject;
-      variantTextInfo?: CSSObject;
-      variantOutlinedPrimary?: CSSObject;
-      variantOutlinedSecondary?: CSSObject;
-      variantOutlinedSuccess?: CSSObject;
-      variantOutlinedError?: CSSObject;
-      variantOutlinedWarning?: CSSObject;
-      variantOutlinedInfo?: CSSObject;
-      variantContainerPrimary?: CSSObject;
-      variantContainerSecondary?: CSSObject;
-      variantContainerSuccess?: CSSObject;
-      variantContainerError?: CSSObject;
-      variantContainerWarning?: CSSObject;
-      variantContainerInfo?: CSSObject;
+      variant: Record<ThemeVariant, Record<ThemeColor, CSSObject>>;
 
-      disabled?: CSSObject;
-      // Custom
-      [key: string]: CSSObject | undefined;
+      //   variant: {
+      //      container: {
+      //         primary: CSSObject;
+      //         secondary: CSSObject;
+      //         success: CSSObject;
+      //         error: CSSObject;
+      //         warning: CSSObject;
+      //         info: CSSObject;
+      //      };
+      //      text: {
+      //         textPrimary: CSSObject;
+      //         textSecondary: CSSObject;
+      //         textSuccess: CSSObject;
+      //         textError: CSSObject;
+      //         textWarning: CSSObject;
+      //         textInfo: CSSObject;
+      //      };
+      //      outlined: {
+      //         outlinedPrimary: CSSObject;
+      //         outlinedSecondary: CSSObject;
+      //         outlinedSuccess: CSSObject;
+      //         outlinedError: CSSObject;
+      //         outlinedWarning: CSSObject;
+      //         outlinedInfo: CSSObject;
+      //      };
+      //   };
    };
 };
 
@@ -120,7 +103,7 @@ export type ButtonBaseProps = Omit<React.ButtonHTMLAttributes<HTMLButtonElement>
       children?: React.ReactNode;
    };
 
-export type ButtonProps = ButtonBaseProps & {
+export type ButtonProps = Partial<ButtonBaseProps> & {
    /**
     * Icon hiển thị ở đầu nội dung nút
     */

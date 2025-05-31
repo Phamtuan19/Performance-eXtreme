@@ -7,8 +7,6 @@ import type { ButtonBaseProps } from '../button.type';
 
 import { ButtonBaseRoot } from './button-base.styled';
 
-const CLASS_NAME = 'PXButtonBase';
-
 const ButtonBase = React.forwardRef<HTMLButtonElement, ButtonBaseProps>((props, ref) => {
    const { children, className, sx, ...resProps } = props;
 
@@ -18,7 +16,7 @@ const ButtonBase = React.forwardRef<HTMLButtonElement, ButtonBaseProps>((props, 
       <ButtonBaseRoot
          ref={ref}
          {...remainingProps}
-         className={cn(`${CLASS_NAME}__root`, className)}
+         className={cn(`px-buttonBase-root`, className)}
          $styleProps={{ ...styleProps, sx }}
       >
          {children}

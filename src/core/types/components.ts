@@ -11,9 +11,12 @@ import type {
    PXComponentSpinner,
    PXComponentSelect,
    PxComponentBox,
+   PXComponentButton,
+   PXComponentAvatarGroup,
 } from '@PUI/components/atoms';
 
-import type { PxComponentButton, PxComponentTypography, PxComponentInput } from '../theme';
+import type { DeepOptional } from '../helpers';
+import type { PxComponentTypography, PxComponentInput } from '../theme';
 
 export interface PXComponentTextarea {
    defaultProps: {
@@ -28,7 +31,7 @@ export interface PXComponentTextarea {
 }
 
 export type Components = {
-   PXButton?: Partial<PxComponentButton>;
+   PXButton?: DeepOptional<PXComponentButton>;
    PXBox?: Partial<PxComponentBox>;
    PXTypography?: Partial<PxComponentTypography>;
    PXInput?: Partial<PxComponentInput>;
@@ -36,7 +39,8 @@ export type Components = {
    PXCheckBox?: Partial<PXComponentCheckbox>;
    PXRadio?: Partial<PXComponentRadio>;
    PXSwitch?: Partial<PXComponentSwitch>;
-   PXAvatar?: Partial<PXComponentAvatar>;
+   PXAvatar?: DeepOptional<PXComponentAvatar>;
+   PXAvatarGroup?: DeepOptional<PXComponentAvatarGroup>;
    PXBadge?: Partial<PXComponentBadge>;
    PXDivider?: Partial<PXComponentDivider>;
    PXTooltip?: Partial<PXComponentTooltip>;
