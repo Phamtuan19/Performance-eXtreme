@@ -14,21 +14,21 @@
       "resolveJsonModule": true,
       "isolatedModules": true,
 
-      "declaration": true,
-      "declarationDir": "dist/types",
-      "emitDeclarationOnly": false,
-
       "baseUrl": ".",
       "paths": {
-         "@PUI": ["../src"],
-         "@PUI/*": ["../src/*"],
-         "@PUI/core/*": ["../src/core/*"],
-         "@PUI/components/*": ["../src/components/*"],
-         "@PUI/hooks/*": ["../src/hooks/*"],
-         "@PUI/types/*": ["../src/types/*"]
+         "@PUI/*": ["packages/px-ui/src/*"],
+         "@PUI": ["packages/px-ui/src"],
+
+         "@PUI/core/*": ["packages/px-ui/src/core/*"],
+         "@PUI/components/*": ["packages/px-ui/src/components/*"],
+         "@PUI/hooks/*": ["packages/px-ui/src/hooks/*"],
+         "@PUI/types/*": ["packages/px-ui/src/types/*"],
+
+         "@preview/*": ["preview/src/*"],
+         "@playground/*": ["playground/src/*"]
       },
       "types": ["vite/client"]
    },
-   "include": ["../src", "../preview", "../config", "../dist", "../playground"],
+   "include": ["packages", "preview", "playground", "config"],
    "exclude": ["node_modules", "dist"]
 }

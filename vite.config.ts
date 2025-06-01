@@ -1,35 +1,19 @@
-// vite.config.ts
 import { defineConfig } from 'vite';
-import { baseConfig } from './config/vite.base';
+import react from '@vitejs/plugin-react';
 import path from 'path';
 
 export default defineConfig({
-   ...baseConfig,
-   build: {
-      lib: {
-         entry: path.resolve(__dirname, 'src/index.ts'),
-         name: 'PXUI',
-         fileName: (format) => `px-ui.${format}.js`,
-         formats: ['es', 'umd', 'cjs'],
-      },
-      rollupOptions: {
-         external: ['react', 'react-dom', 'styled-components'],
-         output: {
-            // manualChunks: {
-            //    react: ['react', 'react-dom'],
-            //    lodash: ['lodash'],
-            //    ui: ['@your-scope/px-ui'],
-            // },
-            globals: {
-               react: 'React',
-               'react-dom': 'ReactDOM',
-               'styled-components': 'styled',
-            },
-         },
-      },
-      minify: 'terser',
-      terserOptions: {
-         compress: true,
+   plugins: [react()],
+   resolve: {
+      alias: {
+         '@PUI': path.resolve(__dirname, 'packages/px-ui/src'),
+         '@PUI/core': path.resolve(__dirname, 'packages/px-ui/src/core'),
+         '@PUI/components': path.resolve(__dirname, 'packages/px-ui/src/components'),
+         '@PUI/hooks': path.resolve(__dirname, 'packages/px-ui/src/hooks'),
+         '@PUI/types': path.resolve(__dirname, 'packages/px-ui/src/types'),
+
+         '@preview': path.resolve(__dirname, 'preview/src'),
+         '@playground': path.resolve(__dirname, 'playground/src'),
       },
    },
 });

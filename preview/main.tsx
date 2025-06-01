@@ -1,7 +1,6 @@
 import ReactDOM from 'react-dom/client';
-import { createGlobalStyle } from 'styled-components';
-
 import { createThemeOption, ThemeProvider } from '@PUI/core';
+import { createGlobalStyle } from 'styled-components';
 
 import App from './app';
 
