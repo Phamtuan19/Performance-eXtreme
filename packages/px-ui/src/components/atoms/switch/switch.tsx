@@ -12,8 +12,7 @@ import {
    SwitchTrackLabel,
    SwitchLoadingSpinner,
 } from './switch.styled';
-import type { PXComponentSwitch } from './switch.type';
-import type SwitchProps from './switch.type';
+import type { PXComponentSwitch, SwitchProps } from './switch.type';
 
 const SWITCH_DEFAULT_PROPS: PXComponentSwitch['defaultProps'] = {
    checkedLabel: null,

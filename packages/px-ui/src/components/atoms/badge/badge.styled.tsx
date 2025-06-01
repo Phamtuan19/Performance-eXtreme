@@ -1,7 +1,8 @@
 import type { CSSObject } from 'styled-components';
 import styled from 'styled-components';
 
-import type { Palette, Theme } from '@pui/material/core';
+import type { Theme } from '@pui/material/core';
+import type { Palette } from '@pui/material/core/types/color';
 
 import type { BadgeStyledProps } from './badge.type';
 
@@ -14,10 +15,10 @@ const getAnimationPresets = (
    if (animationType === 'none') return {};
 
    const baseTranslate = {
-      'top-left': 'var(--px-translate-top-left)',
-      'top-right': 'var(--px-translate-top-right)',
-      'bottom-left': 'var(--px-translate-bottom-left)',
-      'bottom-right': 'var(--px-translate-bottom-right)',
+      'top-left': 'translate(-50%, -50%)',
+      'top-right': 'var(translate(50%, -50%))',
+      'bottom-left': 'var(translate(-50%, 50%))',
+      'bottom-right': 'var(translate(50%, 50%))',
    }[badgePosition ?? 'top-right'];
 
    switch (animationType) {
@@ -124,10 +125,10 @@ export const BadgeContainer = styled('span')<{
 });
 
 const placementStyle: Record<string, CSSObject> = {
-   'top-left': { top: 0, left: 0, transform: 'var(--px-translate-top-left)' },
-   'top-right': { top: 0, right: 0, transform: 'var(--px-translate-top-right)' },
-   'bottom-left': { bottom: 0, left: 0, transform: 'var(--px-translate-bottom-left)' },
-   'bottom-right': { bottom: 0, right: 0, transform: 'var(--px-translate-bottom-right)' },
+   'top-left': { top: 0, left: 0, transform: 'var(translate(-50%, -50%))' },
+   'top-right': { top: 0, right: 0, transform: 'var(translate(50%, -50%))' },
+   'bottom-left': { bottom: 0, left: 0, transform: 'var(translate(-50%, 50%))' },
+   'bottom-right': { bottom: 0, right: 0, transform: 'var(translate(50%, 50%))' },
 };
 
 export const BadgeContent = styled('sup')<{

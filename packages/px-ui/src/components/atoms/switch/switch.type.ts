@@ -107,6 +107,4 @@ type InputCheckBoxSafeProps = Pick<
       onKeyDown?: (event: React.KeyboardEvent<HTMLInputElement>) => void;
    };
 
-type SwitchProps = InputCheckBoxSafeProps;
-
-export default SwitchProps;
+export type SwitchProps = InputCheckBoxSafeProps;

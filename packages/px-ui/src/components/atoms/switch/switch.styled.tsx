@@ -8,9 +8,24 @@ import type { PXComponentSwitch, SwitchStyledProps } from './switch.type';
 const SWITCH_CSS_VARIANT: PXComponentSwitch['styleOverrides'] = {
    root: {},
    size: {
-      small: { trackWidth: 44, trackHeight: 22, thumbSize: 16, padding: 1 },
-      medium: { trackWidth: 50, trackHeight: 26, thumbSize: 20, padding: 1 },
-      large: { trackWidth: 58, trackHeight: 32, thumbSize: 24, padding: 1 },
+      small: {
+         trackWidth: 28,
+         trackHeight: 14,
+         thumbSize: 10,
+         padding: 1,
+      },
+      medium: {
+         trackWidth: 34,
+         trackHeight: 16,
+         thumbSize: 12,
+         padding: 1,
+      },
+      large: {
+         trackWidth: 38,
+         trackHeight: 18,
+         thumbSize: 14,
+         padding: 1,
+      },
    },
    color: {
       primary: {},

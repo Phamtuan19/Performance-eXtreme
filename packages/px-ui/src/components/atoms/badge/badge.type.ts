@@ -1,7 +1,8 @@
 import type { CSSObject } from 'styled-components';
 
-import type { SxConfigProps, ThemeColor } from '@pui/material/core';
 import type { UnstableSxConfigProps } from '@pui/material/core/styled';
+import type { ThemeColor } from '@pui/material/core/types/color';
+import type { SxConfigProps } from '@pui/material/core/types/css';
 
 export interface PXComponentBadge {
    defaultProps: {

@@ -2,7 +2,7 @@ import type React from 'react';
 import type { InputHTMLAttributes } from 'react';
 import type { CSSObject } from 'styled-components';
 
-import type { SxConfigProps, ThemeColor, ThemeSize } from '@pui/material/core';
+import type { ThemeColor, ThemeSize, SxConfigProps } from '@pui/material/core';
 import type { DeepOptional } from '@pui/material/core/helpers';
 
 type InputVariant = 'outline' | 'filled' | 'standard';

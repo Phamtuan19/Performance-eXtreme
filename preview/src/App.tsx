@@ -1,4 +1,4 @@
-import { Box, Select, Radio, Input, Checkbox, Badge, Button, Avatar, AvatarGroup, Switch } from '@pui/material';
+import { Box, Switch, Select, Radio, Input, Checkbox, Badge, Button, Avatar, AvatarGroup } from '@pui/material';
 import { CircularProgress } from '@pui/material/components/icons';
 import type { ThemeColor } from '@pui/material/core';
 import { useState } from 'react';
@@ -11,6 +11,8 @@ export default function App() {
    return (
       <Box display="flex" flexDirection="column" gap={3} p={2}>
          <Switch size="large" />
+         <Switch size="medium" />
+         <Switch size="small" />
          {/* <Box display="flex" gap={2}>
             {COLORS.map((color) => {
                return <Switch key={color} size="large" color={color} />;

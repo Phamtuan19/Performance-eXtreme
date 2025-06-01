@@ -3,8 +3,6 @@ import { ThemeProvider as StyledThemeProvider } from 'styled-components';
 
 import type { Theme } from '@pui/material/core/types';
 
-import { GlobalStyle } from './global-style';
-
 interface PXThemeProviderProps {
    children: React.ReactNode;
    theme: Theme;
@@ -32,12 +30,7 @@ const ThemeProvider = (props: PXThemeProviderProps) => {
       }
    }
 
-   return (
-      <StyledThemeProvider theme={theme}>
-         <GlobalStyle />
-         {children}
-      </StyledThemeProvider>
-   );
+   return <StyledThemeProvider theme={theme}>{children}</StyledThemeProvider>;
 };
 
 export { ThemeProvider };
