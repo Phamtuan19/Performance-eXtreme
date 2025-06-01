@@ -1,6 +1,7 @@
 import type { CSSObject } from 'styled-components';
 
-import type { SxConfigProps, SxProps, Theme, TypeInputColor, TypeInputSize } from '@pui/material/core';
+import type { SxConfigProps, ThemeColor, ThemeSize } from '@pui/material/core';
+import type { DeepOptional } from '@pui/material/core/helpers';
 
 export interface PXComponentSwitch {
    defaultProps: {
@@ -8,30 +9,18 @@ export interface PXComponentSwitch {
        * Màu sắc của Switch: ví dụ 'primary', 'secondary', 'danger', 'success', v.v...
        * Tương ứng với các màu trong theme.palette.
        */
-      color: TypeInputColor;
+      color: ThemeColor;
 
       /**
        * Kích thước của Switch: 'small' | 'medium' | 'large'.
        * Ảnh hưởng đến kích thước tổng thể của Switch.
        */
-      size: TypeInputSize;
+      size: ThemeSize;
 
       /**
        * Nếu true, Switch sẽ bị disable và không thể tương tác.
        */
       disabled: boolean;
-
-      /**
-       * Trạng thái checked khi sử dụng dạng controlled component.
-       * Phải đi kèm onChange.
-       */
-      checked: boolean;
-
-      /**
-       * Trạng thái checked mặc định khi dùng uncontrolled component.
-       * Chỉ sử dụng khi không có `checked`.
-       */
-      defaultChecked: boolean;
 
       /**
        * Trạng thái loading, hiển thị indicator và disable tương tác.
@@ -64,7 +53,7 @@ export interface PXComponentSwitch {
        * - `trackWidth`: chiều dài thanh nền (nếu muốn cố định).
        */
       size: Record<
-         TypeInputSize,
+         ThemeSize,
          CSSObject & { thumbSize: number; padding: number; trackHeight: number; trackWidth: number }
       >;
 
@@ -72,25 +61,52 @@ export interface PXComponentSwitch {
        * Style theo từng màu sắc: primary, secondary, v.v.
        * Gồm borderColor và backgroundColor (khi checked).
        */
-      color: Record<TypeInputColor, CSSObject>;
+      color: Record<ThemeColor, CSSObject>;
    };
 }
 
 export type SwitchStyledProps = PXComponentSwitch['defaultProps'] &
    SxConfigProps & {
       /**
-       * Custom style với hệ thống sx (hỗ trợ responsive, theme-aware).
+       * Trạng thái checked khi sử dụng dạng controlled component.
+       * Phải đi kèm onChange.
        */
-      sx?: SxProps<Theme>;
+      checked: boolean;
+
+      /**
+       * Trạng thái checked mặc định khi dùng uncontrolled component.
+       * Chỉ sử dụng khi không có `checked`.
+       */
+      defaultChecked: boolean;
    };
 
-export type SwitchProps = Omit<
+type InputCheckBoxSafeProps = Pick<
    React.InputHTMLAttributes<HTMLInputElement>,
-   'size' | 'onChange' | 'checked' | 'defaultChecked'
+   | 'name'
+   | 'value'
+   | 'checked'
+   | 'defaultChecked'
+   | 'onChange'
+   | 'disabled'
+   | 'required'
+   | 'autoFocus'
+   | 'id'
+   | 'aria-label'
+   | 'aria-labelledby'
+   | 'onBlur'
+   | 'onFocus'
+   | 'tabIndex'
+   | 'readOnly'
 > &
-   Partial<SwitchStyledProps> & {
+   DeepOptional<SwitchStyledProps> & {
       /**
        * Sự kiện khi Switch thay đổi trạng thái.
        */
       onChange?: (checked: boolean, event: React.ChangeEvent<HTMLInputElement>) => void;
+
+      onKeyDown?: (event: React.KeyboardEvent<HTMLInputElement>) => void;
    };
+
+type SwitchProps = InputCheckBoxSafeProps;
+
+export default SwitchProps;

@@ -1,9 +1,26 @@
+import { merge } from 'lodash';
 import styled from 'styled-components';
 
 import type { Theme } from '@pui/material/core';
 
-import { SWITCH_CSS_VARIANT } from './constants';
-import type { SwitchStyledProps } from './switch.type';
+import type { PXComponentSwitch, SwitchStyledProps } from './switch.type';
+
+const SWITCH_CSS_VARIANT: PXComponentSwitch['styleOverrides'] = {
+   root: {},
+   size: {
+      small: { trackWidth: 44, trackHeight: 22, thumbSize: 16, padding: 1 },
+      medium: { trackWidth: 50, trackHeight: 26, thumbSize: 20, padding: 1 },
+      large: { trackWidth: 58, trackHeight: 32, thumbSize: 24, padding: 1 },
+   },
+   color: {
+      primary: {},
+      secondary: {},
+      success: {},
+      error: {},
+      warning: {},
+      info: {},
+   },
+};
 
 export const SwitchLabel = styled.label<{
    $styleProps: Omit<
@@ -56,10 +73,12 @@ export const SwitchTrack = styled.span<{
    $styleProps: Pick<SwitchStyledProps, 'checked' | 'size' | 'disabled' | 'color'>;
 }>((props) => {
    const { theme, $styleProps } = props;
+
    const { checked, size, disabled, color } = $styleProps;
 
-   const styleOverrides = theme.components?.PXSwitch?.styleOverrides;
-   const { padding, thumbSize, trackHeight, trackWidth } = styleOverrides?.size[size] ?? SWITCH_CSS_VARIANT.size[size];
+   const styleOverrides = merge({}, theme.components.PXSwitch?.styleOverrides, SWITCH_CSS_VARIANT);
+
+   const { padding, thumbSize, trackHeight, trackWidth } = styleOverrides.size[size];
 
    // Dùng width chắc chắn lấy đúng
    const width = trackWidth ?? thumbSize * 2.5;
@@ -103,8 +122,9 @@ export const SwitchThumb = styled.span<{
    const { theme, $styleProps } = props;
    const { checked, size, disabled } = $styleProps;
 
-   const styleOverrides = theme.components?.PXSwitch?.styleOverrides;
-   const { padding, thumbSize, trackWidth } = styleOverrides?.size[size] ?? SWITCH_CSS_VARIANT.size[size];
+   const styleOverrides = merge({}, theme.components.PXSwitch?.styleOverrides, SWITCH_CSS_VARIANT);
+
+   const { padding, thumbSize, trackWidth } = styleOverrides.size[size];
 
    const width = trackWidth ?? thumbSize * 2.5;
    const moveDistance = width - thumbSize - padding * 2;
@@ -128,7 +148,7 @@ export const SwitchTrackLabel = styled.span<{ theme: Theme }>(({ theme }) => ({
    verticalAlign: 'middle',
    fontSize: 14,
    fontWeight: 400,
-   color: theme.palette.text.primary ?? '#333',
+   color: theme.palette.common.black,
    userSelect: 'none',
    marginLeft: 8,
 }));

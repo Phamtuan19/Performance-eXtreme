@@ -1,9 +1,9 @@
+import { merge } from 'lodash';
 import React from 'react';
 
 import { getTheme } from '@pui/material/core';
 import { separateProps } from '@pui/material/core/styled';
 
-import { SWITCH_DEFAULT_PROPS } from './constants';
 import {
    SwitchLabel,
    SwitchInput,
@@ -12,52 +12,72 @@ import {
    SwitchTrackLabel,
    SwitchLoadingSpinner,
 } from './switch.styled';
-import type { SwitchProps } from './switch.type';
+import type { PXComponentSwitch } from './switch.type';
+import type SwitchProps from './switch.type';
+
+const SWITCH_DEFAULT_PROPS: PXComponentSwitch['defaultProps'] = {
+   checkedLabel: null,
+   color: 'primary',
+   size: 'small',
+   disabled: false,
+   loading: false,
+   unCheckedLabel: undefined,
+};
 
 const Switch = React.forwardRef<HTMLInputElement, SwitchProps>((props, ref) => {
    const theme = getTheme();
 
-   // Lấy default props từ theme hoặc fallback
-   const PXSwitch = theme.components?.PXSwitch?.defaultProps ?? SWITCH_DEFAULT_PROPS;
+   const PXSwitch = theme.components?.PXSwitch?.defaultProps;
 
-   // Giải cấu trúc props, ưu tiên props truyền vào hoặc default từ theme
    const {
       sx,
-      checked: controlledChecked,
-      defaultChecked = PXSwitch.defaultChecked,
-      disabled = PXSwitch.disabled,
-      loading = PXSwitch.loading,
-      color = PXSwitch.color,
-      size = PXSwitch.size,
-      checkedLabel = PXSwitch.checkedLabel,
-      unCheckedLabel = PXSwitch.unCheckedLabel,
+      checked,
+      defaultChecked,
+      disabled,
+      loading,
+      color,
+      size,
+      checkedLabel,
+      unCheckedLabel,
       onChange,
       onKeyDown,
       ...resProps
-   } = props;
+   } = merge({}, SWITCH_DEFAULT_PROPS, PXSwitch, props);
 
    const { styleProps, remainingProps } = separateProps(resProps);
 
-   // Internal state cho uncontrolled mode
+   const isControlled = typeof checked === 'boolean';
    const [internalChecked, setInternalChecked] = React.useState(defaultChecked || false);
 
-   // Xác định đang controlled hay uncontrolled
-   const isControlled = typeof controlledChecked === 'boolean';
+   const isChecked = isControlled ? checked : internalChecked;
 
-   // Giá trị checked cuối cùng để hiển thị
-   const isChecked = isControlled ? controlledChecked! : internalChecked;
+   const isMounted = React.useRef(true);
+   React.useEffect(() => {
+      return () => {
+         isMounted.current = false;
+      };
+   }, []);
 
-   // Xử lý sự kiện change
+   React.useEffect(() => {
+      if (isControlled) {
+         setInternalChecked(checked!);
+      }
+   }, [checked, isControlled]);
+
+   const safeSetChecked = (val: boolean) => {
+      if (!isControlled && isMounted.current) {
+         setInternalChecked(val);
+      }
+   };
+
    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
       if (disabled || loading) return;
 
       const newChecked = e.target.checked;
 
-      if (!isControlled) {
-         setInternalChecked(newChecked); // Cập nhật internal state nếu uncontrolled
-      }
+      safeSetChecked(newChecked);
 
-      onChange?.(newChecked, e); // Gọi callback onChange với giá trị mới
+      onChange?.(newChecked, e);
    };
 
    const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
@@ -66,7 +86,8 @@ const Switch = React.forwardRef<HTMLInputElement, SwitchProps>((props, ref) => {
 
          const newChecked = !isChecked;
 
-         if (!isControlled) setInternalChecked(newChecked);
+         safeSetChecked(newChecked);
+
          onKeyDown?.(event);
       }
    };
@@ -89,6 +110,8 @@ const Switch = React.forwardRef<HTMLInputElement, SwitchProps>((props, ref) => {
             onKeyDown={handleKeyDown}
             disabled={disabled || loading}
             aria-checked={isChecked}
+            aria-disabled={disabled || loading}
+            tabIndex={disabled || loading ? -1 : 0}
             role="switch"
             $styleProps={{ color }}
          />
