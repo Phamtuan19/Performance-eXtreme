@@ -1,4 +1,4 @@
-import type { SxConfigProps } from '@PUI/core';
+import type { SxConfigProps } from '@pui/material/core';
 
 export type LabelStyledProps = SxConfigProps & {
    disabled: boolean;

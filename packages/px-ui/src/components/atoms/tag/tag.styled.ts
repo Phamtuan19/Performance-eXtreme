@@ -1,7 +1,7 @@
 import type { CSSObject } from 'styled-components';
 import styled from 'styled-components';
 
-import type { Theme } from '@PUI/core';
+import type { Theme } from '@pui/material/core';
 
 import type { TagStyledProps } from './tag.type';
 

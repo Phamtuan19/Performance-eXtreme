@@ -3,10 +3,10 @@ import { merge } from 'lodash';
 import React, { useId, useState, useRef, useEffect, useCallback } from 'react';
 import { createPortal } from 'react-dom';
 
-import { getTheme } from '@PUI/core';
-import { separateProps } from '@PUI/core/styled';
-import { cn } from '@PUI/core/utils';
-import { useLockBodyScroll, useOnClickOutside } from '@PUI/hooks';
+import { getTheme } from '@pui/material/core';
+import { separateProps } from '@pui/material/core/styled';
+import { cn } from '@pui/material/core/utils';
+import { useLockBodyScroll, useOnClickOutside } from '@pui/material/hooks';
 
 import {
    SelectOptionItem,

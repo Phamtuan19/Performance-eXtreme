@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import type { Theme } from '@PUI/core';
+import type { Theme } from '@pui/material/core';
 
 import { createPXTypographyCssVariant, TYPOGRAPHY_DEFAULT_PROPS } from './constants';
 import type { TypographyStyleRoot } from './typography.type';

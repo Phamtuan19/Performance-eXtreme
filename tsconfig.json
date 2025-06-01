@@ -1,5 +1,60 @@
 {
-   "extends": "./tsconfig.base.json",
-   "include": ["packages/**/*"],
-   "exclude": ["node_modules", "dist"]
+   "compilerOptions": {
+      // Mục tiêu output JS hiện đại, phù hợp với trình duyệt mới và Node 18+
+      "target": "es2022",
+
+      // Hệ module hiện đại (ESM), phù hợp với bundler hiện nay (Vite, Rollup)
+      "module": "esnext",
+
+      // Sử dụng các thư viện của trình duyệt & ECMAScript 2022
+      "lib": ["dom", "dom.iterable", "es2022"],
+
+      // JSX transform mới từ React 17+ (không cần import React từ 'react')
+      "jsx": "react-jsx",
+
+      // Cách TypeScript tìm và resolve module: dùng theo chuẩn ESM
+      "moduleResolution": "bundler", // dùng cho Vite (không phải node)
+
+      // Cho phép import file JSON
+      "resolveJsonModule": true,
+
+      // Bắt buộc mỗi file là một module riêng biệt (bắt buộc nếu dùng SWC, Vite, Babel)
+      "isolatedModules": true,
+
+      // Kích hoạt kiểm tra chặt chẽ toàn bộ: types, null, implicit any,...
+      "strict": true,
+
+      // Không tạo file .js khi build (nếu dùng TS chỉ để type-check)
+      "noEmit": true,
+
+      // Cho phép import default từ các module CommonJS
+      "allowSyntheticDefaultImports": true,
+
+      // Cảnh báo nếu tên file không đồng bộ (trên Windows không phân biệt hoa thường nhưng trên Git thì có)
+      "forceConsistentCasingInFileNames": true,
+
+      // Cho phép import các file `.js` (nếu có)
+      "allowJs": true,
+
+      // Định nghĩa đường dẫn alias trong dự án (monorepo dùng nhiều alias)
+      "baseUrl": ".",
+      "paths": {
+         "@pui/material": ["packages/px-ui/src"],
+         "@pui/material/*": ["packages/px-ui/src/*"]
+      },
+
+      // Loại bỏ lỗi không cần thiết nếu thiếu type declaration trong `node_modules`
+      "types": ["node", "react"]
+   },
+
+   "include": [
+      // Phần code chính của thư viện
+      "packages/**/*",
+
+      // Playground/demonstration phục vụ DEV
+      "preview/**/*"
+   ],
+
+   // Loại trừ thư mục build, .git, node_modules, dist,...
+   "exclude": ["**/.*/", "**/build", "**/dist", "**/node_modules"]
 }

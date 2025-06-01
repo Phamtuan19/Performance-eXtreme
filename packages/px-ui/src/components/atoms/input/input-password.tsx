@@ -1,6 +1,6 @@
 import { useState, forwardRef } from 'react';
 
-import { EyeOff, Eye } from '@PUI/components/icons';
+import { EyeOff, Eye } from '@pui/material/components/icons';
 
 import Input from './input';
 import type { InputProps } from './input.type';

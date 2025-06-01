@@ -1,8 +1,8 @@
 import { merge } from 'lodash';
 import { keyframes } from 'styled-components';
 
-import createSxConfig from '@PUI/core/styled/sx-config/sx-config';
-import type { Breakpoints, Palette, Theme, ThemeColor, ThemeOptionsSafe } from '@PUI/core/types';
+import createSxConfig from '@pui/material/core/styled/sx-config/sx-config';
+import type { Breakpoints, Palette, Theme, ThemeColor, ThemeOptionsSafe } from '@pui/material/core/types';
 
 import {
    gray,

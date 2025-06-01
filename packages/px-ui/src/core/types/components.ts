@@ -14,7 +14,7 @@ import type {
    PXComponentButton,
    PXComponentAvatarGroup,
    PxComponentInput,
-} from '@PUI/components/atoms';
+} from '@pui/material/components/atoms';
 
 import type { DeepOptional } from '../helpers';
 import type { PxComponentTypography } from '../theme';

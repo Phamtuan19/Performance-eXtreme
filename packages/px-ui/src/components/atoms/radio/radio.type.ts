@@ -1,7 +1,7 @@
 import type { CSSObject } from 'styled-components';
 
-import type { SxConfigProps, SxProps, Theme, ThemeColor, ThemeSize } from '@PUI/core';
-import type { DeepOptional } from '@PUI/core/helpers';
+import type { SxConfigProps, SxProps, Theme, ThemeColor, ThemeSize } from '@pui/material/core';
+import type { DeepOptional } from '@pui/material/core/helpers';
 
 /**
  * Interface định nghĩa cấu hình cho component Radio trong thư viện PX UI.

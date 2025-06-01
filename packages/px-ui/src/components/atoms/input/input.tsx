@@ -1,10 +1,10 @@
 import { merge } from 'lodash';
 import React from 'react';
 
-import { CircularProgress } from '@PUI/components/icons';
-import { getTheme } from '@PUI/core';
-import { separateProps } from '@PUI/core/styled';
-import { cn } from '@PUI/core/utils';
+import { CircularProgress } from '@pui/material/components/icons';
+import { getTheme } from '@pui/material/core';
+import { separateProps } from '@pui/material/core/styled';
+import { cn } from '@pui/material/core/utils';
 
 import { HelperText, IconEnd, IconStart, InputContainer, InputStyle, InputWrapper } from './input.styled';
 import type { InputProps, PxComponentInput } from './input.type';

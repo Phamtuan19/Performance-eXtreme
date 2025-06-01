@@ -1,5 +1,5 @@
-import type { Palette } from '@PUI/core/types';
-import type { StandardCSSProperties } from '@PUI/types';
+import type { Palette } from '@pui/material/core/types';
+import type { StandardCSSProperties } from '@pui/material/types';
 
 import { transformColorFn } from './colors';
 

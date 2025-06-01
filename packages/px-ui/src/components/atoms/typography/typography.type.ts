@@ -1,6 +1,6 @@
-import type { SxConfigProps, SxProps, Theme, TypographyVariant } from '@PUI/core';
-import type { UnstableSxConfigProps } from '@PUI/core/styled';
-import type { VARIANTS_TYPOGRAPHY } from '@PUI/core/theme/components/typography';
+import type { SxConfigProps, SxProps, Theme, TypographyVariant } from '@pui/material/core';
+import type { UnstableSxConfigProps } from '@pui/material/core/styled';
+import type { VARIANTS_TYPOGRAPHY } from '@pui/material/core/theme/components/typography';
 
 type TypographyCustomProps = {
    /**

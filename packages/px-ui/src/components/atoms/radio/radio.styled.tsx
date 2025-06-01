@@ -1,7 +1,7 @@
 import { merge } from 'lodash';
 import styled from 'styled-components';
 
-import type { SxProps, Theme } from '@PUI/core';
+import type { SxProps, Theme } from '@pui/material/core';
 
 import type { PXComponentRadio, RadioStyledProps } from './radio.type';
 

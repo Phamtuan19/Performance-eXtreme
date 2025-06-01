@@ -1,34 +1,51 @@
 {
+   "name": "@pui/monorepo",
    "private": true,
+   "version": "0.0.1",
    "workspaces": [
       "packages/*",
-      "preview",
-      "playground"
+      "preview"
    ],
    "scripts": {
-      "install": "yarn install",
-      "lint": "eslint . --ext .ts,.tsx,.js,.jsx",
-      "lint:fix": "eslint . --ext .ts,.tsx,.js,.jsx --fix",
-      "format": "prettier --write .",
-      "format:check": "prettier --check .",
+      "build": "tsc --project tsconfig.build.json",
       "type-check": "tsc --build tsconfig.base.json",
-      "build": "yarn workspace @px-ui/core build",
       "preview:dev": "yarn workspace preview dev",
-      "playground:dev": "yarn workspace playground dev"
+      "format": "prettier --write .",
+      "fix:imports": "eslint --fix \"src/**/*.{ts,tsx}\"",
+      "commitlint": "commitlint --edit",
+      "format:check": "prettier . --check",
+      "format:fix": "prettier . --write",
+      "lint": "eslint . --max-warnings 0 --report-unused-disable-directives",
+      "lint:fix": "eslint . --fix --max-warnings 0 --report-unused-disable-directives",
+      "prepare": "husky install",
+      "type:check": "tsc",
+      "setup": "git init && husky install",
+      "validate": "run-p lint type:check"
    },
    "devDependencies": {
+      "@commitlint/cli": "^19.8.1",
+      "@commitlint/config-conventional": "^19.8.1",
+      "@types/node": "^20.0.0",
+      "@types/react": "^19.1.6",
+      "@types/react-dom": "^19.1.5",
       "@typescript-eslint/eslint-plugin": "^6.x.x",
       "@typescript-eslint/parser": "^6.x.x",
-      "@vitejs/plugin-react": "^4.x.x",
+      "@vitejs/plugin-react": "^4.5.0",
+      "eslint-config-prettier": "^9.1.0",
+      "eslint-import-resolver-typescript": "^4.3.5",
+      "eslint-plugin-import": "^2.31.0",
+      "eslint-plugin-prettier": "^5.4.0",
+      "eslint-plugin-react": "^7.34.1",
+      "eslint-plugin-react-hooks": "^4.6.0",
       "eslint": "^8.x.x",
       "prettier": "^3.x.x",
       "typescript": "^5.x.x",
-      "vite": "^5.x.x"
+      "vite": "^4.x",
+      "vite-tsconfig-paths": "^5.x",
+      "husky": "^9.1.7"
    },
    "dependencies": {
       "react": "^18.2.0",
-      "react-dom": "^18.2.0",
-      "styled-components": "^6.1.13"
-   },
-   "version": "0.0.0"
+      "react-dom": "^18.2.0"
+   }
 }

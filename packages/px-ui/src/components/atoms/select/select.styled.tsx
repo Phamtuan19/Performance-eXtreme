@@ -1,7 +1,7 @@
 import type { CSSObject } from 'styled-components';
 import styled from 'styled-components';
 
-import { hexToRgba } from '@PUI/core/utils';
+import { hexToRgba } from '@pui/material/core/utils';
 
 import type { PXComponentSelect, SelectStyleProps } from './select.type';
 

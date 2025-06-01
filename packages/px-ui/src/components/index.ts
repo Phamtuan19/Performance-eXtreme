@@ -22,3 +22,5 @@
  * - **index.ts**
  *   Tập hợp và xuất tất cả component để dễ dàng import bên ngoài.
  */
+
+export * from './atoms';

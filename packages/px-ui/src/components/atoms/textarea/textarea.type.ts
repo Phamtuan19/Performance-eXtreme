@@ -1,6 +1,6 @@
 import type React from 'react';
 
-import type { PXComponentTextarea, SxConfigProps } from '@PUI/core';
+import type { PXComponentTextarea, SxConfigProps } from '@pui/material/core';
 
 export type TextareaStyledProps = SxConfigProps;
 

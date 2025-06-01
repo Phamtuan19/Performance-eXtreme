@@ -1,12 +1,15 @@
-import path from 'path';
-import react from '@vitejs/plugin-react';
 import { defineConfig } from 'vite';
+import react from '@vitejs/plugin-react';
+import path from 'path';
 
 export default defineConfig({
    plugins: [react()],
    resolve: {
       alias: {
-         '@PUI/core': path.resolve(__dirname, 'packages/px-ui/src'),
+         '@pui/material': path.resolve(__dirname, '../packages/px-ui/src'),
       },
+   },
+   server: {
+      port: 3000,
    },
 });
