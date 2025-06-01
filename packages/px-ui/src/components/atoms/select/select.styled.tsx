@@ -203,13 +203,13 @@ export const SelectOptionItem = styled('div')<{ $styleProps: { selected?: boolea
       padding: '6px 12px',
       cursor: 'pointer',
       fontSize: '1rem',
-      backgroundColor: isActive ? hexToRgba(theme.palette.primary.light, 0.2) : theme.palette.common.white,
+      backgroundColor: isActive ? hexToRgba(theme.palette.primary.light, 0.1) : theme.palette.common.white,
       color: theme.palette.common.black,
       borderRadius: 4,
 
       '&:hover': {
          backgroundColor: isActive
-            ? hexToRgba(theme.palette.primary.light, 0.2)
+            ? hexToRgba(theme.palette.primary.light, 0.4)
             : hexToRgba(theme.palette.gray[400], 0.2),
          color: theme.palette.common.black,
       },
