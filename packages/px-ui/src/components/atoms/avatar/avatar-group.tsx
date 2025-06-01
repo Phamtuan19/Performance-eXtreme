@@ -1,9 +1,9 @@
 import { merge } from 'lodash';
 import React, { Children, isValidElement } from 'react';
 
-import { getTheme } from '@PUI/core';
-import { separateProps } from '@PUI/core/styled';
-import { cn } from '@PUI/core/utils';
+import { getTheme } from '@pui/material/core';
+import { separateProps } from '@pui/material/core/styled';
+import { cn } from '@pui/material/core/utils';
 
 import Avatar from './avatar';
 import { StyledAvatarGroup } from './avatar.styled';

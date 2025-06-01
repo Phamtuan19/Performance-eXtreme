@@ -1,7 +1,7 @@
 import { forwardRef, useRef } from 'react';
 
-import { getTheme } from '@PUI/core';
-import { separateProps } from '@PUI/core/styled';
+import { getTheme } from '@pui/material/core';
+import { separateProps } from '@pui/material/core/styled';
 
 import { TEXTAREA_DEFAULT_PROPS } from './constants';
 import { Wrapper, StyledTextarea } from './textarea.styled';

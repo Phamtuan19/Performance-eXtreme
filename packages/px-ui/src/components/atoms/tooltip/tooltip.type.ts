@@ -1,8 +1,8 @@
 import type { Placement } from '@floating-ui/dom';
 import type { CSSObject } from 'styled-components';
 
-import type { SxConfigProps, ThemeColor } from '@PUI/core';
-import type { UnstableSxConfigProps } from '@PUI/core/styled';
+import type { SxConfigProps, ThemeColor } from '@pui/material/core';
+import type { UnstableSxConfigProps } from '@pui/material/core/styled';
 
 export type PXComponentTooltip = {
    defaultProps: {

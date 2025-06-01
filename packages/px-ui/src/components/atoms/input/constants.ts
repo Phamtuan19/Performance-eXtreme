@@ -1,4 +1,4 @@
-import type { Palette } from '@PUI/core';
+import type { Palette } from '@pui/material/core';
 
 import type { PxComponentInput } from './input.type';
 

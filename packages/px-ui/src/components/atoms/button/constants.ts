@@ -1,5 +1,5 @@
-import type { Palette } from '@PUI/core';
-import { hexToRgba } from '@PUI/core/utils';
+import type { Palette } from '@pui/material/core';
+import { hexToRgba } from '@pui/material/core/utils';
 
 import type { PXComponentButton } from './button.type';
 

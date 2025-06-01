@@ -1,7 +1,7 @@
 import React from 'react';
 
-import separateProps from '@PUI/core/styled/separate-props';
-import { cn } from '@PUI/core/utils';
+import separateProps from '@pui/material/core/styled/separate-props';
+import { cn } from '@pui/material/core/utils';
 
 import type { ButtonBaseProps } from '../button.type';
 

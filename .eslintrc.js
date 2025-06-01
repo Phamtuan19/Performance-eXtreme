@@ -5,7 +5,7 @@ module.exports = {
       ecmaVersion: 'latest',
       sourceType: 'module',
       ecmaFeatures: { jsx: true },
-      project: ['./tsconfig.base.json'],
+      project: ['./tsconfig.json'],
       tsconfigRootDir: __dirname,
    },
    env: {
@@ -14,8 +14,8 @@ module.exports = {
       node: true,
    },
    ignorePatterns: [
-      'dist/',
-      'node_modules/',
+      'dist',
+      'node_modules',
       '*.config.js',
       '*.config.ts',
       '*.slice.ts',
@@ -23,11 +23,14 @@ module.exports = {
       'additional.d.ts',
    ],
    settings: {
-      react: { version: 'detect' },
+      react: {
+         version: 'detect',
+      },
       'import/resolver': {
          typescript: {
-            project: ['./tsconfig.base.json'],
-         },
+            alwaysTryTypes: true,
+            project: './tsconfig.json',
+         }, // giúp hiểu alias từ tsconfig
       },
    },
    plugins: ['react', 'react-hooks', '@typescript-eslint', 'prettier', 'import'],
@@ -36,7 +39,7 @@ module.exports = {
       'plugin:react/recommended',
       'plugin:react-hooks/recommended',
       'plugin:@typescript-eslint/recommended',
-      'plugin:prettier/recommended',
+      'plugin:prettier/recommended', // bao gồm eslint-config-prettier + plugin-prettier
    ],
    overrides: [
       {
@@ -49,7 +52,7 @@ module.exports = {
       },
    ],
    rules: {
-      'react/react-in-jsx-scope': 'off',
+      'react/react-in-jsx-scope': 'off', // không cần import React trong React 17+
       '@typescript-eslint/no-unused-vars': ['warn', { argsIgnorePattern: '^_' }],
       'no-console': 'warn',
       'react/prop-types': 'off',
@@ -60,13 +63,16 @@ module.exports = {
             groups: ['builtin', 'external', 'internal', 'parent', 'sibling', 'index'],
             pathGroups: [
                {
-                  pattern: '@px-ui/**',
+                  pattern: '@PUI/**',
                   group: 'internal',
                },
             ],
             pathGroupsExcludedImportTypes: ['builtin'],
             'newlines-between': 'always',
-            alphabetize: { order: 'asc', caseInsensitive: true },
+            alphabetize: {
+               order: 'asc',
+               caseInsensitive: true,
+            },
          },
       ],
       '@typescript-eslint/consistent-type-imports': [

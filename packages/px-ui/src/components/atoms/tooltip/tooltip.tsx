@@ -4,9 +4,9 @@ import { computePosition, offset, flip, shift, arrow as arrowFloatingUI } from '
 import React, { useState, useRef, useEffect } from 'react';
 import { createPortal } from 'react-dom';
 
-import { getTheme } from '@PUI/core';
-import { separateProps } from '@PUI/core/styled';
-import { cn } from '@PUI/core/utils';
+import { getTheme } from '@pui/material/core';
+import { separateProps } from '@pui/material/core/styled';
+import { cn } from '@pui/material/core/utils';
 
 import { Arrow, TooltipWrapper } from './tooltip.styled';
 import type { TooltipProps } from './tooltip.type';

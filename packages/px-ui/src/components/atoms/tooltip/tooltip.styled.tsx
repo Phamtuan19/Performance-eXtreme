@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import type { Theme } from '@PUI/core';
+import type { Theme } from '@pui/material/core';
 
 import type { TooltipStyleProps } from './tooltip.type';
 

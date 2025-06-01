@@ -1,7 +1,7 @@
 import type { CSSObject } from 'styled-components';
 
-import type { SxConfigProps, ThemeColor, ThemeSize, ThemeVariant } from '@PUI/core';
-import type { DeepOptional } from '@PUI/core/helpers';
+import type { SxConfigProps, ThemeColor, ThemeSize, ThemeVariant } from '@pui/material/core';
+import type { DeepOptional } from '@pui/material/core/helpers';
 
 export type PXComponentButton = {
    defaultProps: {

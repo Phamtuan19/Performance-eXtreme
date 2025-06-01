@@ -1,7 +1,7 @@
 import { merge } from 'lodash';
 import styled, { css, keyframes } from 'styled-components';
 
-import type { Theme } from '@PUI/core';
+import type { Theme } from '@pui/material/core';
 
 import type { CheckBoxStyledProps, PXComponentCheckbox } from './checkbox.type';
 

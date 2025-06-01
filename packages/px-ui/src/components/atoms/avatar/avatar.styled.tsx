@@ -2,8 +2,8 @@ import { merge } from 'lodash';
 import type { CSSObject } from 'styled-components';
 import styled from 'styled-components';
 
-import { type Theme } from '@PUI/core';
-import { isThemeColor } from '@PUI/core/utils';
+import { type Theme } from '@pui/material/core';
+import { isThemeColor } from '@pui/material/core/utils';
 
 import type { AvatarGroupStyleProps, AvatarStyledProps, PXComponentAvatar } from './avatar.type';
 

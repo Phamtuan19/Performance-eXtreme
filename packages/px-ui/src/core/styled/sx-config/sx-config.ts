@@ -2,9 +2,9 @@
 import { isArray, isFunction, merge } from 'lodash';
 import type { CSSObject } from 'styled-components';
 
-import type { SxConfigProps, SxProps as NestedCSSObject, Theme, SxProps } from '@PUI/core/types';
-import { isObject } from '@PUI/core/utils';
-import type { StandardCSSProperties } from '@PUI/types';
+import type { SxConfigProps, SxProps as NestedCSSObject, Theme, SxProps } from '@pui/material/core/types';
+import { isObject } from '@pui/material/core/utils';
+import type { StandardCSSProperties } from '@pui/material/types';
 
 import { unstable_sxConfig } from '../unstable_sxConfig';
 

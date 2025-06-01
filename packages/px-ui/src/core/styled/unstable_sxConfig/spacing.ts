@@ -1,4 +1,4 @@
-import type { StandardCSSProperties } from '@PUI/types';
+import type { StandardCSSProperties } from '@pui/material/types';
 
 /**
  * Cấu hình các key padding hỗ trợ trong hệ thống spacing.

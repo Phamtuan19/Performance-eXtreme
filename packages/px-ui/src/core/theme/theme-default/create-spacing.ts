@@ -1,5 +1,5 @@
 /* eslint-disable no-console */
-import type { Theme } from '@PUI/core/types';
+import type { Theme } from '@pui/material/core/types';
 
 const checkValidUnit = (argsInput: string): string => {
    if (!/[\d\s](px|em|rem|%|vh|vw|auto)$/.test(argsInput)) {

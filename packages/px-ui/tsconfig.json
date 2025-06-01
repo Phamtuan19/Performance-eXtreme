@@ -1,11 +1,17 @@
 {
-   "extends": "../../tsconfig.base.json",
+   "extends": "../../tsconfig.json", // Kế thừa cấu hình từ file root
+
    "compilerOptions": {
-      "declaration": true,
-      "declarationDir": "dist/types",
-      "emitDeclarationOnly": true,
-      "outDir": "dist"
+      // Dùng lại hệ module "bundler" (phù hợp với Vite, không phải Webpack)
+      "moduleResolution": "bundler",
+
+      // Đảm bảo JSX đúng chuẩn React 17+ (phòng khi bị override)
+      "jsx": "react-jsx"
    },
-   "include": ["src"],
-   "exclude": ["node_modules", "dist"]
+
+   // Include code chính và test (nếu có)
+   "include": ["src/**/*"],
+
+   // Loại trừ các file/types không cần khi biên dịch
+   "exclude": []
 }

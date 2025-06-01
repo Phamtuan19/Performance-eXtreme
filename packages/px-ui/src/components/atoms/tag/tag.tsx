@@ -1,8 +1,8 @@
 import React from 'react';
 
-import { Close } from '@PUI/components/icons';
-import { separateProps } from '@PUI/core/styled';
-import { cn } from '@PUI/core/utils';
+import { Close } from '@pui/material/components/icons';
+import { separateProps } from '@pui/material/core/styled';
+import { cn } from '@pui/material/core/utils';
 
 import type { AvatarProps } from '../avatar';
 import { Avatar } from '../avatar';

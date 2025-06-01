@@ -1,7 +1,7 @@
 import React from 'react';
 import { ThemeProvider as StyledThemeProvider } from 'styled-components';
 
-import type { Theme } from '@PUI/core/types';
+import type { Theme } from '@pui/material/core/types';
 
 import { GlobalStyle } from './global-style';
 

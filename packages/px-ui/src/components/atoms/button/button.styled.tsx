@@ -2,7 +2,7 @@ import { merge } from 'lodash';
 import React from 'react';
 import styled from 'styled-components';
 
-import type { Theme } from '@PUI/core';
+import type { Theme } from '@pui/material/core';
 
 import { ButtonBase } from './button-base';
 import type { ButtonStyleProps } from './button.type';

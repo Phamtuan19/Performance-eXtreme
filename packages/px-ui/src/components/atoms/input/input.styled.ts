@@ -1,7 +1,7 @@
 import { merge } from 'lodash';
 import styled from 'styled-components';
 
-import type { Theme } from '@PUI/core';
+import type { Theme } from '@pui/material/core';
 
 import { createInputCssVariant } from './constants';
 import type { InputStyledProps } from './input.type';

@@ -1,6 +1,6 @@
 import type React from 'react';
 
-import type { SxConfigProps, ThemeColor, ThemeSize, ThemeVariant } from '@PUI/core';
+import type { SxConfigProps, ThemeColor, ThemeSize, ThemeVariant } from '@pui/material/core';
 
 import type { AvatarProps } from '../avatar';
 

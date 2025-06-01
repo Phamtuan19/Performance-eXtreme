@@ -1,5 +1,5 @@
 /* eslint-disable no-console */
-import type { BreakpointKey, Breakpoints } from '@PUI/core/types';
+import type { BreakpointKey, Breakpoints } from '@pui/material/core/types';
 
 const BREAKPOINT_VALUE: Record<BreakpointKey, number> = {
    xs: 0,
