@@ -10,13 +10,13 @@ import { useLockBodyScroll, useOnClickOutside } from '@pui/material/hooks';
 
 import {
    SelectOptionItem,
-   SelectDropdown,
    SelectOptionWrapper,
    SelectContainer,
    SelectWrapper,
    SelectInput,
    SelectItem,
    SelectSuffixIcon,
+   SelectDropdown,
 } from './select.styled';
 import type { SelectProps, OptionType, PXComponentSelect } from './select.type';
 
@@ -118,7 +118,9 @@ const Select = React.forwardRef<HTMLInputElement, SelectProps>((props, ref) => {
    }, [visible, updatePosition]);
 
    const toggleVisible = () => {
-      if (!disabled) setVisible((prev) => !prev);
+      if (!disabled) {
+         setVisible((prev) => !prev);
+      }
    };
 
    const handleChange = (event: React.MouseEvent<Element> | React.KeyboardEvent<Element>, option: OptionType) => {
@@ -199,6 +201,7 @@ const Select = React.forwardRef<HTMLInputElement, SelectProps>((props, ref) => {
       if (visible) {
          // Nếu muốn focus phần tử đầu tiên khi dropdown mở
          setFocusedIndex(0);
+         optionRefs.current[0]?.focus();
 
          // delay 1 tick để chắc chắn DOM đã render refs
          if (!multiple) {
@@ -270,6 +273,21 @@ const Select = React.forwardRef<HTMLInputElement, SelectProps>((props, ref) => {
                optionRefs.current[0]?.focus();
             }, 0);
          }
+      }
+
+      //   focus xuống item tiếp theo.
+      if (event.key === 'ArrowDown') {
+         event.preventDefault();
+         optionRefs.current[focusedIndex]?.focus();
+      }
+      //   focus lên item tiếp theo.
+      if (event.key === 'ArrowUp') {
+         event.preventDefault();
+         optionRefs.current[focusedIndex]?.focus();
+      }
+
+      if (event.key === 'Escape') {
+         setVisible(false);
       }
    };
 
