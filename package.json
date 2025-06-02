@@ -7,7 +7,6 @@
       "preview"
    ],
    "scripts": {
-      "build": "tsc --project tsconfig.build.json",
       "type-check": "tsc --build tsconfig.base.json",
       "preview:dev": "yarn workspace preview dev",
       "format": "prettier --write .",
@@ -21,7 +20,7 @@
       "type:check": "tsc",
       "setup": "git init && husky install",
       "validate": "run-p lint type:check",
-      "build:ui": "yarn workspace @pui/material build"
+      "build": "yarn workspace @pui/material build"
    },
    "devDependencies": {
       "@commitlint/cli": "^19.8.1",

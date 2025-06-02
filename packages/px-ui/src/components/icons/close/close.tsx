@@ -1,3 +1,5 @@
+import React from 'react';
+
 import { cn } from '@pui/material/core/utils';
 
 import type { SvgCommonProps } from '../svg.type';

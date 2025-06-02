@@ -39,7 +39,6 @@
       // Định nghĩa đường dẫn alias trong dự án (monorepo dùng nhiều alias)
       "baseUrl": ".",
       "paths": {
-         "@pui/material": ["packages/px-ui/src"],
          "@pui/material/*": ["packages/px-ui/src/*"]
       },
 

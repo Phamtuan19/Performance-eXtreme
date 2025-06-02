@@ -1,40 +1,18 @@
 {
-   // Kế thừa cấu hình chung từ file tsconfig.json gốc (dùng chung cho dev/editor)
-   "extends": "./tsconfig.json",
-
+   "files": [],
+   "references": [{ "path": "./packages/px-ui" }],
    "compilerOptions": {
-      // Xuất file .d.ts để cung cấp types cho thư viện
+      "composite": true,
       "declaration": true,
-
-      // Xuất cả .js và .d.ts, không chỉ riêng file .d.ts
-      "emitDeclarationOnly": false,
-
-      // Thư mục đầu ra sau khi build (sẽ nằm ở ./dist)
+      "declarationMap": true,
+      "sourceMap": true,
       "outDir": "dist",
-
-      // Cho phép TypeScript thực sự emit file khi build
-      "noEmit": false,
-
-      // Giữ nguyên cấu trúc thư mục gốc là "packages"
-      // VD: packages/px-ui/src => dist/px-ui/src
-      "rootDir": "packages",
-
-      // Để path alias như "@pui/material" hoạt động đúng khi build
+      "module": "ESNext",
+      "target": "ESNext",
+      "moduleResolution": "Node",
       "baseUrl": ".",
-
-      // Cho phép dùng decorator (nếu dùng NestJS, MobX, v.v.)
-      "experimentalDecorators": true
-   },
-
-   // Chỉ build code nằm trong thư mục packages/
-   "include": ["packages/**/*"],
-
-   // Bỏ qua không build những thư mục này
-   "exclude": [
-      "preview", // demo playground, không liên quan đến thư viện
-      "**/node_modules", // thư viện bên ngoài, không build
-      "**/dist", // output folder, tránh build đệ quy
-      "**/build", // folder build riêng nếu có
-      "**/.*/" // thư mục ẩn (.git, .vscode,...)
-   ]
+      "paths": {
+         "@pui/material/*": ["packages/px-ui/src/*"]
+      }
+   }
 }

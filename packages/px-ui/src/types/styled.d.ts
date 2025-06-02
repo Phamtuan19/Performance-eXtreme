@@ -1,5 +1,5 @@
-import type { Theme } from '@pui/material/core';
 import 'styled-components';
+import type { Theme } from '../core';
 
 declare module 'styled-components' {
    export interface DefaultTheme extends Theme {}

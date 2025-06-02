@@ -1,8 +1,7 @@
 import type { CSSObject } from 'styled-components';
 import styled from 'styled-components';
 
-import type { Theme } from '@pui/material/core';
-import type { Palette } from '@pui/material/core/types/color';
+import type { Palette, Theme } from '@pui/material/core';
 
 import type { BadgeStyledProps } from './badge.type';
 

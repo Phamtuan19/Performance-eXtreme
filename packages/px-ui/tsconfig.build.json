@@ -1,16 +1,20 @@
 {
-   // This config is for emitting declarations (.d.ts) only
-   // Actual .ts source files are transpiled via babel
-   "extends": "./tsconfig.json",
+   "extends": "../../tsconfig.json",
    "compilerOptions": {
-      "composite": true,
       "declaration": true,
-      "noEmit": false,
-      "emitDeclarationOnly": true,
-      "outDir": "build/esm",
-      "rootDir": "./src"
+      "declarationMap": true,
+      "emitDeclarationOnly": false,
+      "outDir": "./dist/types",
+      "rootDir": "./src",
+      "module": "ESNext",
+      "target": "ESNext",
+      "moduleResolution": "Node",
+      "jsx": "react-jsx",
+      "composite": true,
+      "esModuleInterop": true,
+      "skipLibCheck": true,
+      "strict": true
    },
-   "include": ["./src/**/*.ts*"],
-   "exclude": ["src/**/*.spec.ts*", "src/**/*.test.ts*"],
-   "references": [{ "path": "../mui-system/tsconfig.build.json" }]
+   "include": ["src"],
+   "exclude": ["node_modules", "dist", "**/__tests__/**"]
 }

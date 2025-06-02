@@ -1,17 +1,20 @@
 {
-   "extends": "../../tsconfig.json", // Kế thừa cấu hình từ file root
-
+   "extends": "../../tsconfig.json",
    "compilerOptions": {
-      // Dùng lại hệ module "bundler" (phù hợp với Vite, không phải Webpack)
-      "moduleResolution": "bundler",
+      "target": "es5",
+      "module": "esnext",
+      "jsx": "react-jsx",
+      "sourceMap": true,
+      "strict": true,
+      "moduleResolution": "node",
+      "allowSyntheticDefaultImports": true,
+      "esModuleInterop": true,
+      "skipLibCheck": true,
+      "forceConsistentCasingInFileNames": true
 
-      // Đảm bảo JSX đúng chuẩn React 17+ (phòng khi bị override)
-      "jsx": "react-jsx"
-   },
-
-   // Include code chính và test (nếu có)
-   "include": ["src/**/*"],
-
-   // Loại trừ các file/types không cần khi biên dịch
-   "exclude": []
+      // "emitDeclarationOnly": true
+      // "declaration": true,
+      // "declarationDir": "dist/cjs",
+      // "outDir": "dist"
+   }
 }
