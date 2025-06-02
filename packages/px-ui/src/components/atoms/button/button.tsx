@@ -32,7 +32,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>((props, ref) => 
       children,
       className,
       sx,
-      component = 'div',
+      component,
       disabled,
       loading,
       size,

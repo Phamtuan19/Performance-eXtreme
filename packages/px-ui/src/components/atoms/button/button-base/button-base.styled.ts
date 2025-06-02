@@ -15,6 +15,7 @@ export const ButtonBaseRoot = styled('button')<{ theme: Theme; $styleProps: SxCo
       width: 'max-content',
       padding: 0,
       margin: 0,
+      userSelect: 'none',
 
       // 🔹 Appearance
       border: '1px solid transparent',

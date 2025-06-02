@@ -79,6 +79,7 @@ export const ButtonRoot = styled(ForwardedButton)<{
       overflow: 'hidden',
       textDecoration: 'none',
       width: fullWidth ? '100%' : 'fit-content',
+      userSelect: 'none',
 
       ...renderButtonStyle({ theme, color, size, variant }),
 
