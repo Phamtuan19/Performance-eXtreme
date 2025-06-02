@@ -5,9 +5,7 @@ import type { StandardCSSProperties } from '@pui/material/types';
 export const transformColorFn = (value: unknown) => {
    const theme = getTheme();
 
-   if (!value) {
-      return '';
-   }
+   if (!value) return '';
 
    if (typeof value !== 'string') {
       return String(value);
@@ -23,7 +21,10 @@ export const transformColorFn = (value: unknown) => {
 
    const keys = value.replace(/\[|\]/g, '').split('.');
 
-   let color = theme.palette;
+   // convert palette to Record<string, any> để xử lý động
+   // eslint-disable-next-line @typescript-eslint/no-explicit-any
+   let color: Record<string, any> = theme.palette;
+
    for (const key of keys) {
       if (color[key] !== undefined) {
          color = color[key];

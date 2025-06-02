@@ -2,7 +2,7 @@ import { merge } from 'lodash';
 import React from 'react';
 import styled from 'styled-components';
 
-import type { Palette, Theme } from '@pui/material/core';
+import type { Palette } from '@pui/material/core';
 
 import type { PXComponentTypography, TypographyStyledProps } from './typography.type';
 
@@ -52,7 +52,6 @@ export const TypographyStyled = styled(TypographyForwardRef).withConfig({
    shouldForwardProp: (prop) =>
       !['underline', 'delete', 'italic', 'strong', 'disabled', 'color', 'sx', 'variant'].includes(prop),
 })<{
-   theme: Theme;
    $styleProps: TypographyStyledProps;
 }>(({ theme, $styleProps }) => {
    const { variant, underline, delete: isDelete, italic, color, strong, ...restProps } = $styleProps;
