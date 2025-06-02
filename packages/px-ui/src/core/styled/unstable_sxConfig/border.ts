@@ -5,7 +5,11 @@ import { transformColorFn } from './colors';
 
 type BorderConfigValue = {
    keys?: string | readonly string[];
-   transform?: string | ((props: string | undefined) => string | number) | ((value: unknown) => string | Palette);
+   transform?:
+      | string
+      | ((props: string | undefined) => string | number)
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      | ((value: unknown) => string | Palette | Record<string, any>);
 };
 
 type Borders = {
