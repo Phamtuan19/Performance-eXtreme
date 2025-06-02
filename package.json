@@ -20,7 +20,8 @@
       "prepare": "husky install",
       "type:check": "tsc",
       "setup": "git init && husky install",
-      "validate": "run-p lint type:check"
+      "validate": "run-p lint type:check",
+      "build:ui": "yarn workspace @pui/material build"
    },
    "devDependencies": {
       "@commitlint/cli": "^19.8.1",
@@ -40,7 +41,7 @@
       "eslint": "^8.x.x",
       "prettier": "^3.x.x",
       "typescript": "^5.x.x",
-      "vite": "^4.x",
+      "vite": "^5.0.0",
       "vite-tsconfig-paths": "^5.x",
       "husky": "^9.1.7"
    },

@@ -1,34 +1,40 @@
+import { merge } from 'lodash';
 import React from 'react';
 
 import { getTheme } from '@pui/material/core';
 import { separateProps } from '@pui/material/core/styled';
 import { cn } from '@pui/material/core/utils';
 
-import { TYPOGRAPHY_DEFAULT_PROPS } from './constants';
 import { TypographyStyled } from './typography.styled';
-import type { TypographyProps } from './typography.type';
+import type { PXComponentTypography, TypographyProps } from './typography.type';
 
-const CLASS_NAME = 'PXUITypography';
+export const TYPOGRAPHY_DEFAULT_PROPS: PXComponentTypography['defaultProps'] = {
+   variant: 'h1',
+   strong: false,
+   underline: false,
+   delete: false,
+   italic: false,
+   color: 'default',
+};
 
 const Typography = React.forwardRef<HTMLElement, TypographyProps>((props, ref) => {
    const theme = getTheme();
 
-   const defaultProps = theme.components?.PXTypography?.defaultProps ?? TYPOGRAPHY_DEFAULT_PROPS;
+   const PXTypography = theme.components?.PXTypography?.defaultProps;
 
    const {
       component,
-      variant = defaultProps.variant,
+      variant,
       className,
       children,
       sx,
       underline,
       delete: deleteProp,
       italic,
-      disabled,
       strong,
       color,
       ...resProps
-   } = props;
+   } = merge({}, TYPOGRAPHY_DEFAULT_PROPS, PXTypography, props);
 
    const { styleProps, remainingProps } = separateProps(resProps);
 
@@ -37,8 +43,8 @@ const Typography = React.forwardRef<HTMLElement, TypographyProps>((props, ref) =
          ref={ref}
          as={component || variant}
          {...remainingProps}
-         className={cn(CLASS_NAME, `${CLASS_NAME}-${variant}`, className)}
-         $styleProps={{ ...styleProps, sx, variant, underline, delete: deleteProp, italic, disabled, strong, color }}
+         className={cn('px-typography', `px-typography-${variant}`, className)}
+         $styleProps={{ ...styleProps, sx, variant, underline, delete: deleteProp, italic, strong, color }}
       >
          {children}
       </TypographyStyled>

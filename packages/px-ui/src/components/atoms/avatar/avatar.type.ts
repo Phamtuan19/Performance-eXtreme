@@ -1,6 +1,6 @@
 import type { CSSObject } from 'styled-components';
 
-import type { TypeInputSize, TypeInputColor, ThemeColor, SxConfigProps } from '@pui/material/core';
+import type { ThemeSize, ThemeColor, SxConfigProps } from '@pui/material/core';
 
 // Interface định nghĩa cấu hình mặc định cho PXAvatar component
 export interface PXComponentAvatar {
@@ -8,7 +8,7 @@ export interface PXComponentAvatar {
       /**
        * Kích thước avatar (hỗ trợ theo kiểu string như 'small', 'medium', 'large' hoặc số pixel)
        */
-      size: TypeInputSize | number;
+      size: ThemeSize | number;
 
       /**
        * Hình dạng của avatar: tròn ('circle') hoặc vuông bo góc ('square')
@@ -60,13 +60,13 @@ export interface PXComponentAvatar {
        *   large: { pixelSize: 40, fontSize: 16, ... }
        * }
        */
-      size: Record<TypeInputSize, CSSObject & { pixelSize: number }>;
+      size: Record<ThemeSize, CSSObject & { pixelSize: number }>;
 
       /**
        * Style theo từng màu sắc: primary, secondary, v.v.
        * Gồm borderColor và backgroundColor (khi checked).
        */
-      color: Record<TypeInputColor, CSSObject>;
+      color: Record<ThemeColor, CSSObject>;
    };
 }
 
@@ -99,7 +99,7 @@ export type AvatarProps = Partial<AvatarStyledProps> &
 
 export type PXComponentAvatarGroup = {
    defaultProps: {
-      size: TypeInputSize | number;
+      size: ThemeSize | number;
 
       shape: 'circle' | 'square';
 

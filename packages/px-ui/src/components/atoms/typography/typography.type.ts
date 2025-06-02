@@ -1,55 +1,61 @@
-import type { SxConfigProps, SxProps, Theme, TypographyVariant } from '@pui/material/core';
-import type { UnstableSxConfigProps } from '@pui/material/core/styled';
-import type { VARIANTS_TYPOGRAPHY } from '@pui/material/core/theme/components/typography';
+import type { CSSObject } from 'styled-components';
 
-type TypographyCustomProps = {
-   /**
-    * Loại thẻ/component được render (mặc định là 'button', có thể là 'a', 'div',
-    * hoặc custom component)
-    */
-   component?: React.ElementType;
+import type { SxConfigProps, ThemeColor } from '@pui/material/core';
+import type { DeepOptional } from '@pui/material/core/helpers';
 
-   /**
-    * Loại style chữ theo hệ thống định nghĩa
-    */
-   variant?: TypographyVariant;
+type TypographyVariant = 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'h3' | 'p';
 
-   /**
-    * Làm chữ đậm
-    */
-   strong?: boolean;
+export type PXComponentTypography = {
+   defaultProps: {
+      /**
+       * Loại style chữ theo hệ thống định nghĩa
+       */
+      variant: TypographyVariant;
 
-   /**
-    * Gạch dưới
-    */
-   underline?: boolean;
+      /**
+       * Làm chữ đậm
+       */
+      strong: boolean;
 
-   /**
-    * Gạch ngang xóa chữ
-    */
-   delete?: boolean;
+      /**
+       * Gạch dưới
+       */
+      underline: boolean;
 
-   /**
-    * In nghiêng
-    */
-   italic?: boolean;
+      /**
+       * Gạch ngang xóa chữ
+       */
+      delete: boolean;
 
-   /**
-    * Màu preset
-    */
-   color?: (typeof VARIANTS_TYPOGRAPHY.COLOR)[number];
+      /**
+       * In nghiêng
+       */
+      italic: boolean;
 
-   /**
-    * Trạng thái vô hiệu hóa
-    */
-   disabled?: boolean;
+      /**
+       * Màu preset
+       */
+      color: ThemeColor | 'default';
+   };
 
-   sx?: SxProps<Theme>;
+   styleOverrides: {
+      root: CSSObject;
+      variants: Record<TypographyVariant, CSSObject>;
+      color: Record<ThemeColor | 'default', CSSObject>;
+      strong: CSSObject;
+      underline: CSSObject;
+      delete: CSSObject;
+      italic: CSSObject;
+   };
 };
 
-export type TypographyProps = Omit<React.HTMLAttributes<HTMLElement>, 'color' | 'content'> &
-   Omit<SxConfigProps, 'content'> &
-   UnstableSxConfigProps &
-   TypographyCustomProps;
+export type TypographyStyledProps = PXComponentTypography['defaultProps'] & SxConfigProps;
 
-export interface TypographyStyleRoot extends TypographyProps {}
+export type TypographyProps = Omit<React.HTMLAttributes<HTMLElement>, 'color' | 'content'> &
+   DeepOptional<TypographyStyledProps> & {
+      /**
+       * Loại thẻ/component được render (mặc định là 'button', có thể là 'a', 'div',
+       * hoặc custom component)
+       */
+      component?: React.ElementType;
+   };

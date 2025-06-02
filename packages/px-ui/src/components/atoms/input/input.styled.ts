@@ -30,7 +30,7 @@ export const InputContainer = styled.div<{
       boxSizing: 'border-box',
       display: 'inline-flex',
       flexDirection: 'column',
-      width: fullWidth ? '100%' : 'auto',
+      width: fullWidth ? '100%' : 'fit-content',
       gap: 4,
 
       ...styleOverrides.root,
@@ -155,7 +155,6 @@ export const IconStart = styled('span')<{ theme: Theme }>(({ theme }) => ({
    alignItems: 'center',
    justifyContent: 'center',
    alignSelf: 'stretch',
-   height: '100%',
    minWidth: '2.5rem',
    color: theme.palette.gray[600],
 }));
@@ -165,7 +164,6 @@ export const IconEnd = styled('span')<{ theme: Theme }>(({ theme }) => ({
    alignItems: 'center',
    justifyContent: 'center',
    alignSelf: 'stretch',
-   height: '100%',
    minWidth: '2.5rem',
    color: theme.palette.gray[600],
 }));
@@ -177,4 +175,15 @@ export const HelperText = styled('div')<{ theme: Theme; $error?: boolean }>`
       return $error ? theme.palette.error.main : theme.palette.gray[600];
    }};
    user-select: none;
+`;
+
+export const IconButton = styled.span`
+   cursor: pointer;
+   user-select: none;
+   outline: none;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   width: 100%;
+   height: 100%;
 `;

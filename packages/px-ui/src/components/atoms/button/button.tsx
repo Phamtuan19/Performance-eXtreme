@@ -32,7 +32,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>((props, ref) => 
       children,
       className,
       sx,
-      component,
+      component = 'div',
       disabled,
       loading,
       size,
@@ -105,10 +105,11 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>((props, ref) => 
    return (
       <ButtonRoot
          ref={ref}
+         {...remainingProps}
          className={cn(CLASS_NAME_BUTTON, className)}
          onClick={handleClick}
          disabled={disabled || loading}
-         as={component}
+         as={component as keyof JSX.IntrinsicElements}
          $styleProps={{
             ...styleProps,
             fullWidth,
@@ -116,8 +117,8 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>((props, ref) => 
             size,
             variant,
             color,
+            disabled,
          }}
-         {...remainingProps}
       >
          {renderChildren()}
 

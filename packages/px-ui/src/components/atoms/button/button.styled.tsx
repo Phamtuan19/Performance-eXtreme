@@ -49,7 +49,10 @@ ForwardedButton.displayName = 'ButtonRoot';
 
 export const ButtonRoot = styled(ForwardedButton)<{
    theme: Theme;
-   $styleProps: ButtonStyleProps;
+   $styleProps: Omit<
+      ButtonStyleProps,
+      'startIcon' | 'endIcon' | 'disableRipple' | 'loadingContent' | 'loadingPosition' | 'loadingIndicator' | 'loading'
+   >;
 }>((props) => {
    const { theme, $styleProps } = props;
 
@@ -75,7 +78,7 @@ export const ButtonRoot = styled(ForwardedButton)<{
       cursor: 'pointer',
       overflow: 'hidden',
       textDecoration: 'none',
-      width: fullWidth ? '100%' : 'auto',
+      width: fullWidth ? '100%' : 'fit-content',
 
       ...renderButtonStyle({ theme, color, size, variant }),
 

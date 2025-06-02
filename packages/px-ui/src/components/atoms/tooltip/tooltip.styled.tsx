@@ -1,18 +1,18 @@
 import styled from 'styled-components';
 
-import type { Theme } from '@pui/material/core';
+import type { Theme, ThemeColor } from '@pui/material/core';
 
 import type { TooltipStyleProps } from './tooltip.type';
 
 // Hàm xử lý màu chung
-const getBackgroundColor = (theme: Theme, color: string | undefined) => {
+const getBackgroundColor = (theme: Theme, color: ThemeColor | 'default') => {
    if (!color || color === 'default') return '#333';
    return theme.palette[color]?.main ?? color;
 };
 
 const getTextColor = (theme: Theme, color: string | undefined) => {
    if (!color || color === 'default') return theme.palette.common.white;
-   return theme.palette[color]?.contrastText ?? theme.palette.common.white;
+   return theme.palette[color as ThemeColor]?.contrastText ?? theme.palette.common.white;
 };
 
 export const TooltipWrapper = styled.div<{

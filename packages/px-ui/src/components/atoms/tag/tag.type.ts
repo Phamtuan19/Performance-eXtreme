@@ -1,15 +1,17 @@
 import type React from 'react';
 
-import type { SxConfigProps, ThemeColor, ThemeSize, ThemeVariant } from '@pui/material/core';
+import type { SxConfigProps, ThemeColor, ThemeSize } from '@pui/material/core';
 
 import type { AvatarProps } from '../avatar';
+
+type TagVariant = 'outline' | 'filled';
 
 export type TagStyledProps = SxConfigProps & {
    color: ThemeColor;
 
    size: Exclude<ThemeSize, 'large'>;
 
-   variant: Exclude<ThemeVariant, 'standard'>;
+   variant: Exclude<TagVariant, 'standard'>;
 };
 
 export type TagProps = React.HTMLAttributes<HTMLSpanElement> &

@@ -5,16 +5,16 @@ import { BoxStyle } from './box.styled';
 import type { BoxProps } from './box.type';
 
 const Box = (props: BoxProps) => {
-   const { className, children, sx, component, ...rest } = props;
+   const { className, children, sx, component = 'div', ...rest } = props;
 
    const { styleProps, remainingProps } = separateProps(rest);
 
    return (
       <BoxStyle
-         as={component}
+         as={component as keyof JSX.IntrinsicElements}
          {...remainingProps}
          className={cn('px-box-wrapper', className)}
-         $styleProps={{ ...styleProps, sx }}
+         $styleProps={{ ...styleProps, ...(sx ? { sx } : {}) }}
       >
          {children}
       </BoxStyle>

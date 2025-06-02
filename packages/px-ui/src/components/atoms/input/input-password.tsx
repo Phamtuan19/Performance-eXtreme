@@ -3,39 +3,52 @@ import { useState, forwardRef } from 'react';
 import { EyeOff, Eye } from '@pui/material/components/icons';
 
 import Input from './input';
-import type { InputProps } from './input.type';
+import { IconButton } from './input.styled';
+import type { InputPasswordProps } from './input.type';
 
-const InputPassword = forwardRef<HTMLInputElement, Omit<InputProps, 'type' | 'endIcon'>>((props, ref) => {
-   const [showPassword, setShowPassword] = useState(false);
+const PasswordToggleIcon = ({
+   visible,
+   onToggle,
+   label,
+}: {
+   visible: boolean;
+   onToggle: () => void;
+   label?: string;
+}) => {
+   const Icon = visible ? EyeOff : Eye;
 
-   const toggleShowPassword = () => setShowPassword((prev) => !prev);
-
-   const iconToggle = showPassword ? (
-      <EyeOff
-         style={{ cursor: 'pointer', userSelect: 'none', outline: 'none' }}
-         onClick={toggleShowPassword}
-         aria-label="Ẩn mật khẩu"
+   return (
+      <IconButton
          role="button"
+         aria-label={label || (visible ? 'Ẩn mật khẩu' : 'Hiện mật khẩu')}
          tabIndex={0}
+         onClick={onToggle}
          onKeyDown={(e) => {
-            if (e.key === 'Enter' || e.key === ' ') toggleShowPassword();
+            if (e.key === 'Enter' || e.key === ' ') onToggle();
          }}
-      />
-   ) : (
-      <Eye
-         style={{ cursor: 'pointer', userSelect: 'none', outline: 'none' }}
-         onClick={toggleShowPassword}
-         aria-label="Hiện mật khẩu"
-         role="button"
-         tabIndex={0}
-         onKeyDown={(e) => {
-            if (e.key === 'Enter' || e.key === ' ') toggleShowPassword();
-         }}
-      />
+      >
+         <Icon />
+      </IconButton>
    );
+};
 
-   return <Input {...props} ref={ref} type={showPassword ? 'text' : 'password'} endIcon={iconToggle} />;
-});
+const InputPassword = forwardRef<HTMLInputElement, InputPasswordProps>(
+   ({ toggleable = true, onToggleVisibility, ...props }, ref) => {
+      const [showPassword, setShowPassword] = useState(false);
+
+      const toggleShowPassword = () => {
+         setShowPassword((prev) => {
+            const next = !prev;
+            onToggleVisibility?.(next);
+            return next;
+         });
+      };
+
+      const icon = toggleable ? <PasswordToggleIcon visible={showPassword} onToggle={toggleShowPassword} /> : undefined;
+
+      return <Input {...props} ref={ref} type={showPassword ? 'text' : 'password'} endIcon={icon} />;
+   },
+);
 
 InputPassword.displayName = 'PXInputPassword';
 

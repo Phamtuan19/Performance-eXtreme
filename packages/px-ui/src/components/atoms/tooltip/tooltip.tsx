@@ -22,7 +22,7 @@ const Tooltip = React.forwardRef<HTMLDivElement, TooltipProps>((props, forwarded
       title,
       placement = PXTooltip?.placement ?? 'top',
       offset: offsetValue = PXTooltip?.offset ?? 8,
-      delay = PXTooltip?.delay ?? 200,
+      delay = PXTooltip?.delay ?? 0,
       arrow = PXTooltip?.arrow ?? true,
       color = PXTooltip?.color ?? 'default',
       open,
@@ -108,22 +108,26 @@ const Tooltip = React.forwardRef<HTMLDivElement, TooltipProps>((props, forwarded
    }, [visible, placement, offsetValue, open]);
 
    const setRefs = (node: HTMLDivElement | null) => {
-      tooltipRef.current = node;
+      // Only assign to tooltipRef, do not assign to forwardedRef.current if it's read-only
+      (tooltipRef as React.MutableRefObject<HTMLDivElement | null>).current = node;
       if (typeof forwardedRef === 'function') {
          forwardedRef(node);
-      } else if (forwardedRef && 'current' in forwardedRef) {
-         forwardedRef.current = node;
       }
+      // Do not assign to forwardedRef.current if it's read-only
    };
 
    const child = React.isValidElement(children)
       ? React.cloneElement(children as React.ReactElement<any>, {
            ref: (el: HTMLElement | null) => {
-              targetRef.current = el;
+              (targetRef as React.MutableRefObject<HTMLElement | null>).current = el;
               if (typeof (children as any).ref === 'function') {
                  (children as any).ref(el);
               } else if ((children as any).ref && 'current' in (children as any).ref) {
-                 (children as any).ref.current = el;
+                 try {
+                    (children as any).ref.current = el;
+                 } catch {
+                    // Ignore if ref.current is read-only
+                 }
               }
            },
            onMouseEnter: (e: React.MouseEvent) => {

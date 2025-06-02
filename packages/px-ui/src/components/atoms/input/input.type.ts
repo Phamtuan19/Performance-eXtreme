@@ -93,7 +93,6 @@ type InputTextSafeProps = Omit<
    | 'max'
    | 'size'
    | 'list'
-   | 'type'
    | 'color'
 > &
    DeepOptional<InputStyledProps> & {
@@ -101,3 +100,8 @@ type InputTextSafeProps = Omit<
    };
 
 export type InputProps = InputTextSafeProps;
+
+export type InputPasswordProps = Omit<InputProps, 'type' | 'endIcon'> & {
+   toggleable?: boolean;
+   onToggleVisibility?: (visible: boolean) => void;
+};

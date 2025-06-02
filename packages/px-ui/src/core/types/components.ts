@@ -1,35 +1,19 @@
-import type { CSSObject } from 'styled-components';
-
-import type {
-   PXComponentCheckbox,
-   PXComponentRadio,
-   PXComponentSwitch,
-   PXComponentAvatar,
-   PXComponentBadge,
-   PXComponentDivider,
-   PXComponentTooltip,
-   PXComponentSpinner,
-   PXComponentSelect,
-   PxComponentBox,
-   PXComponentButton,
-   PXComponentAvatarGroup,
-   PxComponentInput,
-} from '@pui/material/components/atoms';
+import type { PXComponentAvatar, PXComponentAvatarGroup } from '@pui/material/components/atoms/avatar';
+import type { PXComponentBadge } from '@pui/material/components/atoms/badge';
+import type { PxComponentBox } from '@pui/material/components/atoms/box';
+import type { PXComponentButton } from '@pui/material/components/atoms/button';
+import type { PXComponentCheckbox } from '@pui/material/components/atoms/checkbox';
+import type { PXComponentDivider } from '@pui/material/components/atoms/divider';
+import type { PxComponentInput } from '@pui/material/components/atoms/input';
+import type { PXComponentRadio } from '@pui/material/components/atoms/radio';
+import type { PXComponentSelect } from '@pui/material/components/atoms/select';
+import type { PXComponentSpinner } from '@pui/material/components/atoms/spinner';
+import type { PXComponentSwitch } from '@pui/material/components/atoms/switch';
+import type { PXComponentTextarea } from '@pui/material/components/atoms/textarea';
+import type { PXComponentTooltip } from '@pui/material/components/atoms/tooltip';
+import type { PXComponentTypography } from '@pui/material/components/atoms/typography';
 
 import type { DeepOptional } from '../helpers';
-import type { PxComponentTypography } from '../theme';
-
-export interface PXComponentTextarea {
-   defaultProps: {
-      autoExpand: boolean;
-      error: boolean;
-      disabled: boolean;
-      resize: 'none' | 'both' | 'horizontal' | 'vertical';
-   };
-   styleOverrides: {
-      root: CSSObject;
-   };
-}
 
 /**
  * Các thành phần UI tùy chỉnh của thư viện PX UI.
@@ -43,7 +27,7 @@ export type Components = {
 
    PXBox?: DeepOptional<PxComponentBox>;
 
-   PXTypography?: DeepOptional<PxComponentTypography>;
+   PXTypography?: DeepOptional<PXComponentTypography>;
 
    PXInput?: DeepOptional<PxComponentInput>;
 
