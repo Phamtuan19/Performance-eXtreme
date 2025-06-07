@@ -31,6 +31,8 @@ export default function App() {
    const [switchValue, setSwitchValue] = useState(false);
    const [checkboxValue, setCheckboxValue] = useState(false);
    const [radioValue, setRadioValue] = useState('option1');
+   const [selectValue, setSelectValue] = useState('');
+   const [tags, setTags] = useState(['React', 'TypeScript', 'Styled-Components']);
 
    return (
       <Box p={3} display="flex" flexDirection="column" gap={3}>
