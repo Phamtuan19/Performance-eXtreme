@@ -1,121 +1,139 @@
+import { Button, Typography, Box, Input, Switch } from '@pui/components';
 import { CircularProgress, Eye, Close } from '@pui/icons';
-import { cn } from '@pui/core';
+import type { ThemeColor } from '@pui/theme';
 import { useState } from 'react';
 
+const COLORS: ThemeColor[] = ['primary', 'secondary', 'success', 'error', 'warning', 'info'];
+
 export default function App() {
-   const [count, setCount] = useState(0);
+   const [inputValue, setInputValue] = useState('');
+   const [switchValue, setSwitchValue] = useState(false);
 
    return (
-      <div
-         style={{
-            padding: '2rem',
-            display: 'flex',
-            flexDirection: 'column',
-            gap: '1rem',
-            fontFamily: 'system-ui, sans-serif',
-         }}
-      >
-         <h1 style={{ color: '#2563eb', fontSize: '2rem', margin: 0 }}>🎉 PUI Monorepo Demo</h1>
+      <Box p={3} display="flex" flexDirection="column" gap={2}>
+         <Typography variant="h1" color="primary">
+            🎉 PUI Components Restored!
+         </Typography>
 
-         <div
-            style={{
-               background: '#f8fafc',
-               padding: '1rem',
-               borderRadius: '8px',
-               border: '1px solid #e2e8f0',
-            }}
-         >
-            <h2 style={{ margin: '0 0 1rem 0', color: '#1e293b' }}>Available Components Working:</h2>
+         <Typography variant="h2">Available Components:</Typography>
 
-            <div style={{ display: 'flex', gap: '1rem', alignItems: 'center', marginBottom: '1rem' }}>
-               <span>Icons from @pui/icons:</span>
-               <CircularProgress />
-               <Eye width={24} height={24} />
-               <Close width={24} height={24} />
-            </div>
+         <Box display="flex" gap={2} alignItems="center">
+            <Typography variant="h3">Layout:</Typography>
+            <Box background="#f0f9ff" p={2} borderRadius="6px">
+               <Typography>This is a Box component!</Typography>
+            </Box>
+         </Box>
 
-            <div style={{ display: 'flex', gap: '1rem', alignItems: 'center', marginBottom: '1rem' }}>
-               <span>Utilities from @pui/core:</span>
-               <button
-                  onClick={() => setCount(count + 1)}
-                  className={cn('px-4', 'py-2', 'bg-blue-500', 'text-white', 'rounded')}
-                  style={{
-                     background: '#3b82f6',
-                     color: 'white',
-                     padding: '0.5rem 1rem',
-                     border: 'none',
-                     borderRadius: '6px',
-                     cursor: 'pointer',
-                  }}
-               >
-                  Count: {count} (using cn utility)
-               </button>
-            </div>
+         <Box display="flex" gap={2} alignItems="center">
+            <Typography variant="h3">Buttons:</Typography>
+            <Button size="small">Small</Button>
+            <Button size="medium">Medium</Button>
+            <Button size="large">Large</Button>
+         </Box>
 
-            <div style={{ marginBottom: '1rem' }}>
-               <h3 style={{ margin: '0 0 0.5rem 0', color: '#059669' }}>✅ Successfully Built Packages:</h3>
-               <ul style={{ margin: 0, paddingLeft: '1.5rem' }}>
+         <Box display="flex" gap={2} alignItems="center">
+            <Typography variant="h3">Button Colors:</Typography>
+            {COLORS.map((color) => (
+               <Button key={color} color={color} variant="container" size="small">
+                  {color}
+               </Button>
+            ))}
+         </Box>
+
+         <Box display="flex" gap={2} alignItems="center">
+            <Typography variant="h3">Button Variants:</Typography>
+            <Button variant="container">Container</Button>
+            <Button variant="outlined">Outlined</Button>
+            <Button variant="text">Text</Button>
+         </Box>
+
+         <Box display="flex" gap={2} alignItems="center">
+            <Typography variant="h3">Inputs:</Typography>
+            <Input
+               placeholder="Outline input"
+               variant="outline"
+               value={inputValue}
+               onChange={(e) => setInputValue(e.target.value)}
+            />
+            <Input placeholder="Filled input" variant="filled" startIcon={<Eye />} />
+            <Input placeholder="Standard input" variant="standard" endIcon={<Close />} />
+         </Box>
+
+         <Box display="flex" gap={2} alignItems="center">
+            <Typography variant="h3">Input with Icons:</Typography>
+            <Input
+               placeholder="Search..."
+               startIcon={<Eye />}
+               endIcon={<CircularProgress />}
+               helperText="This input has start and end icons"
+            />
+         </Box>
+
+         <Box display="flex" gap={2} alignItems="center">
+            <Typography variant="h3">Switches:</Typography>
+            <Switch size="small" checked={switchValue} onChange={(e) => setSwitchValue(e.target.checked)} />
+            <Switch size="medium" color="success" />
+            <Switch size="large" color="error" />
+         </Box>
+
+         <Box display="flex" gap={2} alignItems="center">
+            <Typography variant="h3">Switch Colors:</Typography>
+            {COLORS.map((color) => (
+               <Switch key={color} color={color} defaultChecked />
+            ))}
+         </Box>
+
+         <Box display="flex" gap={2} alignItems="center">
+            <Typography variant="h3">Icons:</Typography>
+            <CircularProgress />
+            <Eye />
+            <Close />
+         </Box>
+
+         <Box display="flex" gap={2} alignItems="center">
+            <Typography variant="h3">Typography Variants:</Typography>
+            <Box display="flex" flexDirection="column" gap={1}>
+               <Typography variant="h1">Heading 1</Typography>
+               <Typography variant="h2">Heading 2</Typography>
+               <Typography variant="h3">Heading 3</Typography>
+               <Typography variant="h4">Heading 4</Typography>
+               <Typography variant="h5">Heading 5</Typography>
+               <Typography variant="h6">Heading 6</Typography>
+               <Typography variant="p">Paragraph text</Typography>
+            </Box>
+         </Box>
+
+         <Box backgroundColor="#f0fdf4" p={2} borderRadius="8px">
+            <Typography variant="h3" color="success">
+               ✅ Successfully Restored Components!
+            </Typography>
+            <Typography variant="p">The following components are now working:</Typography>
+            <Box p={1}>
+               <ul>
                   <li>
-                     <code style={{ background: '#e5e7eb', padding: '0.125rem 0.25rem', borderRadius: '3px' }}>
-                        @pui/core
-                     </code>{' '}
-                     - Utilities, helpers, hooks
+                     <strong>Box</strong> - Layout component with flexbox properties
                   </li>
                   <li>
-                     <code style={{ background: '#e5e7eb', padding: '0.125rem 0.25rem', borderRadius: '3px' }}>
-                        @pui/theme
-                     </code>{' '}
-                     - Theme system, colors, breakpoints
+                     <strong>Button</strong> - Full-featured button with variants, colors, sizes
                   </li>
                   <li>
-                     <code style={{ background: '#e5e7eb', padding: '0.125rem 0.25rem', borderRadius: '3px' }}>
-                        @pui/icons
-                     </code>{' '}
-                     - Icon components
+                     <strong>Input</strong> - Text input with variants, icons, helper text
+                  </li>
+                  <li>
+                     <strong>Switch</strong> - Toggle switch with colors and sizes
+                  </li>
+                  <li>
+                     <strong>Typography</strong> - Text component with semantic variants
+                  </li>
+                  <li>
+                     <strong>Icons</strong> - CircularProgress, Eye, Close
                   </li>
                </ul>
-            </div>
-
-            <div
-               style={{
-                  background: '#fef3c7',
-                  padding: '0.75rem',
-                  borderRadius: '6px',
-                  border: '1px solid #f59e0b',
-               }}
-            >
-               <h3 style={{ margin: '0 0 0.5rem 0', color: '#92400e' }}>⚠️ In Progress:</h3>
-               <ul style={{ margin: 0, paddingLeft: '1.5rem' }}>
-                  <li>
-                     <code style={{ background: '#e5e7eb', padding: '0.125rem 0.25rem', borderRadius: '3px' }}>
-                        @pui/components
-                     </code>{' '}
-                     - UI components (has styled-components type issues)
-                  </li>
-                  <li>
-                     <code style={{ background: '#e5e7eb', padding: '0.125rem 0.25rem', borderRadius: '3px' }}>
-                        @pui/material
-                     </code>{' '}
-                     - Meta package (depends on components)
-                  </li>
-               </ul>
-            </div>
-         </div>
-
-         <div
-            style={{
-               background: '#f0fdf4',
-               padding: '1rem',
-               borderRadius: '8px',
-               border: '1px solid #22c55e',
-            }}
-         >
-            <h2 style={{ margin: '0 0 1rem 0', color: '#15803d' }}>✅ Monorepo Migration Complete!</h2>
-            <p style={{ margin: 0, color: '#166534' }}>
-               Successfully restructured from single package to modular monorepo with clean separation of concerns. Core
-               functionality is working and ready for further development!
-            </p>
-         </div>
-      </div>
+            </Box>
+            <Typography variant="p" color="info">
+               More components can be migrated from the original px-ui package as needed!
+            </Typography>
+         </Box>
+      </Box>
    );
 }
