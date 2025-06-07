@@ -26,7 +26,12 @@
       "build:icons": "yarn workspace @pui/icons build",
       "build:components": "yarn workspace @pui/components build",
       "build:material": "yarn workspace @pui/material build",
-      "build:all": "yarn build:core && yarn build:theme && yarn build:icons && yarn build:components && yarn build:material"
+      "build:all": "yarn build:core && yarn build:theme && yarn build:icons && yarn build:components && yarn build:material",
+      "dev": "yarn preview:dev",
+      "clean": "yarn workspaces foreach --parallel run clean",
+      "clean:build": "rimraf packages/*/dist",
+      "test": "yarn workspaces foreach --parallel run test",
+      "install:all": "yarn install --frozen-lockfile"
    },
    "devDependencies": {
       "@commitlint/cli": "^19.8.1",
