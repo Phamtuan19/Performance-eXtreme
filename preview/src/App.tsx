@@ -132,6 +132,83 @@ export default function App() {
                   <Radio value="option3" label="Third Option" />
                </RadioGroup>
             </Box>
+
+            <Divider>Select Dropdown</Divider>
+            <Box display="flex" gap={2} p={2} flexWrap="wrap">
+               <Box>
+                  <Label>Basic Select</Label>
+                  <Select
+                     placeholder="Choose an option"
+                     value={selectValue}
+                     onChange={setSelectValue}
+                     options={[
+                        { value: 'react', label: 'React' },
+                        { value: 'vue', label: 'Vue.js' },
+                        { value: 'angular', label: 'Angular' },
+                        { value: 'svelte', label: 'Svelte' },
+                     ]}
+                     helperText="Select your favorite framework"
+                  />
+               </Box>
+               <Box>
+                  <Label>Select Variants</Label>
+                  <Box display="flex" gap={2}>
+                     <Select
+                        variant="outline"
+                        placeholder="Outline"
+                        options={[{ value: 'outline', label: 'Outline' }]}
+                        size="small"
+                     />
+                     <Select
+                        variant="filled"
+                        placeholder="Filled"
+                        options={[{ value: 'filled', label: 'Filled' }]}
+                        size="small"
+                     />
+                     <Select
+                        variant="standard"
+                        placeholder="Standard"
+                        options={[{ value: 'standard', label: 'Standard' }]}
+                        size="small"
+                     />
+                  </Box>
+               </Box>
+            </Box>
+
+            <Divider>Tags</Divider>
+            <Box p={2}>
+               <Label>Tag Examples</Label>
+               <Box display="flex" gap={2} p={2} flexWrap="wrap" alignItems="center">
+                  {tags.map((tag, index) => (
+                     <Tag
+                        key={tag}
+                        deletable
+                        onDelete={() => setTags(tags.filter((_, i) => i !== index))}
+                        color={COLORS[index % COLORS.length]}
+                     >
+                        {tag}
+                     </Tag>
+                  ))}
+                  <Tag variant="outlined" color="primary" onClick={() => setTags([...tags, 'New Tag'])}>
+                     + Add Tag
+                  </Tag>
+               </Box>
+
+               <Box display="flex" gap={2} p={2} flexWrap="wrap" alignItems="center">
+                  <Tag variant="filled" color="primary" size="small">
+                     Small Filled
+                  </Tag>
+                  <Tag variant="outlined" color="secondary" size="medium">
+                     Medium Outlined
+                  </Tag>
+                  <Tag variant="soft" color="success" size="large">
+                     Large Soft
+                  </Tag>
+                  <Tag variant="filled" color="error" icon={<Close />}>
+                     With Icon
+                  </Tag>
+               </Box>
+            </Box>
          </Box>
 
          {/* Visual Components */}
