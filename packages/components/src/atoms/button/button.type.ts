@@ -4,7 +4,7 @@ import type { DeepOptional } from '@pui/core';
 import type { ThemeColor, ThemeSize, ThemeVariant } from '@pui/theme';
 
 // Simplified SxConfigProps
-interface SxConfigProps {
+export interface SxConfigProps {
    sx?: CSSObject;
    className?: string;
 }
