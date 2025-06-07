@@ -1,5 +1,5 @@
 import React from 'react';
-import { ThemeProvider as StyledThemeProvider } from 'styled-components';
+import { ThemeProvider as StyledThemeProvider, useTheme as useStyledTheme } from 'styled-components';
 
 import type { Theme } from './types';
 
@@ -33,4 +33,17 @@ const ThemeProvider = (props: PXThemeProviderProps) => {
    return <StyledThemeProvider theme={theme}>{children}</StyledThemeProvider>;
 };
 
-export { ThemeProvider };
+// Hook to access theme in components
+const useTheme = (): Theme => {
+   const theme = useStyledTheme() as Theme;
+
+   if (!theme) {
+      throw new Error(
+         'useTheme must be used within a ThemeProvider. ' + 'Make sure your component is wrapped with ThemeProvider.',
+      );
+   }
+
+   return theme;
+};
+
+export { ThemeProvider, useTheme };
