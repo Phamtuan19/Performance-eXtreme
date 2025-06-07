@@ -3,8 +3,8 @@ import type { CSSObject } from 'styled-components';
 import type { DeepOptional } from '@pui/core';
 import type { ThemeColor, ThemeSize, ThemeVariant } from '@pui/theme';
 
-// Placeholder for SxConfigProps - simplified version
-export interface SxConfigProps {
+// Simplified SxConfigProps
+interface SxConfigProps {
    sx?: CSSObject;
    className?: string;
 }
