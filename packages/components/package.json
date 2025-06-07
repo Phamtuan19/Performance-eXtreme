@@ -2,9 +2,9 @@
    "name": "@pui/components",
    "version": "0.0.1",
    "author": "Pham Tuan",
-   "main": "./dist/index.js",
-   "module": "./dist/index.es.js",
-   "types": "./dist/index.d.ts",
+   "main": "./src/index.ts",
+   "module": "./src/index.ts",
+   "types": "./src/index.ts",
    "keywords": [
       "react",
       "react-component",
