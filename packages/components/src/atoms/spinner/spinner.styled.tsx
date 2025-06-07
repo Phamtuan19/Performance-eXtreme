@@ -42,40 +42,44 @@ export const SpinnerRoot = styled('div')<{
 
 export const SpinnerCircular = styled('div')<{
    $styleProps: Partial<SpinnerStyledProps>;
-}>(({ theme, $styleProps }) => {
-   const { color = 'primary', size = 'medium', thickness = 4 } = $styleProps;
+}>`
+   ${({ theme, $styleProps }) => {
+      const { color = 'primary', size = 'medium', thickness = 4 } = $styleProps;
 
-   const sizeMap = {
-      small: 20,
-      medium: 24,
-      large: 32,
-   };
+      const sizeMap = {
+         small: 20,
+         medium: 24,
+         large: 32,
+      };
 
-   const actualSize = typeof size === 'number' ? size : sizeMap[size];
+      const actualSize = typeof size === 'number' ? size : sizeMap[size];
 
-   return {
-      width: `${actualSize}px`,
-      height: `${actualSize}px`,
-      border: `${thickness}px solid rgba(0, 0, 0, 0.1)`,
-      borderTop: `${thickness}px solid ${theme.palette[color]?.main || theme.palette.primary.main}`,
-      borderRadius: '50%',
-      animation: `${spin} 1s linear infinite`,
-   };
-});
+      return css`
+         width: ${actualSize}px;
+         height: ${actualSize}px;
+         border: ${thickness}px solid rgba(0, 0, 0, 0.1);
+         border-top: ${thickness}px solid ${theme.palette[color]?.main || theme.palette.primary.main};
+         border-radius: 50%;
+         animation: ${spin} 1s linear infinite;
+      `;
+   }}
+`;
 
 export const SpinnerLinear = styled('div')<{
    $styleProps: Partial<SpinnerStyledProps>;
-}>(({ theme, $styleProps }) => {
-   const { color = 'primary' } = $styleProps;
+}>`
+   ${({ theme, $styleProps }) => {
+      const { color = 'primary' } = $styleProps;
 
-   return {
-      position: 'absolute',
-      top: 0,
-      left: 0,
-      width: '100%',
-      height: '100%',
-      backgroundColor: theme.palette[color]?.main || theme.palette.primary.main,
-      borderRadius: 'inherit',
-      animation: `${linearProgress} 1.5s ease-in-out infinite`,
-   };
-});
+      return css`
+         position: absolute;
+         top: 0;
+         left: 0;
+         width: 100%;
+         height: 100%;
+         background-color: ${theme.palette[color]?.main || theme.palette.primary.main};
+         border-radius: inherit;
+         animation: ${linearProgress} 1.5s ease-in-out infinite;
+      `;
+   }}
+`;
