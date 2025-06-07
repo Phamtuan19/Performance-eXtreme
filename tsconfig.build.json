@@ -25,7 +25,6 @@
       { "path": "./packages/core" },
       { "path": "./packages/theme" },
       { "path": "./packages/icons" },
-      { "path": "./packages/components" },
-      { "path": "./packages/px-ui" }
+      { "path": "./packages/components" }
    ]
 }
