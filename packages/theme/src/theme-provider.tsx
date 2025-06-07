@@ -1,5 +1,7 @@
 import React from 'react';
-import { ThemeProvider as StyledThemeProvider, useTheme as useStyledTheme } from 'styled-components';
+import { ThemeProvider as StyledThemeProvider } from 'styled-components';
+import { useContext } from 'react';
+import { ThemeContext } from 'styled-components';
 
 import type { Theme } from './types';
 
@@ -35,7 +37,7 @@ const ThemeProvider = (props: PXThemeProviderProps) => {
 
 // Hook to access theme in components
 const useTheme = (): Theme => {
-   const theme = useStyledTheme() as Theme;
+   const theme = useContext(ThemeContext) as Theme;
 
    if (!theme) {
       throw new Error(
