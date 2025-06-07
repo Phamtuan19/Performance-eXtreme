@@ -1,0 +1,13 @@
+{
+   "extends": "../../tsconfig.base.json",
+   "compilerOptions": {
+      "outDir": "./dist",
+      "rootDir": "./src",
+      "declaration": true,
+      "declarationMap": true,
+      "composite": true
+   },
+   "references": [{ "path": "../core" }, { "path": "../theme" }, { "path": "../icons" }],
+   "include": ["src/**/*"],
+   "exclude": ["dist", "node_modules", "**/*.test.*", "**/*.spec.*"]
+}

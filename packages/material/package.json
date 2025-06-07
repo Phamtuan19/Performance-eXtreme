@@ -1,0 +1,36 @@
+{
+   "name": "@pui/material",
+   "version": "0.0.1",
+   "author": "Pham Tuan",
+   "main": "./src/index.ts",
+   "module": "./src/index.ts",
+   "types": "./src/index.ts",
+   "keywords": [
+      "react",
+      "ui-library",
+      "components",
+      "design-system",
+      "material-design"
+   ],
+   "scripts": {
+      "build": "tsc -b"
+   },
+   "dependencies": {
+      "@pui/core": "^0.0.1",
+      "@pui/theme": "^0.0.1",
+      "@pui/icons": "^0.0.1",
+      "@pui/components": "^0.0.1",
+      "react": "^18.0.0",
+      "styled-components": "^6.0.0"
+   },
+   "devDependencies": {
+      "@types/react": "^18.2.0",
+      "@types/react-dom": "^18.2.0",
+      "@types/styled-components": "^5.1.26",
+      "typescript": "^5.8.3"
+   },
+   "peerDependencies": {
+      "react": "^18.0.0 || ^19.0.0",
+      "react-dom": "^18.0.0 || ^19.0.0"
+   }
+}

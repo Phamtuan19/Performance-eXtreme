@@ -1,0 +1,31 @@
+{
+   "extends": "./tsconfig.json",
+
+   "compilerOptions": {
+      "declaration": true,
+
+      "emitDeclarationOnly": false,
+
+      "outDir": "dist",
+
+      "noEmit": false,
+
+      "rootDir": "packages",
+
+      "baseUrl": ".",
+
+      "experimentalDecorators": true
+   },
+
+   "include": ["packages/**/*"],
+
+   "exclude": ["preview", "**/node_modules", "**/dist", "**/build", "**/.*/"],
+
+   "references": [
+      { "path": "./packages/core" },
+      { "path": "./packages/theme" },
+      { "path": "./packages/icons" },
+      { "path": "./packages/components" },
+      { "path": "./packages/material" }
+   ]
+}

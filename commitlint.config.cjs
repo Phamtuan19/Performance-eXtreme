@@ -8,5 +8,6 @@ module.exports = {
    extends: ['@commitlint/config-conventional'],
    rules: {
       'type-enum': [2, 'always', ['feat', 'fix', 'refactor', 'chore', 'docs']],
+      'header-max-length': [2, 'always', 140],
    },
 };

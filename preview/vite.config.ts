@@ -3,17 +3,17 @@ import react from '@vitejs/plugin-react';
 import path from 'path';
 
 export default defineConfig({
-   root: path.resolve(__dirname), // thư mục preview là root
    plugins: [react()],
    resolve: {
       alias: {
-         '@PUI': path.resolve(__dirname, '../src'), // alias trỏ đến thư viện chính
+         '@pui/core': path.resolve(__dirname, '../packages/core/src'),
+         '@pui/theme': path.resolve(__dirname, '../packages/theme/src'),
+         '@pui/icons': path.resolve(__dirname, '../packages/icons/src'),
+         '@pui/components': path.resolve(__dirname, '../packages/components/src'),
+         '@pui/material': path.resolve(__dirname, '../packages/material/src'),
       },
    },
    server: {
-      port: 3000,
-   },
-   build: {
-      outDir: 'dist', // thư mục build ra trong preview
+      port: 8088,
    },
 });
