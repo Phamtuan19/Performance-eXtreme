@@ -2,7 +2,6 @@
 export * from '@pui/core';
 export * from '@pui/theme';
 export * from '@pui/icons';
-export * from '@pui/components';
 
 // For backward compatibility, also export original structure
 export * from './components/atoms';
