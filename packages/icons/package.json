@@ -1,5 +1,5 @@
 {
-   "name": "@pui/material",
+   "name": "@pui/icons",
    "version": "0.0.1",
    "author": "Pham Tuan",
    "main": "./dist/index.js",
@@ -7,29 +7,20 @@
    "types": "./dist/index.d.ts",
    "keywords": [
       "react",
-      "react-component",
-      "styled-component"
+      "icons",
+      "svg",
+      "components"
    ],
    "scripts": {
       "build": "tsc -b"
    },
    "dependencies": {
       "@pui/core": "^0.0.1",
-      "@pui/theme": "^0.0.1",
-      "@pui/icons": "^0.0.1",
-      "@pui/components": "^0.0.1",
-      "react": "^18.0.0",
-      "styled-components": "^6.0.0",
-      "@floating-ui/dom": "^1.0.0",
-      "lodash": "^4.17.21",
-      "clsx": "^1.2.1",
-      "tailwind-merge": "^1.14.0"
+      "react": "^18.0.0"
    },
    "devDependencies": {
       "@types/react": "^18.2.0",
       "@types/react-dom": "^18.2.0",
-      "@types/lodash": "^4.14.192",
-      "@types/styled-components": "^5.1.26",
       "typescript": "^5.8.3"
    },
    "peerDependencies": {
