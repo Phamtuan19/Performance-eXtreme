@@ -1,0 +1,20 @@
+# Compiled files
+*.js
+*.jsx
+*.d.ts
+*.d.ts.map
+
+# Build output
+dist/
+build/
+
+# TypeScript incremental compilation
+*.tsbuildinfo
+
+# Don't ignore package.json, tsconfig.json, etc.
+!package.json
+!tsconfig.json
+!*.config.js
+!vite.config.*
+!rollup.config.*
+!webpack.config.*
