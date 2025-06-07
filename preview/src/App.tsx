@@ -18,9 +18,11 @@ import {
    Spinner,
    Textarea,
    Tooltip,
-} from '@pui/components';
-import { CircularProgress, Eye, Close } from '@pui/icons';
-import type { ThemeColor } from '@pui/theme';
+   CircularProgress,
+   Eye,
+   Close,
+   type ThemeColor,
+} from '@pui/material';
 import { useState } from 'react';
 
 const COLORS: ThemeColor[] = ['primary', 'secondary', 'success', 'error', 'warning', 'info'];
