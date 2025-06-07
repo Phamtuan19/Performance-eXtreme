@@ -78,12 +78,8 @@ export const BadgeContent = styled('span')<{
    const positionKey = `${anchorOrigin.vertical}-${anchorOrigin.horizontal}` as keyof typeof positionMap;
 
    const animationMap = {
-      pulse: css`
-         ${pulseAnimation} 1.4s ease-in-out infinite
-      `,
-      wave: css`
-         ${waveAnimation} 1.4s ease-in-out infinite
-      `,
+      pulse: `${pulseAnimation} 1.4s ease-in-out infinite`,
+      wave: `${waveAnimation} 1.4s ease-in-out infinite`,
       none: 'none',
    };
 
