@@ -1,12 +1,12 @@
-// Re-export everything from sub-packages for convenience
+// Re-export everything from all packages for easy imports
 export * from '@pui/core';
 export * from '@pui/theme';
 export * from '@pui/icons';
 export * from '@pui/components';
 
-// Main exports for theme
-import { ThemeProvider, createThemeOption, getTheme } from '@pui/theme';
-import type { Theme, ThemeOptions } from '@pui/theme';
+// Additional convenience exports
+export { createThemeOption, ThemeProvider, useTheme } from '@pui/theme';
+export { cn, removeNullProps } from '@pui/core';
 
-export { ThemeProvider, createThemeOption, getTheme };
-export type { Theme, ThemeOptions };
+// Default theme export for quick setup
+export { THEME_DEFAULT as defaultTheme } from '@pui/theme';
