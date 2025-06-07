@@ -47,9 +47,9 @@ export const SelectControl = styled('div')<{
 
    const variantStyles = {
       outline: css`
-         border: 1px solid ${error ? theme.palette.error.main : theme.palette.grey[300]};
+         border: 1px solid ${error ? theme.palette.error.main : theme.palette.gray[300]};
          border-radius: 4px;
-         background-color: ${theme.palette.background.paper};
+         background-color: ${theme.palette.common.white};
 
          ${focused &&
          css`
@@ -63,9 +63,9 @@ export const SelectControl = styled('div')<{
       `,
       filled: css`
          border: none;
-         border-bottom: 1px solid ${error ? theme.palette.error.main : theme.palette.grey[300]};
+         border-bottom: 1px solid ${error ? theme.palette.error.main : theme.palette.gray[300]};
          border-radius: 4px 4px 0 0;
-         background-color: ${theme.palette.grey[100]};
+         background-color: ${theme.palette.gray[100]};
 
          ${focused &&
          css`
@@ -75,7 +75,7 @@ export const SelectControl = styled('div')<{
       `,
       standard: css`
          border: none;
-         border-bottom: 1px solid ${error ? theme.palette.error.main : theme.palette.grey[300]};
+         border-bottom: 1px solid ${error ? theme.palette.error.main : theme.palette.gray[300]};
          border-radius: 0;
          background-color: transparent;
 
@@ -86,7 +86,6 @@ export const SelectControl = styled('div')<{
          `}
       `,
    };
-
    return {
       display: 'flex',
       alignItems: 'center',
@@ -94,7 +93,7 @@ export const SelectControl = styled('div')<{
       cursor: disabled ? 'not-allowed' : 'pointer',
       transition: 'all 0.2s ease-in-out',
       opacity: disabled ? 0.6 : 1,
-      color: hasValue ? theme.palette.text.primary : theme.palette.text.secondary,
+      color: hasValue ? theme.palette.common.black : theme.palette.common.hint,
       ...sizeMap[size],
       ...variantStyles[variant],
    };
@@ -132,8 +131,8 @@ export const SelectDropdown = styled('div')<{
    zIndex: 1000,
    maxHeight: $open ? `${$maxHeight}px` : '0',
    overflowY: 'auto',
-   backgroundColor: theme.palette.background.paper,
-   border: $open ? `1px solid ${theme.palette.grey[300]}` : 'none',
+   backgroundColor: theme.palette.common.white,
+   border: $open ? `1px solid ${theme.palette.gray[300]}` : 'none',
    borderRadius: '4px',
    boxShadow: $open ? theme.shadows[2] : 'none',
    transition: 'all 0.2s ease-in-out',
@@ -152,15 +151,19 @@ export const SelectOption = styled('div')<{
    backgroundColor: $selected
       ? theme.palette.primary.main + '20'
       : $highlighted
-        ? theme.palette.grey[100]
+        ? theme.palette.gray[100]
         : 'transparent',
-   color: $disabled ? theme.palette.text.disabled : $selected ? theme.palette.primary.main : theme.palette.text.primary,
+   color: $disabled
+      ? theme.palette.disabled.color
+      : $selected
+        ? theme.palette.primary.main
+        : theme.palette.common.black,
    opacity: $disabled ? 0.5 : 1,
    transition: 'all 0.15s ease-in-out',
    borderLeft: $selected ? `3px solid ${theme.palette.primary.main}` : '3px solid transparent',
 
    '&:hover:not(:disabled)': {
-      backgroundColor: $selected ? theme.palette.primary.main + '30' : theme.palette.grey[100],
+      backgroundColor: $selected ? theme.palette.primary.main + '30' : theme.palette.gray[100],
    },
 }));
 
@@ -169,7 +172,7 @@ export const SelectHelperText = styled('div')<{
 }>(({ theme, $error }) => ({
    marginTop: '4px',
    fontSize: '12px',
-   color: $error ? theme.palette.error.main : theme.palette.text.secondary,
+   color: $error ? theme.palette.error.main : theme.palette.common.hint,
 }));
 
 export const SelectLoadingOption = styled('div')(({ theme }) => ({
@@ -177,12 +180,12 @@ export const SelectLoadingOption = styled('div')(({ theme }) => ({
    display: 'flex',
    alignItems: 'center',
    justifyContent: 'center',
-   color: theme.palette.text.secondary,
+   color: theme.palette.common.hint,
 }));
 
 export const SelectEmptyOption = styled('div')(({ theme }) => ({
    padding: '8px 12px',
    textAlign: 'center',
-   color: theme.palette.text.secondary,
+   color: theme.palette.common.hint,
    fontStyle: 'italic',
 }));
