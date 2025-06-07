@@ -20,7 +20,9 @@
          "@pui/icons": ["./packages/icons/src"],
          "@pui/icons/*": ["./packages/icons/src/*"],
          "@pui/components": ["./packages/components/src"],
-         "@pui/components/*": ["./packages/components/src/*"]
+         "@pui/components/*": ["./packages/components/src/*"],
+         "@pui/material": ["./packages/material/src"],
+         "@pui/material/*": ["./packages/material/src/*"]
       },
 
       "types": ["node", "react"]
