@@ -2,10 +2,12 @@
    "extends": "../../tsconfig.base.json",
    "compilerOptions": {
       "outDir": "./dist",
-      "composite": true,
-      "noEmit": false
+      "rootDir": "./src",
+      "declaration": true,
+      "declarationMap": true,
+      "composite": true
    },
+   "references": [{ "path": "../core" }, { "path": "../theme" }, { "path": "../icons" }, { "path": "../components" }],
    "include": ["src/**/*"],
-   "exclude": ["dist", "node_modules"],
-   "references": [{ "path": "../core" }, { "path": "../theme" }, { "path": "../icons" }, { "path": "../components" }]
+   "exclude": ["dist", "node_modules", "**/*.test.*", "**/*.spec.*"]
 }
