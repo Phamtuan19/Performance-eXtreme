@@ -1,4 +1,4 @@
-import { createThemeOption, ThemeProvider } from '@pui/material/core';
+import { createThemeOption, ThemeProvider } from '@pui/theme';
 import { createRoot } from 'react-dom/client';
 
 import './index.css';

@@ -1,19 +1,6 @@
-import {
-   Box,
-   Switch,
-   Select,
-   Radio,
-   Input,
-   Checkbox,
-   Badge,
-   Button,
-   Avatar,
-   AvatarGroup,
-   InputPassword,
-   Tooltip,
-} from '@pui/material';
-import { CircularProgress } from '@pui/material/components/icons';
-import type { ThemeColor } from '@pui/material/core';
+import { Button, Typography } from '@pui/components';
+import { CircularProgress, Eye, Close } from '@pui/icons';
+import type { ThemeColor } from '@pui/theme';
 import { useState } from 'react';
 
 const COLORS: ThemeColor[] = ['primary', 'secondary', 'success', 'error', 'warning', 'info'];
@@ -22,187 +9,82 @@ export default function App() {
    const [selected, setSelected] = useState('large');
 
    return (
-      <Box display="flex" flexDirection="column" gap={3} p={2}>
-         <Tooltip title="Tooltip">
-            <Button>Tooltip</Button>
-         </Tooltip>
-         <InputPassword helperText="Input helperText" />
-         <Switch size="large" />
-         <Switch size="medium" />
-         <Switch size="small" />
-         {/* <Box display="flex" gap={2}>
-            {COLORS.map((color) => {
-               return <Switch key={color} size="large" color={color} />;
-            })}
-         </Box>
-         <Box display="flex" gap={2}>
-            {COLORS.map((color) => {
-               return <Switch key={color} size="medium" color={color} />;
-            })}
-         </Box>
-         <Box display="flex" gap={2}>
-            {COLORS.map((color) => {
-               return <Switch key={color} size="small" color={color} />;
-            })}
-         </Box> */}
-         <Box display="flex" gap={2}>
-            <Select
-               prefix={'hello'}
-               suffixIcon={<>icon</>}
-               width={200}
-               options={[
-                  { label: 'Option 1', value: '1' },
-                  { label: 'Option 2', value: '2' },
-                  { label: 'Option 3', value: '3' },
-                  { label: 'Option 4', value: '4' },
-                  { label: 'Option 5', value: '5' },
-                  { label: 'Option 6', value: '6' },
-               ]}
-            />
-            <Select
-               multiple
-               width={200}
-               options={[
-                  { label: 'Option 1', value: '1' },
-                  { label: 'Option 2', value: '2' },
-                  { label: 'Option 3', value: '3' },
-                  { label: 'Option 4', value: '4' },
-                  { label: 'Option 5', value: '5' },
-                  { label: 'Option 6', value: '6' },
-               ]}
-            />
-         </Box>
-         <Box display="flex" gap={2}>
-            <Radio
-               size="large"
-               label="Radio large"
-               value="large"
-               checked={selected === 'large'}
-               onChange={() => setSelected('large')}
-            />
-            <Radio
-               size="medium"
-               label="Radio medium"
-               value="medium"
-               checked={selected === 'medium'}
-               onChange={() => setSelected('medium')}
-            />
-            <Radio
-               size="small"
-               label="Radio small"
-               value="small"
-               checked={selected === 'small'}
-               onChange={() => setSelected('small')}
-            />
-         </Box>
-         <Box display="flex" gap={2}>
-            <Input
-               loading
-               variant="outline"
-               error
-               helperText="Input helper text variant outline color error"
-               defaultValue="Input helper text variant outline color error"
-            />
-            <Input variant="filled" helperText="Input helper text variant filled" />
-            <Input variant="standard" helperText="Input helper text variant standard" />
-         </Box>
-         <Box display="flex" gap={2}>
-            <Input
-               error
-               helperText="Input helper text error"
-               sx={{
-                  '& .px-input-icon-start': {
-                     background: '#f5f5f5',
-                  },
-               }}
-               endIcon={<CircularProgress />}
-            />
-            <Input variant="filled" helperText="Input helper text variant filled" endIcon={<CircularProgress />} />
-            <Input variant="standard" helperText="Input helper text variant standard" endIcon={<CircularProgress />} />
-         </Box>
-         <Box display="flex" gap={2}>
-            <Input
-               error
-               helperText="Input helper text error"
-               startIcon={<CircularProgress />}
-               endIcon={<CircularProgress />}
-               disabled
-            />
-            <Input
-               variant="filled"
-               helperText="Input helper text variant filled"
-               startIcon={<CircularProgress />}
-               endIcon={<CircularProgress />}
-               disabled
-            />
-            <Input
-               variant="standard"
-               helperText="Input helper text variant standard"
-               startIcon={<CircularProgress />}
-               endIcon={<CircularProgress />}
-               disabled
-            />
-         </Box>
-         <Box>
-            <Checkbox color="error" label="checkBox" size="large" />
-         </Box>
-         <Box display="flex" gap={2}>
-            <Badge content="1" dot animationType="wave">
-               <Button>Badge</Button>
-            </Badge>
-            <Badge content="1" dot>
-               <Button startIcon="I" />
-            </Badge>
-         </Box>
-         <Box display="flex" alignItems="flex-end" gap={3}>
-            <Button size="large">Button large</Button>
-            <Button size="medium">Button medium</Button>
-            <Button size="small">Button small</Button>
-         </Box>
-         <Box display="flex" alignItems="flex-end" gap={3}>
-            {COLORS.map((color) => {
-               return (
-                  <Button size="medium" key={color} color={color}>
-                     Button {color}
-                  </Button>
-               );
-            })}
-         </Box>
-         <Box display="flex" alignItems="flex-end" gap={3}>
-            {COLORS.map((color) => {
-               return (
-                  <Button size="medium" variant="outlined" key={color} color={color}>
-                     Button
-                  </Button>
-               );
-            })}
-         </Box>
-         <Box display="flex" alignItems="flex-end" gap={3}>
-            {COLORS.map((color) => {
-               return (
-                  <Button size="medium" variant="text" key={color} color={color}>
-                     Button
-                  </Button>
-               );
-            })}
-         </Box>
-         <Box display="flex" alignItems="flex-end" gap={3}>
-            <Avatar src="https://picsum.photos/300/200" size="large" />
-            <Avatar size="medium" color="error">
-               A
-            </Avatar>
-            <Avatar size="small" color="primary" title="Title" alt="Avatar Title"></Avatar>
-         </Box>
-         <Box display="flex" alignItems="flex-end" gap={3}>
-            <AvatarGroup maxCount={2}>
-               <Avatar src="https://picsum.photos/300/200" size="large" />
-               <Avatar src="https://picsum.photos/300/200" size="large" />
-               <Avatar src="https://picsum.photos/300/200" size="large" />
-               <Avatar src="https://picsum.photos/300/200" size="large" />
-               <Avatar src="https://picsum.photos/300/200" size="large" />
-               <Avatar src="https://picsum.photos/300/200" size="large" />
-            </AvatarGroup>
-         </Box>
-      </Box>
+      <div style={{ padding: '2rem', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+         <Typography variant="h1" color="primary">
+            🎉 PUI Monorepo Demo
+         </Typography>
+
+         <Typography variant="h2">Available Components:</Typography>
+
+         <div style={{ display: 'flex', gap: '1rem', alignItems: 'center' }}>
+            <Typography variant="h3">Buttons:</Typography>
+            <Button size="small">Small Button</Button>
+            <Button size="medium">Medium Button</Button>
+            <Button size="large">Large Button</Button>
+         </div>
+
+         <div style={{ display: 'flex', gap: '1rem', alignItems: 'center' }}>
+            <Typography variant="h3">Button Colors:</Typography>
+            {COLORS.map((color) => (
+               <Button key={color} color={color} variant="container">
+                  {color}
+               </Button>
+            ))}
+         </div>
+
+         <div style={{ display: 'flex', gap: '1rem', alignItems: 'center' }}>
+            <Typography variant="h3">Button Variants:</Typography>
+            <Button variant="container">Container</Button>
+            <Button variant="outlined">Outlined</Button>
+            <Button variant="text">Text</Button>
+         </div>
+
+         <div style={{ display: 'flex', gap: '1rem', alignItems: 'center' }}>
+            <Typography variant="h3">Icons:</Typography>
+            <CircularProgress />
+            <Eye />
+            <Close />
+         </div>
+
+         <div style={{ display: 'flex', gap: '1rem', alignItems: 'center' }}>
+            <Typography variant="h3">Typography Variants:</Typography>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+               <Typography variant="h1">Heading 1</Typography>
+               <Typography variant="h2">Heading 2</Typography>
+               <Typography variant="h3">Heading 3</Typography>
+               <Typography variant="h4">Heading 4</Typography>
+               <Typography variant="h5">Heading 5</Typography>
+               <Typography variant="h6">Heading 6</Typography>
+               <Typography variant="p">Paragraph text</Typography>
+            </div>
+         </div>
+
+         <div style={{ display: 'flex', gap: '1rem', alignItems: 'center' }}>
+            <Typography variant="h3">Typography Colors:</Typography>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+               {COLORS.map((color) => (
+                  <Typography key={color} color={color}>
+                     This is {color} colored text
+                  </Typography>
+               ))}
+            </div>
+         </div>
+
+         <Typography variant="h3" color="success">
+            ✅ Monorepo structure is working!
+         </Typography>
+         <Typography variant="p">Successfully importing from:</Typography>
+         <ul>
+            <li>
+               <code>@pui/components</code> - Button, Typography
+            </li>
+            <li>
+               <code>@pui/icons</code> - CircularProgress, Eye, Close
+            </li>
+            <li>
+               <code>@pui/theme</code> - Theme types, ThemeProvider
+            </li>
+         </ul>
+      </div>
    );
 }

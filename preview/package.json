@@ -9,6 +9,11 @@
       "preview": "vite preview"
    },
    "dependencies": {
+      "@pui/core": "^0.0.1",
+      "@pui/theme": "^0.0.1",
+      "@pui/icons": "^0.0.1",
+      "@pui/components": "^0.0.1",
+      "@pui/material": "^0.0.1",
       "react": "^18.2.0",
       "react-dom": "^18.2.0"
    },
