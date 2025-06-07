@@ -14,10 +14,18 @@
       "allowJs": true,
       "paths": {
          "@pui/material": ["./packages/px-ui/src"],
-         "@pui/material/*": ["./packages/px-ui/src/*"]
+         "@pui/material/*": ["./packages/px-ui/src/*"],
+         "@pui/core": ["./packages/core/src"],
+         "@pui/core/*": ["./packages/core/src/*"],
+         "@pui/theme": ["./packages/theme/src"],
+         "@pui/theme/*": ["./packages/theme/src/*"],
+         "@pui/icons": ["./packages/icons/src"],
+         "@pui/icons/*": ["./packages/icons/src/*"],
+         "@pui/components": ["./packages/components/src"],
+         "@pui/components/*": ["./packages/components/src/*"]
       },
 
-      "types": ["node", "react", "mocha"]
+      "types": ["node", "react"]
    },
 
    "include": ["packages/**/*", "preview/**/*"],
