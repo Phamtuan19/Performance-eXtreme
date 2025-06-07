@@ -13,8 +13,6 @@
       "noErrorTruncation": false,
       "allowJs": true,
       "paths": {
-         "@pui/material": ["./packages/px-ui/src"],
-         "@pui/material/*": ["./packages/px-ui/src/*"],
          "@pui/core": ["./packages/core/src"],
          "@pui/core/*": ["./packages/core/src/*"],
          "@pui/theme": ["./packages/theme/src"],

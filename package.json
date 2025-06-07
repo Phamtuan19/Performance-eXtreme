@@ -25,8 +25,7 @@
       "build:theme": "yarn workspace @pui/theme build",
       "build:icons": "yarn workspace @pui/icons build",
       "build:components": "yarn workspace @pui/components build",
-      "build:ui": "yarn workspace @pui/material build",
-      "build:all": "yarn build:core && yarn build:theme && yarn build:icons && yarn build:components && yarn build:ui"
+      "build:all": "yarn build:core && yarn build:theme && yarn build:icons && yarn build:components"
    },
    "devDependencies": {
       "@commitlint/cli": "^19.8.1",
