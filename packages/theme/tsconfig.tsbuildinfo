@@ -1,0 +1,1 @@
+{"root":["./src/color.ts","./src/create-breakpoint.ts","./src/create-spacing.ts","./src/index.ts","./src/styled.d.ts","./src/theme-default.ts","./src/theme-provider.tsx","./src/types/breakpoints.ts","./src/types/color.ts","./src/types/components.ts","./src/types/index.ts","./src/types/theme-core.ts"],"errors":true,"version":"5.8.3"}
