@@ -6,7 +6,7 @@ import type { ThemeColor } from '@pui/theme';
 type TypographyVariant = 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'p';
 
 // Simplified SxConfigProps for typography
-export interface SxConfigProps {
+export interface TypographySxConfigProps {
    sx?: CSSObject;
    className?: string;
 }
@@ -55,7 +55,7 @@ export type PXComponentTypography = {
    };
 };
 
-export type TypographyStyledProps = PXComponentTypography['defaultProps'] & SxConfigProps;
+export type TypographyStyledProps = PXComponentTypography['defaultProps'] & TypographySxConfigProps;
 
 export type TypographyProps = Omit<React.HTMLAttributes<HTMLElement>, 'color' | 'content'> &
    DeepOptional<TypographyStyledProps> & {
