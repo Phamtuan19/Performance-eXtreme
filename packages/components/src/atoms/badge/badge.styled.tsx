@@ -1,4 +1,4 @@
-import styled, { keyframes } from 'styled-components';
+import styled, { keyframes, css } from 'styled-components';
 
 import type { BadgeStyledProps } from './badge.type';
 
@@ -78,8 +78,12 @@ export const BadgeContent = styled('span')<{
    const positionKey = `${anchorOrigin.vertical}-${anchorOrigin.horizontal}` as keyof typeof positionMap;
 
    const animationMap = {
-      pulse: `${pulseAnimation} 1.4s ease-in-out infinite`,
-      wave: `${waveAnimation} 1.4s ease-in-out infinite`,
+      pulse: css`
+         ${pulseAnimation} 1.4s ease-in-out infinite
+      `,
+      wave: css`
+         ${waveAnimation} 1.4s ease-in-out infinite
+      `,
       none: 'none',
    };
 

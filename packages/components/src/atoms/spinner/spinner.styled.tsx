@@ -1,4 +1,4 @@
-import styled, { keyframes } from 'styled-components';
+import styled, { keyframes, css } from 'styled-components';
 
 import type { SpinnerStyledProps } from './spinner.type';
 
@@ -59,7 +59,9 @@ export const SpinnerCircular = styled('div')<{
       border: `${thickness}px solid rgba(0, 0, 0, 0.1)`,
       borderTop: `${thickness}px solid ${theme.palette[color]?.main || theme.palette.primary.main}`,
       borderRadius: '50%',
-      animation: `${spin} 1s linear infinite`,
+      animation: css`
+         ${spin} 1s linear infinite
+      `,
    };
 });
 
@@ -76,6 +78,8 @@ export const SpinnerLinear = styled('div')<{
       height: '100%',
       backgroundColor: theme.palette[color]?.main || theme.palette.primary.main,
       borderRadius: 'inherit',
-      animation: `${linearProgress} 1.5s ease-in-out infinite`,
+      animation: css`
+         ${linearProgress} 1.5s ease-in-out infinite
+      `,
    };
 });
