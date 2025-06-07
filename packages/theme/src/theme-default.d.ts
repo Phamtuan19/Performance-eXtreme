@@ -2,22 +2,33 @@ import type { Breakpoints, Palette, Theme, ThemeColor, ThemeOptionsSafe } from '
 export declare const THEME_COLORS: ThemeColor[];
 declare const DEFAULT_THEME: {
     sxConfig: () => {};
+    zIndex: {
+        base: number;
+        dropdown: number;
+        sticky: number;
+        fixed: number;
+        backdrop: number;
+        modal: number;
+        popover: number;
+        tooltip: number;
+    };
+    shape: {
+        borderRadius: number;
+    };
     spacing: {
         unit: number;
         spacingFn: (value: number) => string | number;
     };
-    palette: Palette;
-    breakpoints: Breakpoints;
-    components: import("./types").Components;
     typography: {
         htmlFontSize: number;
         fontSize: number | string;
         pxToRem: (px: number) => string;
     };
+    breakpoints: Breakpoints;
+    unstable_sxConfig: unknown;
+    palette: Palette;
+    components: import("./types").Components;
     shadows: string[];
-    shape: {
-        borderRadius: number;
-    };
     keyframes: {
         spinnerSpin: import("styled-components/dist/types").Keyframes;
         animation: {
@@ -33,17 +44,6 @@ declare const DEFAULT_THEME: {
             };
         };
     };
-    zIndex: {
-        base: number;
-        dropdown: number;
-        sticky: number;
-        fixed: number;
-        backdrop: number;
-        modal: number;
-        popover: number;
-        tooltip: number;
-    };
-    unstable_sxConfig: unknown;
     __createdByCreateTheme: boolean;
 };
 /**
@@ -53,22 +53,33 @@ declare const DEFAULT_THEME: {
  */
 export declare function setTheme(newTheme: Partial<typeof DEFAULT_THEME>): {
     sxConfig: () => {};
+    zIndex: {
+        base: number;
+        dropdown: number;
+        sticky: number;
+        fixed: number;
+        backdrop: number;
+        modal: number;
+        popover: number;
+        tooltip: number;
+    };
+    shape: {
+        borderRadius: number;
+    };
     spacing: {
         unit: number;
         spacingFn: (value: number) => string | number;
     };
-    palette: Palette;
-    breakpoints: Breakpoints;
-    components: import("./types").Components;
     typography: {
         htmlFontSize: number;
         fontSize: number | string;
         pxToRem: (px: number) => string;
     };
+    breakpoints: Breakpoints;
+    unstable_sxConfig: unknown;
+    palette: Palette;
+    components: import("./types").Components;
     shadows: string[];
-    shape: {
-        borderRadius: number;
-    };
     keyframes: {
         spinnerSpin: import("styled-components/dist/types").Keyframes;
         animation: {
@@ -84,17 +95,6 @@ export declare function setTheme(newTheme: Partial<typeof DEFAULT_THEME>): {
             };
         };
     };
-    zIndex: {
-        base: number;
-        dropdown: number;
-        sticky: number;
-        fixed: number;
-        backdrop: number;
-        modal: number;
-        popover: number;
-        tooltip: number;
-    };
-    unstable_sxConfig: unknown;
     __createdByCreateTheme: boolean;
 };
 /**

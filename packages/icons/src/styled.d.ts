@@ -1,6 +1,10 @@
-import type { Theme } from '@pui/theme';
 import 'styled-components';
+import type { Keyframes } from 'styled-components/dist/types';
 
 declare module 'styled-components' {
-   export interface DefaultTheme extends Theme {}
+   export interface DefaultTheme {
+      keyframes: {
+         spinnerSpin: Keyframes;
+      };
+   }
 }
